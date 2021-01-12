@@ -1,0 +1,5 @@
+---
+applications:
+  - name: v1-webapp-v2
+    random-route: true
+    memory: 256M

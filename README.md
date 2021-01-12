@@ -1,0 +1,1 @@
+"prestart": "npm run build",
