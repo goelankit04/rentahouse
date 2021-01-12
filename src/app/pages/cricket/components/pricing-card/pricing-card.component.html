@@ -1,0 +1,44 @@
+<fieldset class="card__container">
+  <legend [ngStyle]="{ color: pricing.color }">{{ course.name }}</legend>
+  <div class="card__inner__content">
+    <div class="header">
+      <p>Offer Price</p>
+      <h3>
+        {{ course.currency.toLowerCase() === 'inr' ? '&#8377;' : '&#36;' }}
+        {{ course.sale_price
+        }}<span *ngIf="course.sale_price !== course.base_price"
+          >{{ course.currency.toLowerCase() === 'inr' ? '&#8377;' : '&#36;' }}
+          {{ course.base_price }}</span
+        >
+      </h3>
+      <p class="description">{{ pricing.subtitle }}</p>
+      <button (click)="enrollNow()">Enroll Now</button>
+    </div>
+    <div class="body">
+      <p>Mentored by</p>
+      <h3>{{ course.author_name }}</h3>
+    </div>
+    <div class="footer">
+      <ng-container *ngFor="let info of pricing.meta_info; last as isLast">
+        <div
+          class="footer__content"
+          [ngStyle]="{ 'margin-bottom': isLast ? '5em' : '' }"
+        >
+          <h3 [ngStyle]="{ color: pricing.color }">{{ info.heading }}</h3>
+          <span>{{ info.sub_heading }}</span>
+        </div>
+      </ng-container>
+
+      <p
+        class="certificate_container"
+        [ngStyle]="{
+          display: course?.name === 'Power Play' ? 'none' : 'flex'
+        }"
+      >
+        <span><img src="assets/certi.png" width="40" /></span
+        ><small>Certificate of Completion</small>
+      </p>
+    </div>
+  </div>
+</fieldset>
+<app-pre-loader *ngIf="isLoader"></app-pre-loader>

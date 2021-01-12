@@ -1,0 +1,43 @@
+.app-card-v2 {
+  // margin: 4px;
+
+  .app-card-product {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  .small {
+    width: 30em;
+  }
+
+@media screen and (min-width:320px) and (max-width:767px){
+  .activate{
+    margin-top:-2% !important;
+  }
+}
+
+  .activate{
+    margin-top:5%;
+    &:before{
+      content: "▲";
+      color: white;
+      position: absolute;
+      top: -6px;
+      left: 47%;
+      z-index: 99;
+      font-size: 28px;
+    }
+  .card_active {
+    border: 6px solid white;
+    overflow: hidden;
+
+    &::before {
+      background: red;
+      }
+    }
+  }
+}
+
+@import './card-product/card-product.component';
+@import './card-mentor/card-mentor.component';

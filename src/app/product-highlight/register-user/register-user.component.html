@@ -1,0 +1,42 @@
+<div class="user_form" [formGroup]="form">
+
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input matInput placeholder="First Name" formControlName="first_name">
+    <mat-error *ngIf="form.controls['first_name'].errors">{{getErrorMessage('first_name')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input matInput placeholder="Last Name" formControlName="last_name">
+    <mat-error *ngIf="form.controls['last_name'].errors">{{getErrorMessage('last_name')}}</mat-error>
+  </mat-form-field>
+
+  <app-mobile-number [disableMobileInput]="false" [mobileNumber]="0" (newMobileNumber)="getUserMobileNumber($event)"></app-mobile-number>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Password" type='password' formControlName="password">
+    <mat-error *ngIf="form.controls['password'].errors">{{getErrorMessage('password')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>City</mat-label>
+    <input matInput placeholder="City" formControlName="city">
+    <mat-error *ngIf="form.controls['city'].errors">{{getErrorMessage('city')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Country</mat-label>
+    <input matInput placeholder="Country" aria-label="State" [matAutocomplete]="auto" formControlName="country">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let c of filterCountries(form.controls['country'].value)" [value]="c.name">
+        <span>{{c.name}}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <!-- <mat-error *ngIf="form.controls['country'].touched">{{getErrorMessage('country')}}</mat-error> -->
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="registerUser()">REGISTER NOW</button>
+
+</div>

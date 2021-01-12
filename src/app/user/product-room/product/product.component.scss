@@ -1,0 +1,88 @@
+.app-product {
+
+  .user_webinar_container {
+    // margin-left: 3em;
+    background: white;
+    // filter: drop-shadow(8px 8px 10px #cccccc);
+    padding: 1em 0 2em 0;
+    border-radius: 6px;
+
+    .nothing_to_display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 1em;
+      padding: 5.6em 0;
+
+      mat-icon {
+        height: auto;
+        width: auto;
+        font-size: 4em;
+      }
+
+      .statement {
+        margin: 0;
+        margin-top: 8px;
+        font-size: 2em;
+      }
+
+      .offer_to_enroll {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin: 0;
+        margin-top: 2em;
+      }
+
+      .offer_link {
+        margin: 0;
+        // margin-top: 12px;
+        color: #a0ce4e;
+        padding: 5px 12px;
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-top: 6px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #a0ce4e;
+          color: white;
+          border-radius: 6px;
+          padding: 5px 12px;
+        }
+      }
+    }
+
+    .user_banner_video {
+      width: 98%;
+      margin: auto;
+      // margin-top: 1em;
+      // height: 32em;
+
+      .chip-heading {
+        font-size: 1.75em;
+        font-weight: 400;
+        color: grey;
+        margin-left: 0em;
+        text-transform: none;
+        cursor: default;
+        margin-bottom: 12px;
+      }
+
+      .loader {
+        mat-spinner {
+          margin: auto;
+          margin-top: 4em;
+          margin-bottom: 4em;
+        }
+      }
+
+      .webinar_cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}

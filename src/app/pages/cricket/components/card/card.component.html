@@ -1,0 +1,16 @@
+<div
+  class="card__container"
+  [ngStyle]="{ 'background-color': cardColors[course.name] }"
+>
+  <div class="image__container">
+    <img [src]="course.author_avatar" />
+  </div>
+  <button (click)="enrollNow()">Enroll Now</button>
+  <div class="text__container">
+    <p>{{ course.name }}</p>
+    <p class="newP">{{ aboutObj.about }}</p>
+    <h3>{{ course.author_name }}</h3>
+  </div>
+</div>
+
+<app-pre-loader *ngIf="isLoader"></app-pre-loader>

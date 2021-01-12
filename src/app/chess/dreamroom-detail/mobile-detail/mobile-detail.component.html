@@ -1,0 +1,52 @@
+<div class="mobile_dreamroom_detail">
+  <div class="mobile_topics_to_be_covered">
+    <mat-chip-list>
+      <mat-chip (click)="chip.toggle()" class="mat-chip-center chips">
+        Topics to be covered include
+        <mat-icon [innerHTML]="chip.isCollapsed ? 'add' : 'remove'"></mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <div class="collapsed_data" [mdbCollapse]="true" #chip="bs-collapse">
+      <p>Opening Principles</p>
+      <p>How to prepare an opening by oneself</p>
+      <p>How to form an opening repertoire over a period of time</p>
+      <p>How to handle dynamic and static positions</p>
+      <p>The art of calculation</p>
+      <p>Prophylaxis</p>
+      <p>Role of exchanges</p>
+      <p>Exploiting weakness</p>
+      <p>Handling of pieces</p>
+      <p>Playing on colors</p>
+      <p>Endgame technique</p>
+    </div>
+  </div>
+  <div class="mobile_suitable_for">
+    <mat-chip-list>
+      <mat-chip (click)="schip.toggle()">
+        suitable for
+        <mat-icon [innerHTML]="schip.isCollapsed ? 'add' : 'remove'"></mat-icon>
+      </mat-chip>
+    </mat-chip-list>
+    <div class="collapsed_data" [mdbCollapse]="true" #schip="bs-collapse">
+      <div>
+        <strong>1. Beginners:</strong>
+        <p>5 hours of quality content aimed towards people who want to learn chess from scratch</p>
+      </div>
+      <div>
+        <strong>2. Intermediate:</strong>
+        <p>(1100 - 2000 FIDE Rating): 20 hours of content</p>
+      </div>
+      <div>
+        <strong>3. Advanced:</strong>
+        <p>(2000+ FIDE Rating): 15 hours of content</p>
+      </div>
+    </div>
+  </div>
+  <div class="mobile_special_attention">
+    <p>Special attention will be given to psychological issues that affect a players growth(e.g. time pressure, low
+      self-confidence, fear of losing a game, fear of rating fluctuations etc.)</p>
+  </div>
+  <div class="mobile_spacer"></div>
+</div>
+
+<app-content-feature></app-content-feature>

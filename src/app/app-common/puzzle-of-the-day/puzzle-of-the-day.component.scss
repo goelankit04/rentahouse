@@ -1,0 +1,135 @@
+.app-puzzle-of-the-day {
+  $switch-point: 480px;
+
+  div {
+    img {
+      z-index: 10000;
+    }
+  }
+
+  .puzzle__of__the__day__container {
+    height: 100%;
+
+    .mat-mini-fab {
+      background-color: #E80000;
+      outline: none;
+      position: absolute;
+      right: -2%;
+      top: -3%;
+      transition: 0.2s;
+
+      .mat-button-wrapper {
+        color: white;
+      }
+
+      .mat-icon {
+        // padding-top: 0.1em;
+      }
+
+      @media screen and (max-width: $switch-point) {
+        right: 2%;
+        top: 4%;
+      }
+
+    }
+
+    .content__tank {
+      padding: 2em;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .text__container {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+          color: white;
+          font-size: 1em;
+          font-weight: 400;
+          font-size: 20px;
+          margin: 0 0 16px 0;
+          height: 24px;
+        }
+
+        .content {
+          color: white;
+          font-size: 14px;
+          margin: 0 0 16px 0;
+        }
+
+        .notify {
+          color: #a0ce4e;
+          font-size: 12px;
+          text-align: center;
+          margin: 0;
+          font-size: 24px;
+          margin-bottom: 1em;
+          height: 24px;
+        }
+      }
+
+      .puzzle__container {
+        #board {
+          margin: auto;
+
+          // .piece-417db {
+          //   z-index: 100000 !important;
+          // }
+
+          .white-1e1d7 {
+            background-color: #edeed1;
+            color: #769455;
+          }
+
+          .black-3c85d {
+            background-color: #769455;
+            color: #edeed1;
+          }
+
+          // .hightlight1-32417 {
+          //   img {
+          //     z-index: 100;
+          //   }
+          // }
+        }
+      }
+
+      .solved_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 2em 0;
+        border-radius: 6px;
+
+        mat-icon {
+          font-size: 40px;
+          width: 40px;
+          height: 40px;
+          color: #a0ce4e;
+          margin: 10px;
+        }
+
+        p {
+          color: #ffffff;
+          font-weight: bold;
+          font-size: 22px;
+          text-align: center;
+          line-height: 32px;
+          margin: 0;
+        }
+      }
+
+      @media screen and (max-width: $switch-point) {
+        justify-content: initial;
+        .solved_container {
+          margin-top: 10em;
+        }
+      }
+    }
+
+  }
+
+}

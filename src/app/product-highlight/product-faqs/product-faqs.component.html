@@ -1,0 +1,29 @@
+<div class="product-faqs">
+  <h2>Frequently Asked Questions</h2>
+  <mat-accordion *ngFor="let data of productList">
+    <mat-expansion-panel>
+      <mat-expansion-panel-header (click)="clickQuestion(data.question)">
+        <mat-panel-title>
+          {{ data?.question }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <div class="tab-content">
+        <div class="content_section" [innerHTML]="data?.answer">
+          <!-- {{ data?.answer }} -->
+        </div>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <h3>
+    More Questions?
+    <span>
+      <a (click)="callUs()" href="tel:+91-8287554554" class="mobile"
+        >Call us.</a
+      >
+      <a (click)="callUs()" [routerLink]="['/footer/contact-us']" class="web"
+        >Call us.</a
+      >
+    </span>
+  </h3>
+</div>

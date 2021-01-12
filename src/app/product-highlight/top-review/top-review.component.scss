@@ -1,0 +1,91 @@
+.app-top-review {
+  .top-review {
+    font-family: "Gilroy";
+    margin-top: 7em !important;
+    width: 106%;
+    margin: auto;
+
+    h2 {
+      font-size: 26px;
+      font-family: "Gilroy-ExtraBold";
+      margin: 20px 0px 45px;
+      .fa {
+        //   font-family: "Gilroy";
+        font-size: 14px;
+        border: 1px solid;
+        border-radius: 50%;
+        padding: 6px 7px 6px 7px;
+        cursor:pointer;
+      }
+    }
+
+    .review {
+      display: flex;
+      overflow-x: scroll;
+      overflow-y: hidden;
+
+      .left-card {
+        background-color: #5c93c2;
+        padding: 45px 30px;
+        -webkit-flex: 0 0 38%;
+        margin-right: 8px;
+        border-radius: 15px;
+        .review-header {
+          display: flex;
+          margin-bottom: 32px;
+
+          img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50px;
+          }
+          h4 {
+            font-family: "Gilroy-ExtraBold";
+            font-size: 22px;
+            line-height: 1.2;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+            padding-left: 10px;
+
+            span {
+              font-family: "Gilroy";
+              font-size: 14px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 850px) {
+    .top-review {
+      width: 102%;
+      .review {
+        width: 104%;
+        .left-card {
+          background-color: #5c93c2;
+          min-width: 306px;
+          margin-right: 8px;
+          border-radius: 15px;
+          padding: 24px 18px;
+
+          img {
+            width: 35px;
+            height: 35px;
+          }
+          h4 {
+            font-size: 16px;
+          }
+          .review-header {
+            margin-bottom: 18px;
+          }
+        }
+      }
+    }
+  }
+}
+.review::-webkit-scrollbar {
+  width: 0px;
+  background-color: rgba(0, 0, 0, 0);
+}

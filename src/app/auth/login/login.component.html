@@ -1,0 +1,72 @@
+<div class="login_parent_container" [formGroup]="form" (keydown)="enterPress($event)">
+
+  <div class="heading_container">
+    <p class="heading">Login </p>
+    <!-- <div class="option_container">
+      <div class="radio_button"><input type="radio" name="Student">Student</div>
+      <div class="radio_button"><input type="radio" name="Mentor">Mentor</div>
+    </div> -->
+  </div>
+
+  <div class="login_items_container">
+
+    <div class="login_box">
+      <p class="heading">Login with Email or Mobile</p>
+
+      <input type="text" id="email" formControlName="email"
+             placeholder="{{isSchoolUser ? 'Email or Mobile' : 'Email'}}">
+      <div *ngIf="form.controls['email'].touched">
+        <div class="alert alert-danger h-50" *ngIf="form.controls['email'].errors">{{getErrorMessage('email')}}</div>
+      </div>
+
+
+      <!-- Extra Input -->
+      <div [formGroup]="loginCompleter" *ngIf="showAdditionalInput">
+        <input type="text" id="additionalInput" formControlName="additionalInput"
+               placeholder="{{getExtraInputPlaceholderText()}}">
+        <div *ngIf="showAdditionalInput ? loginCompleter.controls['additionalInput'].touched : false">
+          <div class="alert alert-danger h-50" *ngIf="loginCompleter.controls['additionalInput'].errors">
+            {{getErrorMessage('additionalInput')}}
+          </div>
+        </div>
+      </div>
+
+      <input type="password" id="password" formControlName="password" placeholder="Password">
+      <div *ngIf="form.controls['password'].touched">
+        <div class="alert alert-danger h-50" *ngIf="form.controls['email'].errors">{{getErrorMessage('password')}}</div>
+      </div>
+
+      <p class="reset_password" (click)="openForgotPasswordModal()">Forgot Password</p>
+
+      <div class="alert alert-danger alert-error" *ngIf="errorMessages">{{errorMessages}}</div>
+
+      <button class="login_btn" type="submit" (click)="userLogin()">Login</button>
+
+    </div>
+
+    <div class="divider_column">
+      <div class="bar"></div>
+      <p>OR</p>
+      <div class="bar"></div>
+    </div>
+
+    <div class="social_login_box">
+      <p class="social_head">Login with Social Account</p>
+      <div class="social_item" *ngFor="let item of socialLogin" [ngClass]="item.className"
+           (click)="loginSocially(item.provider_key)">
+        <img src="{{item.icon}}">
+        <p>Sign in with {{item.name}}</p>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="sign_up_container">
+    <p>Don't have an account?</p> &nbsp;
+    <p class="register_form" (click)="openRegisterForm()">Sign up now</p>
+  </div>
+
+</div>
+
+
+<app-pre-loader *ngIf="isLoading"></app-pre-loader>

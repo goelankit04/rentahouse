@@ -1,0 +1,85 @@
+:host {
+  .trailor_video {
+    height: 80vh;
+    position: relative;
+    width: inherit;
+
+    .bg {
+      background-image: url(https://nurtr-v2.s3.ap-south-1.amazonaws.com/images/web-bg.webp);
+      height: 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .video_container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: normal;
+      height: 99%;
+      overflow: hidden;
+    }
+    video {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      top: 0px;
+    }
+    .gradient {
+      position: absolute;
+      left: -478px;
+      top: 0;
+      height: max-content;
+    }
+
+    .banner {
+      .content {
+        position: absolute;
+        top: 100px;
+        left: 40px;
+        h1 {
+          font-family: 'Gilroy-ExtraBold';
+          font-size: 38px;
+
+          color: #ffffff;
+        }
+        h4 {
+          font-family: Gilroy;
+          font-style: normal;
+          font-weight: 300;
+          font-size: 18px;
+          line-height: 28px;
+          padding: 13px 0;
+          color: #c9c8c8;
+        }
+        button {
+          background: #191919;
+          border-radius: 10px;
+          color: white;
+          font-size: 17px;
+          font-weight: bold;
+          padding: 14px 25px;
+          border: 1px;
+          border-radius: 5px;
+          margin-top: 10px;
+          font-family: 'Gilroy-ExtraBold';
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .gradient {
+      position: absolute;
+      left: -596px;
+      top: 0;
+      width: 316%;
+    }
+    .trailor_video {
+      overflow: hidden;
+    }
+  }
+}

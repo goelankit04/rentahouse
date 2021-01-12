@@ -1,0 +1,20 @@
+<div class="base_container">
+  <div class="main-container">
+    <div class="image-container" >
+      <img src="assets/interest.png">
+    </div>
+    <div class="interest">
+      <p
+        *ngFor="let interest of interests"
+        [ngClass]="{is_interest_active: interest.isSelected}"
+        (click)="selectUserInterest(interest)"
+      >{{interest.name}}
+      </p>
+    
+</div>
+<div class="image-containers">
+    <p class="alert">{{err}}</p>
+    <span class="button_click" (click)="onShowInterestClose()">Save</span>
+  </div>
+<div>
+</div>

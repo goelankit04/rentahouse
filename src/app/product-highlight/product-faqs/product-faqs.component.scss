@@ -1,0 +1,136 @@
+.app-product-faqs {
+  .product-faqs {
+    font-family: "Gilroy";
+    margin-top: 5em;
+    .mobile {
+      display: none;
+    }
+    a {
+      color: #64ac3d;
+      padding-left: 8px;
+    }
+    h2 {
+      font-size: 26px;
+      font-family: "Gilroy-ExtraBold";
+      margin: 20px 0px 25px;
+    }
+    .mat-expansion-panel {
+      background: #131313;
+      color: white;
+      margin-bottom: 15px !important;
+    }
+    .mat-expansion-panel-header {
+      color: white;
+      padding: 35px 24px;
+    }
+    .mat-expansion-panel-header-title {
+      color: white;
+      font-family: "Gilroy-SemiBold";
+      font-size: 22px;
+      padding: 5px 5px 5px 26px;
+    }
+    @media (hover: none) {
+      .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"])
+        .mat-expansion-panel-header:hover {
+        background: black;
+      }
+    }
+    .content_section {
+      font-size: 19px;
+      font-family: "Gilroy";
+      color: #a4a4a4;
+      line-height: 1.3;
+    }
+    .mat-expansion-panel-body {
+      padding: 5px 100px 35px 45px;
+    }
+    .mat-expansion-indicator::after {
+      border-style: solid;
+      border-width: 0 4px 4px 0;
+      content: "";
+      display: inline-block;
+      padding: 7px;
+      transform: rotate(45deg);
+      vertical-align: middle;
+    }
+    .mat-expansion-indicator::after,
+    .mat-expansion-panel-header-description {
+      color: #a4a4a4;
+      font-size: 34px;
+    }
+    h3 {
+      font-family: "Gilroy-SemiBold";
+      font-size: 22px;
+      margin-top: 3%;
+      display: flex;
+      margin-bottom: 1%;
+      span {
+        color: #64ac3d;
+      }
+    }
+    // button {
+    //   background: white;
+    //   border: 1px;
+    //   color: black;
+    //   font-family: "Gilroy-ExtraBold";
+    //   padding: 10px 35px;
+    //   border-radius: 5px;
+    //   font-size: 16px;
+    // }
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 850px) {
+    .product-faqs {
+      margin: -8px !important;
+      margin-top: 3rem !important;
+      .mobile {
+        display: block;
+      }
+
+      .web {
+        display: none;
+      }
+      a {
+        color: #64ac3d;
+      }
+      h2 {
+        font-size: 25px;
+      }
+      h3 {
+        font-size: 19px;
+        margin-top: 12%;
+        margin-bottom: 4%;
+      }
+      .content_section {
+        font-size: 14px;
+      }
+      .mat-expansion-panel-header {
+        // padding: 0 12px !important;
+
+        padding: 35px 20px;
+
+        background: #131313;
+        height: 55px !important;
+        color: white;
+      }
+      .mat-expansion-panel-header-title {
+        font-size: 13px !important;
+        padding: 5px 0px 5px 0px !important;
+      }
+      @media (hover: none) {
+        .mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"])
+          .mat-expansion-panel-header:hover {
+          color: white !important;
+          background: #131313 !important;
+        }
+      }
+      .mat-expansion-indicator::after {
+        padding: 3px !important;
+        margin-top: -10px;
+      }
+      .mat-expansion-panel-body {
+        padding: 0px 10px 25px 20px !important;
+      }
+    }
+  }
+}

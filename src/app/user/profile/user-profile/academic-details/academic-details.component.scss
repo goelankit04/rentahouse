@@ -1,0 +1,59 @@
+// .app-academic-details{
+//     .user_reset_password_container {
+//       background: white;
+
+//       .mat-card {
+//         width: 70%;
+//         box-shadow: 0 0px 0px 0px rgba(0,0,0,0);
+//         margin-left: 2em;
+
+//         h3 {
+//           font-size: 1.75em;
+//           font-weight: 400;
+//           color: grey;
+//           text-transform: none;
+//           cursor: default;
+//           margin-bottom: 0px;
+//         }
+
+//         .form_group_container {
+//           display: flex;
+//           justify-content: space-around;
+//           flex-wrap: wrap;
+//           margin-top: 2em;
+//           flex-direction: column;
+//           align-items: stretch;
+
+//           .md-form {
+//             flex: 1;
+//             margin-right: 0.5em;
+//           }
+//         }
+
+//         .reset_button_group {
+//           display: flex;
+//           justify-content: flex-end;
+
+//           .mat-raised-button {
+//             border-radius: 0.8em;
+//             text-transform: uppercase;
+//             background-color: #a0ce4e;
+//             color: white;
+//           }
+//         }
+//       }
+//       @media screen and (max-width: 768px) {
+//         .mat-card{
+//           width: 100%;
+//           margin-right: 2em;
+//         }
+//       }
+//     }
+
+//     @media screen and (max-width: 768px){
+//       .user_reset_password_container{
+//         margin-left: 0em;
+//         margin-right: 2em;
+//       }
+//     }
+//   }

@@ -1,0 +1,212 @@
+.app-drop-off-board {
+  .puzzle_detail_container {
+    display: flex;
+    flex-direction: column;
+
+    .heading {
+      color: #a0ce4e;
+      font-weight: bold;
+      font-size: 2em;
+    }
+
+    .puzzle-col {
+      display: flex;
+      flex-direction: column;
+
+      #board {
+        width: fit-content;
+        margin: auto;
+        touch-action: none;
+      }
+
+      .puzle_butons {
+        margin-top: 3%;
+        text-align: center;
+        user-select: none;
+
+        div.buttons>i.button,
+        div.edit>i.button {
+          font-size: 16px;
+          line-height: 1.4em;
+          color: #769455;
+          background-color: white;
+          background-image: none;
+          margin: 5px;
+          padding: 10px 20px;
+          border: solid lightgrey 1px;
+          border-radius: 4px;
+        }
+      }
+
+      .puzle_butons>button {
+        background: #a0ce4e;
+        color: white;
+        border: 1px solid #a0ce4e;
+        padding: 5px 8px;
+        cursor: pointer;
+      }
+
+      app-base-puzzle {
+        width: fit-content;
+        margin: auto;
+      }
+
+      .white-1e1d7 {
+        background-color: #edeed1;
+        color: #769455;
+      }
+
+      .black-3c85d {
+        background-color: #769455;
+        color: #edeed1;
+      }
+
+      .puzzle_detail {
+        width: 100%;
+        margin-top: 1em;
+        margin-left: 0;
+
+        .display_board {
+          .btnss {
+            button {
+              width: fit-content;
+              background-color: #A0CC50;
+              padding: 10px 30px;
+              border: 0;
+              margin: 1em auto;
+              border-radius: 6px;
+              margin-bottom: 8px;
+              color: white;
+              cursor: pointer;
+              // filter: drop-shadow(2px 2px 4px #cccccc);
+
+              &:hover {
+                background-color: #34c2d6;
+              }
+            }
+          }
+
+          .btn_container {
+            display: flex;
+            justify-content: center;
+
+            button {
+              background-color: #A0CC50;
+              padding: 10px 30px;
+              border: 0;
+              margin: 1em;
+              border-radius: 6px;
+              margin-bottom: 8px;
+              color: white;
+              cursor: pointer;
+              filter: drop-shadow(2px 2px 4px #cccccc);
+
+              &:hover {
+                background-color: #34c2d6;
+              }
+            }
+          }
+
+          .about_puzzle {
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+          }
+
+          .about_puzzle_detail {
+            font-size: 18px;
+            text-align: center;
+            font-weight: bold;
+          }
+
+          .puzzle_status {
+            color: #a0ce4e;
+            font-size: 2em;
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+          }
+
+          .well_done {
+            color: black;
+            font-size: 2em;
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+          }
+        }
+
+        .box {
+          max-width: 40em;
+          margin: auto;
+          margin-top: 1em;
+          border: 1px solid #cccccc;
+          padding: 1em;
+          border-radius: 6px;
+          overflow-y: scroll;
+          height: 18em;
+        }
+      }
+    }
+
+    .active {
+      background-color: #771616 !important;
+      color: white;
+    }
+  }
+
+  @media screen and (min-width: 1260px) {
+    .puzzle_detail_container {
+      .puzzle-col {
+        display: flex;
+        flex-direction: row;
+
+        #board {
+          width: fit-content;
+          margin-left: 0;
+        }
+
+        app-base-puzzle {
+          margin-left: 0;
+        }
+
+        .puzzle_detail {
+          margin-top: 0;
+          margin-left: 3em;
+
+          .display_board {
+            .about_puzzle {
+              text-align: center;
+            }
+
+            .about_puzzle_detail {
+              text-align: center;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+strong {
+  font-weight: bold !important;
+}
+
+// .active {
+//   // background-color:#771616 !important;
+//   color: white;
+// }
+
+.highlight-white {
+  -webkit-box-shadow: inset 0 0 3px 3px yellow !important;
+  -moz-box-shadow: inset 0 0 3px 3px yellow !important;
+  box-shadow: inset 0 0 3px 3px yellow !important;
+}
+
+.highlight {
+  -webkit-box-shadow: inset 0 0 3px 3px blue !important;
+  -moz-box-shadow: inset 0 0 3px 3px blue !important;
+  box-shadow: inset 0 0 3px 3px blue !important;
+}

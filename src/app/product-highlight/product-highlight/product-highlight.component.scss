@@ -1,0 +1,28 @@
+.app-product-highlight {
+  font-family: "Gilroy";
+  color: white;
+  background: #000000;
+  padding-bottom: 5%;
+  .product_highlight_container {
+    margin-top: 7em !important;
+    height: 100%;
+    // width: 1400px;
+    width: 90%;
+    margin: auto;
+    height: 100%;
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 640px) {
+    .product_highlight_container {
+      width: 85%;
+      margin: auto;
+    }
+  }
+
+  @media screen and (min-width: 1400px) and (max-width: 5000px) {
+    .product_highlight_container {
+      max-width: 1380px;
+      margin: auto;
+    }
+  }
+}

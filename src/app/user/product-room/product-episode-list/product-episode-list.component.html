@@ -1,0 +1,14 @@
+<app-pre-loader *ngIf="isLoading"></app-pre-loader>
+
+<div class="product_episode_list_container">
+  <div class="no_product_found" *ngIf="!foundProduct && !isLoading">
+    <mat-icon>error</mat-icon>
+    <p>No Videos Found</p>
+  </div>
+
+  <div class="product_container" *ngIf="foundProduct">
+    <app-card *ngFor="let product of productList; let i=index" [cardData]="product" [index]="i" [hover]="false">product_id
+      {{product.id}}</app-card>
+
+  </div>
+</div>

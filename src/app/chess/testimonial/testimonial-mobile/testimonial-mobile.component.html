@@ -1,0 +1,19 @@
+<div class="testimonial_container">
+
+  <mdb-carousel [animation]="'slide'">
+    <mdb-slide *ngFor="let t of testimonials">
+      <div class="testimonial">
+        <div class="avatar">
+          <img draggable="false" [src]="t.img_url"
+               class="rounded-circle img-fluid image_circle" alt="{{t.player_name}}">
+        </div>
+        <p class="testimonial_content">
+          <i class="fa fa-quote-left"></i>&nbsp;{{t.testimonials}} &nbsp;<i class="fa fa-quote-left rotate180"></i>
+        </p>
+        <h4 class="testimonial_name">{{t.player_name}}</h4>
+        <h6 class="testimonial_designation">{{t.player_title}}</h6>
+      </div>
+    </mdb-slide>
+  </mdb-carousel>
+
+</div>

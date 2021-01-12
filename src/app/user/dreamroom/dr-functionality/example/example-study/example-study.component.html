@@ -1,0 +1,23 @@
+<div class="puzzle_item_container">
+  <!-- <div class="loader" *ngIf="isLoading"><mat-spinner></mat-spinner></div> -->
+  <app-pre-loader *ngIf="isLoading"></app-pre-loader>
+  <div id="board" class="board"></div>
+  <div class="hint_option">
+    <ng-container *ngIf="isSolutionActive">
+      <div class="heading">{{ heading }}</div>
+      <div class="sub_heading">{{ detail }}</div>
+      <span>
+        Try visualizing all possible solutions and then click to view
+        solution</span
+      >
+      <button (click)="showSolution()">View Solution</button>
+    </ng-container>
+    <!-- <a
+      [href]="fileUrl"
+      download="file.pgn"
+      style="cursor:pointer;text-decoration:underline"
+    >
+      Download Pgn
+    </a> -->
+  </div>
+</div>

@@ -1,0 +1,5 @@
+<div class="chess_elements">
+  <span *ngFor="let item of items; let i = index;">
+    <img [src]="item.url" alt="{{item.name}}" width="50px" (click)="elementClicked(i)">
+  </span>
+</div>

@@ -1,0 +1,41 @@
+<div class="image-box" *ngIf="imageBoxURL">
+  <img src="{{imageBoxURL}}">
+</div>
+
+<app-show-interest
+  *ngIf="showInterestPopup"
+  [userInterests]="userInterests"
+  (userSelectedInterestsEmitter)="registerUserInterests($event,err)"
+
+></app-show-interest>
+
+<div class="main_container" *ngFor="let catalog of catalogProduct">
+  <div class="user_dashboard_container" *ngIf="catalog.products.length > 0">
+    <p class="chip-heading" *ngIf="catalog?.title!=='121 Room'">Upcoming {{catalog.title}}</p>
+    <p class="chip-heading" *ngIf="catalog?.title==='121 Room'">{{catalog.title}} Available</p>
+
+    <div class="loader" *ngIf="!dataReceived">
+      <mat-spinner></mat-spinner>
+    </div>
+    <div class="webinar_cards" *ngIf="dataReceived || catalog?.products > 0 ">
+      <app-card
+        *ngFor="let dashboardCard of catalog.products; let i=index;"
+        [cardData]="dashboardCard"
+        [mobileView]="mobileVersion()"
+        [index]="i"
+        [hover]="true"
+      ></app-card>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="recommended_container">
+  <p class="chip-heading">Recommended Products</p>
+  <div class="recommended_card">
+  </div>
+</div> -->
+
+<div class="no_data_recieved_message" *ngIf="showErrorDiv">
+  <mat-icon>error</mat-icon>
+  <p>No Products found</p>
+</div>

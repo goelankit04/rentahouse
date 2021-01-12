@@ -1,0 +1,18 @@
+<div class="upcoming_data_container">
+  <div class="upcoming_section" *ngFor="let data of upcomingDataList; let i of index">
+    <p class="heading" *ngIf="data.products.length > 0">Upcoming {{data.title}}</p>
+    <div class="product_container" *ngIf="data.products.length > 0">
+      <div class="content" *ngFor="let content of data.products">
+        <img draggable="false" src="{{content.image_url}}">
+        <div class="block_content">
+          <span class="heading">{{content.name}}</span>
+          <span class="description" [innerHTML]="content.description ? (content.description | ellipsis: 25) : ''"></span>
+          <span class="bottom-section">
+            <span class="date">{{content.scheduled_date | date: 'd/M/yy'}}</span>
+            <span class="view_more" (click)="openDashboard()">View More</span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

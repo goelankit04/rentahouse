@@ -1,0 +1,11 @@
+<button mat-mini-fab (click)="closeRecommendation()" class="minimize-button">
+  <mat-icon>minimize</mat-icon>
+</button>
+
+<app-card-container
+  [type]="'product'"
+  [small]="false"
+  [data]="response"
+  [show]="false"
+  [active]="false"
+></app-card-container>

@@ -1,0 +1,32 @@
+.app-study-material{
+
+  .study_material_container{
+    color: #666666;
+    margin: 24px;
+
+    .header_text{
+      h1 {
+
+          margin-bottom: 10px;
+          font-size: 1.4em;
+          font-weight: 500;
+          cursor: default;
+      }
+      p {
+          margin-top: 0px;
+          cursor: default;
+      }
+    }
+
+    .content{
+      margin-bottom: 3em;
+      li{
+        p{
+          width: fit-content;
+          color: #0275d8;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

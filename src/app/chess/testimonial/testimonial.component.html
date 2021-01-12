@@ -1,0 +1,17 @@
+<div class="testimonial_container">
+
+  <div class="header_text">
+    <h1>Testimonials</h1>
+    <!-- <p class="content">At nurtr, we have a firm belief that we can fulfill a billion dreams with a
+       team of stellar mentors. These testimonials for Grand Master RB Ramesh-The Master
+        Mentor of our Chess Dream Room is just a proof of concept of our belief on our mentors.</p> -->
+  </div>
+
+  <div class="background_container">
+
+    <app-testimonial-mobile *ngIf="getMobileWidth()"></app-testimonial-mobile>
+
+    <app-testimonial-desktop *ngIf="!getMobileWidth()"></app-testimonial-desktop>
+
+  </div>
+</div>

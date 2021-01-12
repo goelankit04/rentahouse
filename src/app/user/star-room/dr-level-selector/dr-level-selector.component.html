@@ -1,0 +1,54 @@
+<div class="user_star_room">
+  <!-- <p class="chip-heading">Star Room</p> -->
+
+  <div class="events" *ngIf="product">
+    <mat-card class="card_container" *ngFor="let data of product">
+      <img
+        mat-card-image
+        class="image_container_mentor"
+        [src]="data?.image_url"
+      />
+
+      <!-- Mentor card-content -->
+
+      <mat-card-content>
+        <div class="detail_container">
+          <mat-card-subtitle>{{ data?.name }}</mat-card-subtitle>
+
+          <div class="detail">
+            <p class="value">
+              <span style="font-size: 15px;color:#666766;font-weight:bold;">{{
+                data?.short_description | ellipsis:220
+              }}</span>
+            </p>
+          </div>
+          <mat-card-title class="value"></mat-card-title>
+        </div>
+        <div class="main-button">
+          <button
+            type="button"
+            class="view_btn"
+            (click)="gotoSelectedLevel(data.product_id,data.product_type)"
+          >
+            View More
+          </button>
+          <button
+            type="button"
+            *ngIf="data?.isUserProduct !== 1"
+            class="register_btn"
+            (click)="buyNow(data?.product_id)"
+          >
+            Buy Now
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <div class="nothing_to_display" *ngIf="nothingToDisplay">
+    <mat-icon>error</mat-icon>
+    <p class="statement">No Star Room found</p>
+    <p class="offer_to_enroll">Why don't you try one?</p>
+    <p class="offer_to_enroll offer_link" (click)="openPaymentGateway()">Click here to buy our Star Room</p>
+  </div>
+</div>

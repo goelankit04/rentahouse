@@ -1,0 +1,32 @@
+<div class="user_container">
+  <div class="menu_container" *ngIf="!mobileView()">
+    <div *ngFor="let item of menuList; let i = index;">
+      <div class="menu_item" *ngIf="item.id!==8 && item.id!==9 && item.id!=10" (click)="gotoItem(item.id)" (mouseenter)="hoverActive = true"
+        (mouseleave)="hoverActive = false" [ngClass]="{'is_list_item_active': i === activeState}">
+        <img draggable="false" src="{{item.svg}}">
+        <span>{{item.name}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="page_container">
+    <div class="bread_crumb">
+      <mat-icon (click)="gotoHomepage()" class="icon_home">home</mat-icon>
+      <mat-icon>keyboard_arrow_right</mat-icon>
+      <!-- &lt;!&ndash; {{menuList[activeState] | json}} &ndash;&gt; -->
+      <span (click)="navigate()" class="fonts" style="cursor:pointer;">{{ menuList[activeState].BreadCrumbName}}</span>
+      <mat-icon *ngIf="response.length > 0">keyboard_arrow_right</mat-icon>
+      <span class="fonts" (click)="level()" style="cursor:pointer;">{{response}}</span>
+      <mat-icon *ngIf="ex!=''">keyboard_arrow_right</mat-icon>
+      <span class="fonts" (click)="exampleOpen()" style="cursor:pointer;">{{ex}}</span>
+      <mat-icon *ngIf="examples=='Examples'">keyboard_arrow_right</mat-icon>
+      <span class="fonts">{{examples}}</span>
+      <mat-icon *ngIf="puzzles=='Puzzles'">keyboard_arrow_right</mat-icon>
+      <span class="fonts">{{puzzles}}</span>
+    </div>
+
+    <div class="page">
+      <router-outlet (activate)="activeEvents($event)"></router-outlet>
+    </div>
+  </div>
+</div>

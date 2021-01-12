@@ -1,0 +1,18 @@
+<div class="nurtr_usp_container">
+
+  <hr class="divider_small_header">
+  <h1 class="heading">Best Learning Practises at one place</h1>
+  <hr class="base_divider">
+
+  <div class="item_container">
+    <div class="item" *ngFor="let usp of uspList">
+      <div class="item_content">
+        <img src="{{usp.icon}}">
+        <p class="title">{{usp.title}}</p>
+        <hr class="divider_small_header">
+        <p class="subtitle">{{usp.subtitle}}</p>
+      </div>
+      <img class="bg_element_pattern" src="/assets/payment-footer/rec-dotted.png">
+    </div>
+  </div>
+</div>

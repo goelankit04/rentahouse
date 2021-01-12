@@ -1,0 +1,52 @@
+.app-study-material {
+  .main-container {
+    padding: 40px;
+
+    p {
+      // font-size:18px;
+    }
+
+    li {
+      // font-size:18px;
+
+    }
+
+
+    .expension {
+      max-width: 650px;
+      margin-top: 1%;
+
+      .mat-expansion-panel-header-title {
+        color: #a0ce4e !important;
+        font-size: 20px;
+        font-weight: 500 !important;
+      }
+
+      .mat-expansion-panel-header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 33px 24px !important;
+        line-height: 1.1 !important;
+      }
+
+      .mat-expansion-panel {
+        filter: drop-shadow(0px 0px 2px #cccccc) !important;
+        margin-bottom: 3% !important;
+
+        ul {
+          font-size: 16px;
+          line-height: 1.6;
+        }
+
+        p {
+          font-size: 16px;
+        }
+      }
+
+      .mat-expansion-panel:not([class*=mat-elevation-z]) {
+        box-shadow: none !important;
+      }
+    }
+  }
+}

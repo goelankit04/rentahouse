@@ -1,0 +1,121 @@
+<div class="dreamroom_container2">
+  <div class="content_container" *ngIf="dataReceived">
+    <div class="content">
+      <div class="video_box">
+        <div class="wistia_responsive_padding">
+          <div
+            class="wistia_responsive_wrapper"
+            style="
+              height: 100%;
+              left: 0;
+              position: relative;
+              top: 0;
+              width: 100%;
+            "
+          >
+            <img
+              style="cursor: default;"
+              draggable="false"
+              src="assets/chess/Dreamroom/level_selector/DR_video.png"
+              *ngIf="!showVideo"
+            />
+            <!--
+            <span *ngIf="isVideoWorking" class="wistia_embed wistia_async_x45wfkp6no popover=true popoverAnimateThumbnail=true popoverContent=link videoFoam=true"
+              style="display:inline; margin-left: -1.7em">
+              <a href="#">
+                <svg version="1.1" width="60" height="60" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  x="0px" y="0px" viewBox="0 0 18 18" style="enable-background:new 0 0 18 18;" xml:space="preserve">
+
+                  <style type="text/css">
+                    .st0 {
+                      /* fill: #EABA1F; */
+                      fill: #A0CD4E;
+                    }
+
+                    .st1 {
+                      fill: #FFFFFF;
+                    }
+
+                  </style>
+
+                  <g>
+                    <path class="st0" d="M17.2,9c0,4.5-3.7,8.2-8.2,8.2c-4.5,0-8.2-3.7-8.2-8.2c0-4.5,3.7-8.2,8.2-8.2C13.5,0.8,17.2,4.5,17.2,9L17.2,9z M17.2,9" />
+                    <path class="st1" d="M13.2,9L7,13.2V4.8L13.2,9z M13.2,9" />
+                    <path class="st1" d="M7,13.5c0,0-0.1,0-0.1,0c-0.1,0-0.1-0.1-0.1-0.2V4.8c0-0.1,0.1-0.2,0.1-0.2c0.1,0,0.2,0,0.3,0l6.2,4.2c0.1,0.1,0.1,0.1,0.1,0.2c0,0.1,0,0.2-0.1,0.2l-6.2,4.2C7.1,13.5,7.1,13.5,7,13.5L7,13.5z M7.3,5.3v7.4L12.7,9L7.3,5.3z M7.3,5.3" />
+                  </g>
+                </svg>
+              </a>
+
+            </span>
+            -->
+          </div>
+        </div>
+      </div>
+      <div class="level_selector">
+        <div
+          *ngFor="let level of level2"
+          (click)="gotoSelectedLevel(level.id)"
+          class="image_container"
+        >
+          <img draggable="false" src="{{ level.image }}" class="hover_image" />
+          <img
+            draggable="false"
+            src="{{ level.img }}"
+            class="hvr_img"
+            *ngIf="!level.is_product_available"
+          />
+          <img
+            draggable="false"
+            src="{{ level.hover }}"
+            class="hvr_img"
+            *ngIf="level.is_product_available"
+          />
+          <p class="name" id="text">{{ level.name }}</p>
+          <p class="fide" id="text">FIDE Rating: {{ level.range }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- && showCombo -->
+  <div class="dr_combo" *ngIf="dataReceived && showCombo">
+    <span>Dream Rooms</span>
+    <div class="combo_card_container">
+      <!-- card -->
+      <div class="combo_card" *ngFor="let combo of comboData">
+        <span *ngIf="combo.isEnabled">
+          <div class="header">
+            <!-- <p [ngClass]="{'long_title': combo.long_title}">{{combo.combo_name}}</p> -->
+            <img src="{{ combo.combo_side_image }}" />
+          </div>
+          <div class="price_container">
+            <span class="fa fa-inr"></span
+            ><span class="line-through">{{ combo?.base_price }}</span> <br />
+            <span class="fa fa-inr"></span>{{ combo.price_inr }}
+            /
+            <span class="fa fa-usd"></span> {{ combo.price_usd }}
+          </div>
+          <div class="footer">
+            <button (click)="buyNow(combo?.id)">Buy Now</button>
+            <!-- routerLink="{{combo?.redirectLink}}" -->
+          </div>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="dreamroom_combo " *ngIf="dataReceived">
+    <div class="combo_image ">
+      <img draggable="false " src="assets/chess/Dreamroom/level_selector/combo-header.svg ">
+    </div>
+    <div class="combo_content ">
+      <p class="heading ">Combo Offer</p>
+      <p class="sub-heading ">Intermediate + Advance</p>
+      <div class="pricing ">
+        <img draggable="false " src="assets/chess/Dreamroom/level_selector/combo-text-bg.svg ">
+        <p class="price ">
+          <i class="fa {{getCurrencySign()}} "></i>8000</p>
+      </div>
+    </div>
+  </div> -->
+</div>

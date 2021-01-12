@@ -1,0 +1,26 @@
+<div class="course_detail_container">
+  <div class="text_container">
+    <h1>About nurtr Chess Dream Room</h1>
+    <p>nurtr's Chess Dream Room is first of its kind online chess course suitable for beginner to Grand Master level. The content has been designed by one of the best chess coaches of the world - the Super Coach of India Grand Master R.B. Ramesh and is supported by other celebrated GMs and Coaches. The Dream Room contains 40+ hours of cinematized chess content embedded with exhaustive exercises and puzzles to make sure you have enough arrows in your quiver as you embark on this mission to become a Grand Master.</p>
+
+    <p class="heading">What will I learn in nurtr's Chess Dream Room?</p>
+
+    <p class="sub_heading">In Beginner section you will learn about</p>
+    <ul class="initial_list"><li *ngFor="let listItem of getInitialList(beginnerList, 5); let i = index">{{listItem}}</li></ul>
+    <ul *ngIf="toggle[0]"><li *ngFor="let listItem of getRestList(beginnerList, 6); let i = index">{{listItem}}</li></ul>
+    <button class="show_button" [innerHTML]="toggle[0] ? 'Show less' : 'Show more'" (click)="toggle[0] = !toggle[0]"></button>
+
+
+    <p class="sub_heading">In the Intermediate section, you will learn about</p>
+    <ul class="initial_list"><li *ngFor="let listItem of getInitialList(intermediateList, 5); let i = index">{{listItem}}</li></ul>
+    <ul *ngIf="toggle[1]"><li *ngFor="let listItem of getRestList(intermediateList, 6); let i = index">{{listItem}}</li></ul>
+    <button class="show_button" [innerHTML]="toggle[1] ? 'Show less' : 'Show more'" (click)="toggle[1] = !toggle[1]"></button>
+
+    <p class="sub_heading">In Advance section, you will learn about</p>
+    <ul class="initial_list"><li *ngFor="let listItem of getInitialList(advanceList, 5); let i = index">{{listItem}}</li></ul>
+    <ul *ngIf="toggle[2]"><li *ngFor="let listItem of getRestList(advanceList, 6); let i = index">{{listItem}}</li></ul>
+    <button class="show_button" [innerHTML]="toggle[2] ? 'Show less' : 'Show more'" (click)="toggle[2] = !toggle[2]"></button>
+
+  </div>
+
+</div>

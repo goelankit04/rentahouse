@@ -1,0 +1,58 @@
+.app-course-detail {
+
+  .faculty {
+    display: flex;
+    padding: 30px 60px;
+    display: flex;
+
+    img {
+      padding: 10px;
+      border: 1px solid grey;
+    }
+
+    .column {
+      padding-left: 2em;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .faculty_management {
+    img {
+      height: 266px;
+      object-fit: cover;
+      object-position: top;
+    }
+  }
+
+  @media screen and (min-width: 1000px) and (max-width: 1500px) {
+    .faculty {
+      .column {
+        padding-left: 2em;
+        img {
+          height: 214px !important;
+          width: 224px !important;
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 0) and (max-width: 1000px) {
+    .faculty {
+      display: block !important;
+
+      .column {
+        padding-left: 0;
+        img {
+          height: 214px !important;
+          width: 224px !important;
+        }
+  
+        .heading {
+          padding-top: 37px;
+          padding-left: 0px;
+        }
+      }
+    }
+  }
+}

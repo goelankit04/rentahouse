@@ -1,0 +1,7 @@
+<!-- <app-card-detail *ngIf="detailView" [data]="detailData"></app-card-detail> -->
+<div [class.activate]="active">
+    <app-card-product *ngIf="product" [data]="data" [filter]="small" [show]='show' [previewOnHover]="true"
+        [videoUrl]="'wistia_async_oqdgce9nwb'" [class.card_active]="active" (productResponse)="responseProduct($event)"
+        (window:resize)="onResize($event)"></app-card-product>
+</div>
+<app-card-mentor *ngIf="mentor" [data]="data" (window:resize)="onResize($event)"></app-card-mentor>

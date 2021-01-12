@@ -1,0 +1,486 @@
+.app-product-banner {
+  max-width: 1400px;
+  .flexx {
+    display: flex !important;
+  }
+  .bg_noise {
+    background-image: url('../../../assets/noise.png');
+    background-size: 100%;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .profile_btn {
+    position: relative;
+    width: 100%;
+    display: flex;
+
+    .profile_detail {
+      display: block;
+      position: absolute;
+      top: 5em;
+      background: black;
+      padding: 1em;
+      margin: 0;
+      border-radius: 12px;
+      left: 0;
+      width: 100%;
+      z-index: 1;
+      font-family: 'Gilroy-ExtraBold';
+      // opacity: 0;
+      transition: opacity 0.2s ease-in-out;
+
+      img {
+        width: 100%;
+        height: 18em;
+        object-position: top;
+        object-fit: cover;
+      }
+
+      h4 {
+        margin-top: -2em;
+      }
+    }
+
+    // &:hover {
+    //   .profile_detail {
+    //     opacity: 1;
+    //   }
+    // }
+  }
+
+  .link {
+    background: white;
+    color: black;
+    margin-left: 10px;
+    border: 1px;
+    font-family: 'Gilroy-ExtraBold';
+    padding: 9px 1em;
+    width: 120px;
+    border-radius: 6px;
+    border: 1px;
+  }
+
+  .link_banner {
+    padding: 1em 2em;
+
+    @media screen and (max-width: 800px) {
+      padding: 8px 12px;
+    }
+  }
+
+  .sticky {
+    background: #b74747;
+    width: 102%;
+    opacity: 0;
+    position: fixed;
+    left: 0px;
+    height: 50px;
+    z-index: 99;
+    top: 82px;
+    .left {
+      display: flex;
+      align-items: center;
+      padding-left: 60px;
+      font-size: 19px;
+      font-family: 'Gilroy-SemiBold';
+      padding-top: 10px;
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      padding-top: 5px;
+      justify-content: center;
+      p:first-child {
+        font-family: 'Gilroy-SemiBold';
+        font-size: 20px;
+        // text-decoration: line-through;
+      }
+      .base {
+        font-family: 'Gilroy-ExtraBold';
+        font-size: 22px;
+      }
+      .action {
+        button {
+          border: 1px;
+          font-family: 'Gilroy-ExtraBold';
+          padding: 6px 0px;
+          width: 120px;
+          border-radius: 6px;
+          border: 1px;
+        }
+        button:first-child {
+          background: #64ac3d;
+          color: white;
+          border: 1px solid #64ac3d;
+        }
+      }
+    }
+  }
+
+  .product-banner {
+    .mob_fix {
+      display: none;
+    }
+
+    .right-banner1 {
+      display: none;
+    }
+    .comprehensive {
+      background: linear-gradient(289deg, #dc5f5f 49%, #a73c3c 67%);
+      padding: 35px 45px;
+      border-radius: 15px;
+
+      .right-banner {
+        position: relative !important;
+        padding: 0px;
+        .overlay {
+          position: absolute;
+          top: 0px;
+          background: rgba(0, 0, 0, 0.5);
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          border-radius: 15px;
+        }
+        .image {
+          height: 100%;
+          width: 100%;
+          background-size: cover;
+          border-radius: 15px;
+          .wistia_click_to_play {
+            position: inherit !important;
+            display: block !important;
+            .play_icon {
+              position: absolute !important;
+              top: 36% !important;
+              left: 42% !important;
+              text-align: -webkit-center;
+              .Oval {
+                width: 4em;
+                height: 4em;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #ffffff;
+                transition: all 0.2s ease-in-out;
+                &:hover {
+                  transition: all 0.2s ease-in-out;
+                  width: 4.2em;
+                  height: 4.2em;
+                  cursor: pointer;
+                }
+                .Triangle {
+                  width: 29%;
+                  height: 29%;
+                  -webkit-clip-path: polygon(100% 50%, 0 0, 0 100%);
+                  clip-path: polygon(100% 50%, 0 0, 0 100%);
+                  border: solid 1px #131313;
+                  background-color: #131313;
+                  margin-top: 2px;
+                  margin-left: 4px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .pricing {
+        font-size: 28px;
+        display: flex;
+        align-items: center;
+        span {
+          font-family: 'Gilroy-ExtraBold';
+        }
+        small {
+          font-family: 'Gilroy-SemiBold';
+          padding-left: 40px;
+          text-decoration: line-through;
+        }
+      }
+      .action {
+        button {
+          border: 1px;
+          padding: 5px 15px;
+          font-family: 'Gilroy-ExtraBold';
+          padding: 12px 0px;
+          width: 165px;
+          border-radius: 6px;
+          border: 1px;
+        }
+        button:first-child {
+          background: #64ac3d;
+          color: white;
+          border: 1px solid #64ac3d;
+        }
+        button:last-child {
+          background: white;
+          color: black;
+          margin-left: 10px;
+        }
+      }
+      .mobile {
+        display: none;
+      }
+
+      .episodes {
+        padding: 7px 0px 12px;
+
+        img {
+          width: 21px;
+          margin-right: 5px;
+        }
+
+        span {
+          font-family: 'Gilroy-ExtraBold';
+          font-size: 18px;
+          small {
+            font-family: 'Gilroy';
+            font-size: 17px;
+            padding-left: 6px;
+          }
+        }
+      }
+      .mentor {
+        display: flex;
+        align-items: center;
+        padding: 18px 0px;
+        img {
+          border-radius: 50% 50%;
+          height: 50px;
+          width: 50px;
+        }
+        span {
+          font-family: 'Gilroy-ExtraBold';
+          padding: 0px 10px;
+          font-size: 18px;
+          line-height: 1.3;
+          small {
+            font-family: 'Gilroy';
+            float: right;
+            font-size: 14px;
+          }
+        }
+
+        button {
+          font-family: 'Gilroy-ExtraBold';
+          background: #131313;
+          color: white;
+          border: 1px;
+          padding: 0px 14px;
+          height: 32px;
+          font-size: 14px;
+          border-radius: 5px;
+          margin-left: 6px;
+        }
+      }
+
+      #mentors {
+        img {
+          height: 65px;
+          width: 108px;
+          border-radius: 0px;
+        }
+      }
+      h2 {
+        font-family: 'Gilroy-SemiBold';
+        font-size: 28px;
+        width: 80%;
+      }
+      .star {
+        .checked {
+          color: #ffb604;
+          font-size: 22px;
+          padding-right: 3px;
+        }
+        small {
+          color: white;
+          font-family: 'Gilroy-SemiBold';
+          font-size: 17px;
+          padding: 0px 7px 0px 4px;
+          span {
+            color: #ffb604;
+            font-family: 'Gilroy-ExtraBold';
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1175px) and (max-width: 4000px) {
+    .sticky {
+      .right {
+        padding-left: 8em;
+      }
+    }
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 850px) {
+    .sticky {
+      display: none !important;
+    }
+    .bg_noise {
+      display: none;
+    }
+
+    .product-banner {
+      .mob_fix {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        opacity: 0;
+        // display: none;
+        width: 100%;
+        background: #b74747;
+        left: 0;
+        z-index: 99;
+        padding-left: 30px;
+        .base {
+          display: flex;
+          align-items: center;
+          margin: 9px 0 5px;
+
+          span:first-child {
+            font-family: 'Gilroy-SemiBold';
+            font-size: 20px;
+            // text-decoration: line-through;
+          }
+          span:last-child {
+            font-family: 'Gilroy-ExtraBold';
+            font-size: 24px;
+            padding-left: 12px;
+          }
+        }
+        .action {
+          button {
+            border: 1px;
+            font-family: 'Gilroy-ExtraBold';
+            padding: 6px 0px;
+            width: 120px;
+            border-radius: 6px;
+            border: 1px;
+          }
+          button:first-child {
+            background: #64ac3d;
+            color: white;
+            border: 1px solid #64ac3d;
+          }
+          button:last-child {
+            background: white;
+            color: black;
+            margin-left: 10px;
+          }
+        }
+      }
+      .right-banner {
+        display: none !important;
+      }
+
+      .right-banner1 {
+        position: relative !important;
+        display: block;
+        margin: -10px;
+        margin-bottom: 20px;
+        .overlay1 {
+          position: absolute;
+          top: 0px;
+          background: rgba(0, 0, 0, 0.5) !important;
+          left: 0px;
+          width: 100%;
+          height: 100%;
+          border-radius: 15px;
+        }
+        .image {
+          width: 100% !important;
+          min-height: 220px !important;
+          background-size: cover;
+          border-radius: 15px;
+          .wistia_click_to_play {
+            position: inherit !important;
+            display: block !important;
+            .play_icon {
+              position: absolute !important;
+              top: 33% !important;
+              left: 34% !important;
+              text-align: -webkit-center;
+
+              .Oval {
+                width: 3em;
+                height: 3em;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #ffffff;
+                transition: all 0.2s ease-in-out;
+
+                .Triangle {
+                  width: 29%;
+                  height: 29%;
+                  -webkit-clip-path: polygon(100% 50%, 0 0, 0 100%);
+                  clip-path: polygon(100% 50%, 0 0, 0 100%);
+                  border: solid 1px #131313;
+                  background-color: #131313;
+                  margin-top: 2px;
+                  margin-left: 4px;
+                }
+              }
+            }
+          }
+        }
+      }
+      .comprehensive {
+        padding: 22px 15px;
+        .mobile {
+          display: none;
+        }
+        .pricing {
+          font-size: 22px;
+        }
+        h2 {
+          font-size: 20px;
+        }
+        .mentor {
+          padding: 10px 0px;
+          span {
+            font-size: 14px;
+          }
+          img {
+            width: 42px;
+            height: 42px;
+          }
+        }
+
+        .mobile {
+          display: block;
+          p {
+            display: flex;
+          }
+        }
+        .web {
+          display: none;
+        }
+        .episodes {
+          line-height: 0.9;
+          span {
+            display: -webkit-box;
+            display: -moz-box;
+          }
+        }
+        .action {
+          display: flex;
+          button {
+            padding: 8px 0px;
+            width: 110px;
+          }
+        }
+      }
+    }
+  }
+}

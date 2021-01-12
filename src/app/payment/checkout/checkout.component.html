@@ -1,0 +1,111 @@
+<div class="content_container" [formGroup]="form">
+
+  <div class="item_container">
+
+    <div class="cart">Your cart</div>
+    <p class="prod_details" *ngIf="product_type===12">{{product?.details}}</p>
+
+
+    <!-- For Education -->
+
+    <div class="price_detail" *ngIf="product_type===12">
+      <table style="width:100%">
+        <tr style="background: #f7f7f7;color:black;">
+          <th style=" width:8%">Select</th>
+          <th>Product</th>
+          <th>Product Price</th>
+        </tr>
+        <tr *ngFor="let price of pricing;let i=index">
+          <td><input type="radio" name="price" [checked]="i === 0" value={{price?.id}} (click)="selectedPrices(price)">
+          </td>
+          <td [innerHTML]="price?.detail"></td>
+          <td style="font-weight:bold;"><i class="fa {{getCurrencySign()}}"></i> <span style="
+            text-decoration: line-through;" *ngIf="price?.base_price!=price?.final_price">{{price?.base_price}}</span>
+            {{price?.final_price}}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+    <!-- End Education -->
+
+
+    <div class="top_heading" *ngIf="!mobileVersion() && product_type!=12">
+      <span></span>
+      <span class="content">Product</span>
+      <span class="content remove_border">Product Price</span>
+      <span>Offer Price</span>
+    </div>
+
+    <app-item *ngIf="product !== undefined && product_type!=12" [product]='product'></app-item>
+
+    <div class="bottom-container">
+      <div class="item1"></div>
+      <div class="item2 spacing">
+
+        <div *ngIf="isCouponAllowed || isRedeemAllowed">
+          <p class="apply_coupon">Apply Coupon Now</p>
+          <div class="apply_coupon_div" *ngIf="isCouponAllowed">
+            <input placeholder="Enter Coupon" class="enter_coupon_input" formControlName="coupon"
+                   (change)="couponTouched()">
+            <button class="enter_coupon_button" (click)="verifyCoupon()">APPLY</button>
+          </div>
+          <div class="redeem_scholarship_div" *ngIf="isRedeemAllowed">
+            <mat-checkbox color="primary" formControlName="isRedeemedAllowed" (change)="verifyCoupon()">I want to redeem
+              scholarship
+            </mat-checkbox>
+          </div>
+          <p class="coupon_message" *ngIf="(isRedeemeedAllowedStatus || couponStatus)">{{message_apply}}</p>
+        </div>
+      </div>
+
+      <div class="item3 spacing" *ngIf="product_type!=12">
+        <table class="pay_values">
+          <tr>
+            <!-- <td class="head">Product Price</td> -->
+            <!-- <td class="value">
+              <i class="fa {{getCurrencySign()}}"></i>{{product_price | number : '.2'}}</td> -->
+          </tr>
+
+          <tr class="final">
+            <td class="final_price">Final Price</td>
+            <td class="final_value">
+              <i class="fa {{getCurrencySign()}}"></i>{{you_pay | number : '.2'}}
+            </td>
+          </tr>
+        </table>
+
+        <button class="pay_now-button" (click)="makePayment()">PAY NOW</button>
+      </div>
+
+      <div class="item3 spacing" *ngIf="product_type===12">
+        <table class="pay_values">
+          <tr>
+            <!-- <td class="head">Product Price</td> -->
+            <!-- <td class="value">
+              <i class="fa {{getCurrencySign()}}"></i>{{product_price | number : '.2'}}</td> -->
+          </tr>
+
+          <tr class="final">
+            <td class="final_price">Final Price</td>
+            <td class="final_value">
+              <i class="fa {{getCurrencySign()}}"></i> {{final_price?final_price:selectedPrice}}
+            </td>
+          </tr>
+        </table>
+        <!-- <div class='pm-button' *ngIf="priceId===95"><a href='https://www.payumoney.com/paybypayumoney/#/67FC85AF84038700351C6A93771D639F'><button  class="pay_now-button">PAY NOW</button></a></div>
+        <div class='pm-button' *ngIf="priceId===96"><a href='https://www.payumoney.com/paybypayumoney/#/F60F9C82C8A6099B16E609D5049BF8AC'><button  class="pay_now-button">PAY NOW</button></a></div>
+        <div class='pm-button' *ngIf="priceId===93"><a href='https://www.payumoney.com/paybypayumoney/#/BDC5D2A6C57CEE84AFFCBDB6B66FB8E3'><button  class="pay_now-button">PAY NOW</button></a></div>
+        <div class='pm-button' *ngIf="priceId===94"><a href='https://www.payumoney.com/paybypayumoney/#/7139DCF6DFA97B16E65B24F18CEB94E5'><button  class="pay_now-button">PAY NOW</button>  </a></div> -->
+        <button class="pay_now-button" (click)="makePayment()">PAY NOW</button>
+
+      </div>
+
+
+    </div>
+  </div>
+
+  <app-pre-loader *ngIf="isLoader"></app-pre-loader>
+
+</div>

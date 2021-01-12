@@ -1,0 +1,43 @@
+<div *ngIf="!devToolStatus && verifyUserBrowser()" data-shaka-player-container style="max-width:100%" data-shaka-player-cast-receiver-id="7B25EC44">
+
+  <video
+    autoplay 
+    data-shaka-player id="video_shaka"
+    style="width:100%;height:100%"
+    poster="{{videoURL.poster}}"
+    [ngStyle]="{'display': playerLoaded ? 'block' : 'none'}"
+  ></video>
+
+  <div id="myid" style="
+    top: 0%;
+    left: 0%;
+    position: absolute;
+    font-weight: normal;
+    font-size: 16px;
+    color: white;
+    opacity: 0.8;
+    display: block;
+  ">{{detailUser.userEmail + ' ' + detailUser.userMobile}}
+  </div>
+
+  <div class="loader" *ngIf="!playerLoaded">
+    <mat-spinner></mat-spinner>
+  </div>
+
+</div>
+
+<div class="error_state" *ngIf="devToolStatus || !verifyUserBrowser()">
+  <div class="dev_tool" *ngIf="devToolStatus">
+    <mat-icon>warning</mat-icon>
+    <h5>We have detected an unusual activity in your system</h5>
+    <h6>Please close your browser and restart again</h6>
+  </div>
+
+  <div class="verify_browser" *ngIf="!verifyUserBrowser()" [ngClass]="{'margin_spacing' : devToolStatus}">
+    <h5>Please upgrade to any of the following browsers</h5>
+    <div>
+      <img *ngFor="let browser of supportedBrowserList" alt="{{browser.name}}" src="{{browser.image_url}}"
+        matTooltip="{{browser.name}}">
+    </div>
+  </div>
+</div>

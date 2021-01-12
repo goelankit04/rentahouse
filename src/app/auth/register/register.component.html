@@ -1,0 +1,139 @@
+<div class="register_form_container" id="reg_form_container">
+  <div class="header_container">
+    <p>Register</p>
+  </div>
+  <div class="field_container" [formGroup]="form">
+
+    <div *ngIf="!mobileVerification">
+      <input type="text" placeholder="First name" formControlName="first_name">
+      <div *ngIf="form.controls.first_name.touched && getErrorMessage('first_name') !== ''" class="alert alert-danger h-50">{{getErrorMessage('first_name')}}</div>
+
+      <input type="text" placeholder="Last name" formControlName="last_name">
+      <div *ngIf="form.controls.last_name.touched && getErrorMessage('last_name') !== ''" class="alert alert-danger h-50">{{getErrorMessage('last_name')}}</div>
+
+      <input type="text" placeholder="Email" formControlName="email">
+      <div *ngIf="form.controls.email.touched && getErrorMessage('email') !== ''" class="alert alert-danger h-50">{{getErrorMessage('email')}}</div>
+
+      <input type="password" placeholder="Password" formControlName="password">
+      <div *ngIf="form.controls.password.touched && getErrorMessage('password') !== ''" class="alert alert-danger h-50">{{getErrorMessage('password')}}</div>
+
+      <div class="mobile">
+        <span class="mobile_number_entry">
+          <span class="country_code" (click)="toggleCountrySelector()">
+            <p>{{selectedCountry.code}}</p> &nbsp; <span class="drop_down_icon">▼</span>
+          </span>
+          <p>{{selectedCountry.mobile_code}}</p>
+          <input type="text" placeholder="Mobile" formControlName="mobile" maxlength="16">
+        </span>
+
+        <div class="selection_container" [ngClass]="{'show_selection_container' : showCountrySelector}">
+          <div class="search_bar_container">
+            <input id="country_search" type="text" placeholder="Search" (keyup)="getCountrySuggestion(input_country.value)"
+              #input_country>
+          </div>
+          <div class="country_suggestion_container">
+            <span *ngIf="filteredStates.length === 0" class="no_country_found">
+              <mat-icon>error_outline</mat-icon>
+              <p>No such country found</p>
+            </span>
+            <span class="country_with_code" *ngFor="let country of filteredStates" (click)="selectCountryCode(country)">
+              <p>{{country.country_name | ellipsis: 24}}</p>
+              <p>{{country.mobile_country_code}}</p>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="form.controls.mobile.touched && getErrorMessage('mobile') !== ''" class="alert alert-danger h-50">{{getErrorMessage('mobile')}}</div>
+
+      <div class="country_selector">
+        <input type="text" placeholder="Country" formControlName="country" (keyup)="searchCountryForDropDown(search_country_for_dropdown.value)"
+          #search_country_for_dropdown>
+
+        <div class="selection_container" [ngClass]="{'show_country_selection_container' : showCountryBox}">
+          <div class="country_suggestion_container">
+            <span *ngIf="filteredCountry.length === 0" class="no_country_found">
+              <mat-icon>error_outline</mat-icon>
+              <p>No such country found</p>
+            </span>
+            <span class="country_with_code" *ngFor="let country of filteredCountry" (click)="selectCountry(country)">
+              <p>{{country.country_name}}</p>
+              <p>{{country.country_code}}</p>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="form.controls.country.touched && getErrorMessage('country') !== ''" class="alert alert-danger h-50">{{getErrorMessage('country')}}</div>
+
+      <div class="alert alert-danger alert-error" *ngIf="errMessage"> {{errMessage}}</div>
+
+      <button [disabled]="!getValidationStatus()" [ngClass]="{'disabled_button' : !getValidationStatus()}" (click)="register()">Submit</button>
+    </div>
+
+
+
+
+    <div class="mobile_verification" *ngIf="mobileVerification">
+      <p>We have sent a <strong>one time password (OTP)</strong> on <strong>{{mobileNumber}}</strong>, enter the code
+        to verify your mobile number</p>
+      <a *ngIf="!showChangeMobileView" (click)="showChangeMobile()">change number</a>
+
+      <div *ngIf="showChangeMobileView">
+        <div class="mobile">
+          <span class="mobile_number_entry">
+            <span class="country_code" (click)="toggleCountrySelector()">
+              <p>{{selectedCountry.code}}</p> &nbsp; <span class="drop_down_icon">▼</span>
+            </span>
+            <p>{{selectedCountry.mobile_code}}</p>
+            <input type="text" placeholder="Mobile" #change_mobile_number_input>
+          </span>
+
+          <div class="selection_container" [ngClass]="{'show_selection_container' : showCountrySelector}">
+            <div class="search_bar_container">
+              <input type="text" placeholder="Search" (keyup)="getCountrySuggestion(input_country_mobile.value)"
+                #input_country_mobile>
+            </div>
+            <div class="country_suggestion_container">
+              <span *ngIf="filteredStates.length === 0" class="no_country_found">
+                <mat-icon>error_outline</mat-icon>
+                <p>No such country found</p>
+              </span>
+              <span class="country_with_code" *ngFor="let country of filteredStates" (click)="selectCountryCode(country)">
+                <p>{{country.country_name | ellipsis: 24}}</p>
+                <p>{{country.mobile_country_code}}</p>
+              </span>
+            </div>
+          </div>
+
+          <button (click)="changeMobileNumber(change_mobile_number_input.value)">Change Number</button>
+        </div>
+        <div *ngIf="form.controls.mobile.touched && getErrorMessage('mobile') !== ''" class="alert alert-danger h-50">{{getErrorMessage('mobile')}}</div>
+
+        <p *ngIf="form.controls.mobile.touched" class="err_message">{{error_message_mobile}}</p>
+
+      </div>
+
+      <div *ngIf="!showChangeMobileView">
+        <input #otp_verification_input>
+
+        <p class="otp_verification">
+          <a (click)="requestOtpAgain('sms')" [ngClass]="{'disabled_text' : timer !== '00:00'}">Resend OTP</a>
+          &nbsp;&nbsp;
+          <a (click)="requestOtpAgain('call')" [ngClass]="{'disabled_text' : timer !== '00:00'}">OTP via call</a>
+          <br>
+          <span *ngIf="showOTPTimer">OTP is valid for {{timer}}</span>
+        </p>
+
+        <p class="otp_message" *ngIf="otpRequestMessage !== null">{{otpRequestMessage}}</p>
+
+        <button [ngClass]="{'disabled_button' : !canSubmitOTP}" [disabled]="!canSubmitOTP" (click)="verifyMobileOTP(otp_verification_input.value)">Verify</button>
+      </div>
+
+      <p class="err_message" *ngIf="errMessage">{{errMessage}}</p>
+
+    </div>
+
+  </div>
+
+</div>
+
+<app-pre-loader *ngIf="isLoading"></app-pre-loader>

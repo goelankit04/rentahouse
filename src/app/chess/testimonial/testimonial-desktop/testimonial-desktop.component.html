@@ -1,0 +1,21 @@
+<div class="testimonial-container">
+  <mat-grid-list cols="1" rowHeight="64px" class="testimonial-container">
+    <mat-grid-tile [rowspan]="7">
+
+      <div class="image-sliders_web">
+        <div class="image-container-box">
+          <div class="image_with_arrow" [ngClass]="{'is_active': currentTestimony[0].id === testimony.id}"
+               *ngFor="let testimony of testimonials">
+              <img draggable="false" [src]="testimony.image" alt="{{testimony.name}}" (mouseenter)="onMouseEnter(testimony.id)">
+          </div>
+        </div>
+        <div class="content_div">
+          <p class="testimony_content"><i class="fa fa-quote-left"></i>&nbsp;{{currentTestimony[0].testimonial}}&nbsp;<i class="fa fa-quote-left rotate180"></i></p>
+          <h3>{{currentTestimony[0].name}}</h3>
+          <h4>{{currentTestimony[0].title}}</h4>
+        </div>
+      </div>
+
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

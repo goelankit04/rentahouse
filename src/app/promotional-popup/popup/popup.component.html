@@ -1,0 +1,7 @@
+<div class="promotional-popup" *ngIf="popup">
+  <div class="bg" (click)="closePopup()"></div>
+  <div class="innerHtml_container">
+    <div class="pop_content" [innerHTML]="popUpImageLink" (click)="performPopUpIntent()" [ngClass]="{'showCursor' : redirectLink !== null}"></div>
+    <p class="close_button" (click)="closePopup()">Close</p>
+  </div>
+</div>

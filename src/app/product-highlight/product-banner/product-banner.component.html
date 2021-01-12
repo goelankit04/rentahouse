@@ -1,0 +1,453 @@
+<!-- sticky starts -->
+<div
+  class="row sticky"
+  id="fixes"
+  *ngIf="banner"
+  style="position: fixed; top: 82px; z-index: 100; transition: all 0.4s linear;"
+  #templatePriceNav
+>
+  <div class="col-md-4 col-sm-4 col-lg-6 left">
+    <p>{{ productList.name }}</p>
+  </div>
+  <div class="col-md-8 col-sm-8 col-lg-6 right" *ngIf="pricing.length > 0">
+    <p
+      *ngIf="pricing[0]?.sale_price != pricing[0].base_price"
+      style="text-decoration: line-through;"
+    >
+      <i class="fa fa-{{ pricing[0].currency == 'inr' ? 'inr' : 'usd' }}"></i>
+      {{ pricing[0].base_price }}
+    </p>
+    &nbsp;&nbsp;&nbsp;
+    <p class="base">
+      <i class="fa fa-{{ pricing[0].currency == 'inr' ? 'inr' : 'usd' }}"></i>
+      {{
+        (_activated.queryParams | async)?.cc
+          ? pricing[0].final_price
+          : pricing[0].sale_price
+      }}
+    </p>
+    &nbsp; &nbsp;
+
+    <p class="action">
+      <button type="button" (click)="buyNow(productList)">Enroll Now</button>
+
+      <a
+        *ngIf="!isReserveEnabled() && product_id != 807"
+        class="typeform-share link"
+        href="https://nurtr.typeform.com/to/oyI7c1"
+        data-mode="popup"
+        style="color: #000000; text-decoration: none;"
+        data-hide-headers="true"
+        data-hide-footer="true"
+        data-submit-close-delay="0"
+        target="_blank"
+        >Request Info</a
+      >
+      <a
+        *ngIf="!isReserveEnabled() && product_id == 807"
+        class="typeform-share link"
+        href="https://nurtr.typeform.com/to/uMLeN9"
+        data-mode="popup"
+        style="color: #000000; text-decoration: none;"
+        data-hide-headers="true"
+        data-hide-footer="true"
+        data-submit-close-delay="0"
+        target="_blank"
+        >Request Info</a
+      >
+
+      <!-- RESERVE NOW BUTTON STARTS HERE -->
+      <a
+        *ngIf="isReserveEnabled() && product_id != 807"
+        (click)="buyNow(productList, 'reserve')"
+        class="typeform-share link"
+        style="color: #000000; text-decoration: none;"
+        target="_blank"
+        >Reserve Now</a
+      >
+      <!-- RESERVE NOW BUTTON ENDS HERE -->
+    </p>
+  </div>
+</div>
+<!-- sticky ends -->
+
+<div class="product-banner">
+  <div
+    class="mob_fix mobile"
+    id="fix"
+    *ngIf="banner && pricing.length > 0"
+    #mobiletemplatePriceNav
+  >
+    <p class="base">
+      <span
+        style="text-decoration: line-through;"
+        *ngIf="pricing[0]?.sale_price != pricing[0].base_price"
+        ><i
+          class="fa fa-{{ pricing[0].currency == 'inr' ? 'inr' : 'usd' }}"
+        ></i>
+        {{ pricing[0].base_price }}</span
+      ><span
+        ><i
+          class="fa fa-{{ pricing[0].currency == 'inr' ? 'inr' : 'usd' }}"
+        ></i>
+        {{
+          (_activated.queryParams | async)?.cc
+            ? pricing[0].final_price
+            : pricing[0].sale_price
+        }}</span
+      >
+    </p>
+    <p class="action">
+      <button type="button" (click)="buyNow(productList)">Enroll Now</button>
+      <a
+        *ngIf="!isReserveEnabled() && product_id != 807"
+        class="typeform-share link"
+        href="https://nurtr.typeform.com/to/oyI7c1"
+        data-mode="popup"
+        style="color: #000000; text-decoration: none;"
+        data-hide-headers="true"
+        data-hide-footer="true"
+        data-submit-close-delay="0"
+        target="_blank"
+        >Request Info
+      </a>
+      <a
+        *ngIf="!isReserveEnabled() && product_id == 807"
+        class="typeform-share link"
+        href="https://nurtr.typeform.com/to/uMLeN9"
+        data-mode="popup"
+        style="color: #000000; text-decoration: none;"
+        data-hide-headers="true"
+        data-hide-footer="true"
+        data-submit-close-delay="0"
+        target="_blank"
+        >Request Info
+      </a>
+
+      <!-- RESERVE NOW BUTTON STARTS HERE -->
+      <a
+        *ngIf="isReserveEnabled() && product_id != 807"
+        (click)="buyNow(productList, 'reserve')"
+        class="typeform-share link"
+        style="color: #000000; text-decoration: none;"
+        >Reserve Now</a
+      >
+      <!-- RESERVE NOW BUTTON ENDS HERE -->
+    </p>
+  </div>
+  <!-- Banner -->
+  <div class="right-banner1">
+    <div class="overlay1"></div>
+    <div
+      class="image"
+      [ngStyle]="{ 'background-image': 'url(' + productList.image + ')' }"
+    >
+      <div class="wistia_responsive_padding" class="shadow_gradient">
+        <div class="wistia_responsive_wrapper">
+          <span
+            (click)="watchVideo(productList)"
+            class="wistia_embed {{
+              productList.wistiaURL
+            }} popover=true popoverAnimateThumbnail=true popoverContent=link videoFoam=true"
+            style="display: inline; margin-left: -1.7em;"
+          >
+            <div class="play_icon">
+              <div class="Oval">
+                <div class="Triangle"></div>
+              </div>
+              <p style="font-family: 'Gilroy-ExtraBold'; padding-top: 4px;">
+                Course Preview
+              </p>
+            </div>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row comprehensive">
+    <div class="bg_noise"></div>
+    <h2>{{ productList.name }}</h2>
+    <div class="col-md-6 nopadding">
+      <p
+        class="star"
+        style="display: flex; align-items: center;"
+        *ngIf="
+          product_id != 697 &&
+          product_id != 746 &&
+          product_id != 778 &&
+          product_id != 672 &&
+          product_id != 787 &&
+          product_id != 776 &&
+          product_id != 807 &&
+          product_id != 810
+        "
+      >
+        <span *ngFor="let data of numbers">
+          <img
+            src="../../../assets/product-highlight/full_star.svg"
+            style="width: 22px; height: 22px;"
+          />
+        </span>
+        <img
+          src="../../../assets/product-highlight/half_star.svg"
+          style="width: 22px; height: 22px; padding-top: 2px;"
+        />
+        <small
+          ><span>({{ productList.rate }}) </span>
+          {{ productList.rating }} Ratings</small
+        >
+      </p>
+      <span class="profile_btn">
+        <p
+          class="mentor"
+          *ngIf="
+            product_id == 35 ||
+            product_id == 697 ||
+            product_id == 746 ||
+            product_id == 778 ||
+            product_id == 672 ||
+            product_id == 776 ||
+            product_id == 807 ||
+            product_id == 810
+          "
+        >
+          <img [src]="productList.img_src" />
+          <span
+            >{{ productList.author_name }}<br /><small
+              >Course Mentor</small
+            ></span
+          >
+          <button
+            type="button"
+            (mouseenter)="mouseEnter()"
+            (mouseleave)="mouseLeave()"
+            style="width: 124px;"
+          >
+            View Profile
+          </button>
+        </p>
+        <p
+          class="mentor"
+          id="mentors"
+          *ngIf="
+            product_id != 35 &&
+            product_id != 697 &&
+            product_id != 746 &&
+            product_id != 778 &&
+            product_id != 672 &&
+            product_id != 776 &&
+            product_id != 807 &&
+            product_id != 810
+          "
+        >
+          <img [src]="productList.img_src" />
+          <span
+            >{{ productList.mentor }}<br /><small>{{
+              productList.author_name
+            }}</small></span
+          >
+          <!-- <button type="button" >View Profile</button> -->
+        </p>
+        <!-- <p class="mentor"></p> -->
+        <div class="profile_detail" *ngIf="showDetail">
+          <!-- <img src="assets/product-highlight/meero-rbr.jpg">
+          <h4>R.B. Ramesh</h4> -->
+          <p style="margin-bottom: 0px;">{{ productList.about }}</p>
+        </div>
+      </span>
+
+      <p class="episodes web">
+        <img
+          src="../../../assets/product-highlight/episode.svg"
+          *ngIf="productList.episodes"
+        /><span *ngIf="productList.episodes"
+          >{{ productList.episodes }} <small>Episodes</small></span
+        >
+        &nbsp;
+        <img src="../../../assets/product-highlight/duration.svg" />
+        <span *ngIf="product_id != 776"
+          >{{ productList.hours
+          }}<small
+            *ngIf="product_id != 787 && product_id != 807 && product_id != 810"
+            >hours of content</small
+          ><small *ngIf="product_id == 680">| Yearly Support | GM-Guided</small>
+          <small *ngIf="product_id == 787"
+            >hours | 365 days | 15 GM coaches</small
+          >
+          <small *ngIf="product_id == 810"
+            >hours LIVE & interactive session, 1-Year Access to Recording</small
+          ></span
+        >
+        <span *ngIf="product_id == 776"
+          >52 Weeks, 78 Hours LIVE & Interactive Sessions, 1-Year Access to
+          Recordings</span
+        >
+        <span *ngIf="product_id == 807">
+          hours of cinematic chess content
+        </span>
+      </p>
+      <div class="episodes mobile">
+        <p *ngIf="productList.episodes">
+          <img src="../../../assets/product-highlight/episode.svg" /><span
+            >{{ productList.episodes }} <small>Episodes</small></span
+          >
+        </p>
+        <br />
+        <p>
+          <img src="../../../assets/product-highlight/duration.svg" />
+          <span *ngIf="product_id != 776"
+            >{{ productList.hours
+            }}<small
+              *ngIf="
+                product_id != 787 && product_id != 807 && product_id != 810
+              "
+              >hours of content</small
+            ><small *ngIf="product_id == 680"
+              >| Yearly Support | GM-Guided</small
+            >
+            <small *ngIf="product_id == 787"
+              >hours| 365 days | 15 GM coaches</small
+            >
+            <small *ngIf="product_id == 807">
+              hours of cinematic chess content
+            </small>
+            <small *ngIf="product_id == 810">
+              hours LIVE & interactive session, 1-Year Access to Recording
+            </small>
+          </span>
+          <small *ngIf="product_id == 776"
+            >52 Weeks, 78 Hours LIVE & Interactive Sessions, 1-Year Access to
+            Recordings</small
+          >
+        </p>
+      </div>
+      <p class="pricing" *ngIf="pricing.length > 0">
+        <span
+          ><i
+            class="fa fa-{{ pricing[0].currency == 'inr' ? 'inr' : 'usd' }}"
+          ></i
+          >{{
+            (_activated.queryParams | async)?.cc
+              ? pricing[0].final_price
+              : pricing[0].sale_price
+          }}</span
+        >
+        <small *ngIf="pricing[0]?.sale_price != pricing[0].base_price"
+          ><i
+            class="fa fa-{{ pricing[0].currency == 'inr' ? 'inr' : 'usd' }}"
+          ></i
+          >{{ pricing[0].base_price }}</small
+        >
+        &nbsp;<span
+          *ngIf="product_id == 680"
+          style="font-family: 'Gilroy'; font-size: 14px;"
+          >(Booking Amount)</span
+        >
+        <ng-container *ngIf="(_activated.queryParams | async)?.cc">
+          <span
+            style="
+              display: flex;
+              flex-direction: column;
+              width: 150px;
+              font-family: 'Gilroy';
+              font-size: 0.6em;
+              margin-left: 1em;
+            "
+            ><span>{{ (_activated.queryParams | async)?.cc }}</span>
+            <div style="color: rgba(255, 255, 255, 0.7);">coupon applied !</div>
+          </span>
+        </ng-container>
+      </p>
+      <p class="action">
+        <button type="button" (click)="buyNow(productList)">Enroll Now</button>
+        <a
+          *ngIf="!isReserveEnabled() && product_id != 807"
+          class="typeform-share link link_banner"
+          href="https://nurtr.typeform.com/to/oyI7c1"
+          data-mode="popup"
+          style="color: #000000; text-decoration: none;"
+          data-hide-headers="true"
+          data-hide-footer="true"
+          data-submit-close-delay="0"
+          target="_blank"
+          >Request Info
+        </a>
+        <a
+          *ngIf="!isReserveEnabled() && product_id == 807"
+          class="typeform-share link link_banner"
+          href="https://nurtr.typeform.com/to/uMLeN9"
+          data-mode="popup"
+          style="color: #000000; text-decoration: none;"
+          data-hide-headers="true"
+          data-hide-footer="true"
+          data-submit-close-delay="0"
+          target="_blank"
+          >Request Info
+        </a>
+
+        <!-- RESERVE NOW BUTTON STARTS HERE -->
+        <a
+          *ngIf="isReserveEnabled() && product_id != 807"
+          (click)="buyNow(productList, 'reserve')"
+          class="typeform-share link link_banner"
+          style="color: #000000; text-decoration: none;"
+          >Reserve Now</a
+        >
+        <!-- RESERVE NOW BUTTON ENDS HERE -->
+      </p>
+      <p *ngIf="isReserveEnabled()" style="font-weight: bold;">
+        Reserve your spot during the offer period by paying a booking amount!
+      </p>
+    </div>
+    <div class="col-md-6 right-banner">
+      <div class="overlay"></div>
+      <div
+        class="image"
+        [ngStyle]="{ 'background-image': 'url(' + productList.image + ')' }"
+      >
+        <div class="wistia_responsive_padding" class="shadow_gradient">
+          <div class="wistia_responsive_wrapper">
+            <span
+              (click)="watchVideo(productList)"
+              class="wistia_embed {{
+                productList.wistiaURL
+              }} popover=true popoverAnimateThumbnail=true popoverContent=link videoFoam=true"
+              style="display: inline; margin-left: -1.7em;"
+            >
+              <div class="play_icon">
+                <div class="Oval">
+                  <div class="Triangle"></div>
+                </div>
+                <p style="font-family: 'Gilroy-ExtraBold'; padding-top: 5px;">
+                  Course Preview
+                </p>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="myHeader"></div>
+  <div id="Header"></div>
+</div>
+
+<!-- sticky
+<div class="row sticky" id="fixes">
+  <div class="col-md-5 col-sm-4 col-lg-7 left">
+    <p>{{productList.name}}</p>
+  </div>
+  <div class="col-md-7 col-sm-8 col-lg-5 right">
+    <p *ngIf="productList?.sale_price!=productList.base_price" style="text-decoration: line-through;"><i class="fa fa-{{pricing[0].currency=='inr'?'inr':'usd'}}"></i>
+      {{productList.base_price}}</p> &nbsp;&nbsp;&nbsp;
+    <p class="base"><i class="fa fa-{{pricing[0].currency=='inr'?'inr':'usd'}}"></i> {{productList.sale_price}}</p>&nbsp; &nbsp;
+    <p class="action"><button type="button">Enroll Now</button><button type="button">Request Info</button></p>
+  </div>
+</div> -->
+
+<!-- <div
+  class="wistia_embed wistia_async_j38ihh83m5"
+  style="height:349px;width:620px"
+></div> -->

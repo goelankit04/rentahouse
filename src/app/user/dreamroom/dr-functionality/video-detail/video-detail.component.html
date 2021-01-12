@@ -1,0 +1,83 @@
+<div class="video_detail_container" oncontextmenu="return false;" onmousedown="return false;" onkeydown="return false;" (window:resize)="onResize($event)">
+
+  <div class="error_state" *ngIf="devToolStatus || !verifyUserBrowser()">
+    <div class="dev_tool" *ngIf="devToolStatus">
+      <mat-icon>warning</mat-icon>
+      <h5>We have detected an unusual activity in your system</h5>
+      <h6>Please close your browser and restart again</h6>
+    </div>
+
+    <div class="verify_browser" *ngIf="!verifyUserBrowser()" [ngClass]="{'margin_spacing' : devToolStatus}">
+      <h5>Please upgrade to any of the following browsers</h5>
+      <div>
+        <img *ngFor="let browser of supportedBrowserList" 
+        alt="{{browser.name}}" src="{{browser.image_url}}" matTooltip="{{browser.name}}">
+      </div>
+    </div>
+  </div>
+
+  <div class="video_detail" *ngIf="!devToolStatus && verifyUserBrowser()">
+    <p>
+      <span>Episode {{episode_id}}: </span>{{episode_name}}</p>
+    <div class="video" id="video_player">
+      <div id="player"></div>
+    </div>
+    <div class="detail">
+      <div class="icons_container">
+        <div class="icons">
+          <img draggable="false" src="{{getButtonLink(episode_example, 3)}}" matTooltip="Examples" (click)="openExample()">
+          <img draggable="false" src="{{getButtonLink(episode_puzzle, 1)}}" matTooltip="Puzzle" (click)="openPuzzle()">
+          <img draggable="false" src="{{getButtonLink(episode_flipbook, 4)}}" matTooltip="Flip Book" (click)="openFlipBook()">
+        </div>
+      </div>
+      <p>{{episode_detail}}</p>
+
+      <div class="video_navigation">
+        <button (click)="nextVideo()" [ngClass]="{'disabled' : !nextEpisode_active}">Next video</button>
+        <button (click)="previousVideo()" [ngClass]="{'disabled' : episode_id==1||!previousEpisode_active}">Previous
+          video
+        </button>
+      </div>
+
+      <mat-divider></mat-divider>
+    </div>
+
+  </div>
+
+  <div class="side_data_display">
+    <div class="side_block1" *ngIf="UpComingClassRoom.length > 0">
+      <p>Upcoming Class Room</p>
+      <div class="block_container">
+        <div *ngFor="let content of UpComingClassRoom" class="block_card" [ngClass]="{'remove_bottom_border': content.id == UpComingClassRoom.length}">
+          <img draggable="false" src="{{content.image_url}}">
+          <div class="block_content">
+            <span class="heading">{{content.name}}</span>
+            <span>{{content.description | ellipsis: 25}}</span>
+            <span class="bottom-section">
+              <span class="date">{{content.scheduled_date | date: 'd/M/yy'}}</span>
+              <span class="view_more" (click)="openDashboard()">View More</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="side_block1" *ngIf="UpComingLiveRoom.length > 0">
+      <p>Upcoming Live Room</p>
+      <div class="block_container">
+        <div *ngFor="let content of UpComingLiveRoom" class="block_card" [ngClass]="{'remove_bottom_border': content.id == UpComingLiveRoom.length}">
+          <img draggable="false" src="{{content.image_url}}">
+          <div class="block_content">
+            <span class="heading">{{content.name}}</span>
+            <span>{{content.description | ellipsis: 25}}</span>
+            <span class="bottom-section">
+              <span class="date">{{content.scheduled_date | date: 'd/M/yy'}}</span>
+              <span class="view_more" (click)="openDashboard()">View More</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,788 @@
+<div class="detail_container" *ngIf="showData">
+  <div class="product_detail">
+    <div class="image">
+      <img draggable="false" src="{{ productData.image_url }}" />
+    </div>
+
+    <div class="detail">
+      <div class="heading">
+        <h1>{{ productData.name }}</h1>
+      </div>
+
+      <div class="data_row heading">
+        <p class="head author">{{ productData?.author_name }}</p>
+      </div>
+
+      <div class="data_row" *ngIf="productType == 11">
+        <p class="head"><span>Venue</span><span>:</span></p>
+        <p>
+          {{ productData?.venue?.location
+          }}{{ productData?.venue?.location ? "," : "" }}
+          {{ productData?.venue?.city
+          }}{{ productData?.venue?.city ? "," : "" }}
+          {{ productData?.venue?.state
+          }}{{ productData?.venue?.state ? "," : "" }}
+          {{ productData?.venue?.country }}
+        </p>
+      </div>
+
+      <div class="data_row">
+        <p class="head"><span>Duration</span><span>:</span></p>
+        <p>{{ productData.duration }}</p>
+      </div>
+      <div class="data_row">
+        <p class="head"><span>Description</span><span>:</span></p>
+        <p [innerHTML]="description"></p>
+      </div>
+
+      <div class="data_row" *ngIf="productType != 11">
+        <p class="head"><span>Pre-requisite</span><span>:</span></p>
+        <p id="req" [innerHTML]="requisite"></p>
+      </div>
+
+      <div class="data_row" *ngIf="productType != 11">
+        <p class="head">Price to pay &nbsp; &nbsp;:</p>
+        <div class="only_indian" *ngIf="productData?.sale_price == null">
+          <p
+            style="font-size: 13px;
+          font-style: italic;
+         "
+          >
+            * Offer valid only for subscribers within India
+          </p>
+        </div>
+        <div class="price" *ngIf="productData?.special_price > 0">
+          <div class="price_item">
+            <p class="heading">For DRR</p>
+            <div>
+              <p
+                class="base_price"
+                *ngIf="productData?.base_price != productData?.special_price"
+              >
+                <i class="fa {{ getCurrencySign() }}"></i
+                >{{ productData.base_price | number: ".0" }}
+              </p>
+              <p class="new_price">
+                <i class="fa {{ getCurrencySign() }}"></i
+                >{{ productData.special_price | number: ".0" }}
+              </p>
+            </div>
+          </div>
+
+          <div class="price_item">
+            <p class="heading">For non DRR</p>
+            <div>
+              <p
+                class="base_price"
+                *ngIf="productData?.base_price != productData?.sale_price"
+              >
+                <i class="fa {{ getCurrencySign() }}"></i
+                >{{ productData.base_price | number: ".0" }}
+              </p>
+              <p class="new_price">
+                <i class="fa {{ getCurrencySign() }}"></i
+                >{{ productData.sale_price | number: ".0" }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="price">
+          <div
+            class="price_item"
+            *ngIf="
+              productData?.special_price == null ||
+              productData?.special_price == 0 ||
+              productData?.special_price == undefined
+            "
+          >
+            <div>
+              <p
+                class="base_price"
+                style="text-decoration: line-through;"
+                *ngIf="productData?.base_price != productData?.sale_price"
+              >
+                <i
+                  class="fa {{ getCurrencySign() }}"
+                  *ngIf="productData.sale_price > 0"
+                ></i
+                ><span>{{ productData.base_price | number: ".0" }}</span>
+              </p>
+              <p class="new_price">
+                <i
+                  class="fa {{ getCurrencySign() }}"
+                  *ngIf="productData.sale_price > 0"
+                ></i
+                ><span>{{ productData.sale_price | number: ".0" }}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="data_row" *ngIf="productType != 11">
+        <span></span>
+        <button
+          class="buy_btn"
+          (click)="gotoCheckout()"
+          [ngClass]="{
+            disabled:
+              productData.sale_price == null ||
+              productData.sale_price == 0 ||
+              productData.sale_price == undefined
+          }"
+        >
+          Buy Now
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="email_verify" [formGroup]="form" *ngIf="parent_product_id">
+      <mat-form-field>
+        <input
+          matInput
+          placeholder="Email"
+          formControlName="emailId"
+          id="email_to_verify"
+          autocomplete="off"
+        />
+      </mat-form-field>
+      <button class="verify_button" (click)="verfiyEmailId()">Verify</button>
+    </div>
+    <div class="verify_text" *ngIf="parent_product_id">
+      <p>
+        Existing nurtr subscriber can autofill the form by verifying the
+        registered email address. Others are required to fill the complete form.
+      </p>
+    </div>
+  </div>
+  <p *ngIf="eventRegistered == true" style="padding:0px 0px 0px 45px">
+    Your are Buying this product as a
+    <span style="color:#a0ce4e;font-weight: bold;">{{ username }}</span>
+  </p>
+
+  <div class="row" *ngIf="productType == 11">
+    <div class="col-md-9 col-sm-12 col-xs-12">
+      <div class="container-fluid">
+        <div class="panel panel-default">
+          <div class="panel-body" [formGroup]="form">
+            <div class="col-md-12 col-sm-12 personal_details">
+              <h1
+                style="padding-left: 14px;font-size: 28px;margin-bottom: 2%;font-weight:500"
+              >
+                Personal Details
+              </h1>
+              <div class="form-group col-md-4 col-sm-4 first_name">
+                <label>First Name*</label>
+
+                <input
+                  type="text"
+                  formControlName="first_name"
+                  maxlength="30"
+                  placeholder="Enter your First name"
+                  name="firstName"
+                  id="fsName"
+                  class="form-control"
+                />
+                <div
+                  *ngIf="
+                    form.controls['first_name'].touched || showAllValidation
+                  "
+                >
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['first_name'].errors"
+                  >
+                    {{ getErrorMessage("first_name") }}
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-4 col-sm-4">
+                <label>Last Name*</label>
+                <input
+                  type="text"
+                  formControlName="last_name"
+                  maxlength="30"
+                  placeholder="Enter your Last name"
+                  name="firstName"
+                  id="fsName"
+                  class="form-control"
+                />
+
+                <div
+                  *ngIf="
+                    form.controls['last_name'].touched || showAllValidation
+                  "
+                >
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['last_name'].errors"
+                  >
+                    {{ getErrorMessage("last_name") }}
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="form-group col-md-4 col-sm-4"
+                style="padding-right:0px;"
+                *ngIf="tags !== 'chess'"
+              ></div>
+              <div
+                class="form-group col-md-4 col-sm-4"
+                *ngIf="tags === 'chess'"
+              >
+                <label>FIDE ID*</label>
+                <input
+                  type="text"
+                  formControlName="fide_id"
+                  placeholder="Enter your FIDE ID, 0 if not available"
+                  class="form-control"
+                />
+                <div
+                  *ngIf="form.controls['fide_id'].touched || showAllValidation"
+                >
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['fide_id'].errors"
+                  >
+                    {{ getErrorMessage("fide_id") }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-md-4 col-sm-4"
+              style="padding-right:0px;"
+              *ngIf="tags !== 'chess'"
+            ></div>
+            <div class="form-group col-md-4 col-sm-4" *ngIf="tags === 'chess'">
+              <label for="age">Rating*</label>
+              <input
+                type="text"
+                formControlName="fide_rating"
+                placeholder="Enter your Rating, 0 if not available"
+                class="form-control"
+              />
+              <div
+                *ngIf="
+                  form.controls['fide_rating'].touched || showAllValidation
+                "
+              >
+                <div
+                  class="alert alert-danger h-50"
+                  *ngIf="form.controls['fide_rating'].errors"
+                >
+                  {{ getErrorMessage("fide_rating") }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4">
+              <div class="section gender">
+                <label>Gender*</label>
+                <br />
+                <span>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    formControlName="gender"
+                    (change)="onSelectionChange('male')"
+                    class="radio_btn"
+                  />
+                  <label class="name">Male</label>
+                </span>
+                <span>
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    formControlName="gender"
+                    (change)="onSelectionChange('female')"
+                    class="radio_btn"
+                  />
+                  <label class="name">Female</label>
+                </span>
+              </div>
+              <div *ngIf="form.controls['gender'].touched || showAllValidation">
+                <div
+                  class="alert alert-danger h-50"
+                  *ngIf="form.controls['gender'].errors"
+                >
+                  {{ getErrorMessage("gender") }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group dob col-md-4 col-sm-4">
+              <label>Date of Birth*</label>
+              <div
+                class="input_field material_angular_component"
+                style="height: 75px;"
+              >
+                <mat-form-field class="drop-down form-control">
+                  <input
+                    matInput
+                    [matDatepicker]="picker1"
+                    [max]="maxDate"
+                    readonly
+                    formControlName="dob"
+                  />
+                  <mat-datepicker-toggle
+                    matSuffix
+                    [for]="picker1"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                </mat-form-field>
+                <div *ngIf="form.controls['dob'].touched || showAllValidation">
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['dob'].errors"
+                    style="margin-top:2px !important;"
+                  >
+                    {{ getErrorMessage("dob") }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4">
+              <label for="searchemail">Father/Mother Name*</label>
+              <input
+                type="text"
+                formControlName="guardian_name"
+                placeholder="Enter your Father/Mother name"
+                class="form-control"
+              />
+
+              <div
+                *ngIf="
+                  form.controls['guardian_name'].touched || showAllValidation
+                "
+              >
+                <div
+                  class="alert alert-danger h-50"
+                  *ngIf="form.controls['guardian_name'].errors"
+                >
+                  {{ getErrorMessage("guardian_name") }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-4 col-sm-4">
+              <label for="country">Email*</label>
+              <input
+                type="email"
+                formControlName="email"
+                placeholder="Enter your Email"
+                class="form-control"
+              />
+              <div *ngIf="form.controls['email'].touched || showAllValidation">
+                <div
+                  class="alert alert-danger h-50"
+                  *ngIf="form.controls['email'].errors"
+                >
+                  {{ getErrorMessage("email") }}
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="form-group col-md-4 col-sm-4" style="padding-right:0px;" *ngIf="tags!=='chess'">
+            </div> -->
+            <div class="form-group col-md-4 col-sm-4" *ngIf="tags === 'chess'">
+              <label for="country">Category*</label>
+              <select
+                class="form-control"
+                formControlName="age_category"
+                (change)="changeControl($event)"
+              >
+                <option value="">Select</option>
+                {{
+                  control
+                }}
+                <option
+                  *ngFor="let control of controlValueDropdown; let i = index"
+                  >{{ control }}</option
+                >
+              </select>
+
+              <div
+                *ngIf="
+                  form.controls['age_category'].touched || showAllValidation
+                "
+              >
+                <div
+                  class="alert alert-danger h-50"
+                  *ngIf="form.controls['age_category'].errors"
+                >
+                  {{ getErrorMessage("age_category") }}
+                </div>
+              </div>
+            </div>
+            <!-- <div class="form-group col-md-4 col-sm-4" *ngIf="tags!=='chess'"></div> -->
+            <div
+              class="form-group col-md-4 col-sm-4"
+              *ngIf="tags !== 'cricket'"
+            >
+              <label for="arrival">School / College / Company Name</label>
+              <input
+                type="text"
+                placeholder="Enter your School/College/Company name"
+                formControlName="college"
+                class="form-control"
+              />
+              <div
+                *ngIf="form.controls['college'].touched || showAllValidation"
+              >
+                <div
+                  class="alert alert-danger h-50"
+                  *ngIf="form.controls['college'].errors"
+                >
+                  {{ getErrorMessage("college") }}
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group mobile-phone col-md-4 col-sm-4">
+              <label for="gender">Mobile*</label>
+
+              <div class="mobile">
+                <span class="mobile_number_entry">
+                  <span class="country_code" (click)="toggleCountrySelector()">
+                    <p>{{ selectedCountry.code }}</p>
+                    &nbsp; <span class="drop_down_icon">▼</span>
+                  </span>
+                  <p>{{ selectedCountry.mobile_code }}</p>
+                  <input
+                    type="text"
+                    placeholder="Mobile"
+                    formControlName="mobile"
+                  />
+                </span>
+
+                <div
+                  *ngIf="form.controls['mobile'].touched || showAllValidation"
+                >
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['mobile'].errors"
+                  >
+                    {{ getErrorMessage("mobile") }}
+                  </div>
+                </div>
+
+                <div
+                  class="selection_container"
+                  [ngClass]="{ show_selection_container: showCountrySelector }"
+                >
+                  <div class="search_bar_container">
+                    <input
+                      id="country_search"
+                      type="text"
+                      placeholder="Search"
+                      (keyup)="getCountrySuggestion(input_country.value)"
+                      #input_country
+                    />
+                  </div>
+                  <div class="country_suggestion_container">
+                    <span
+                      *ngIf="filteredStates.length === 0"
+                      class="no_country_found"
+                    >
+                      <mat-icon>error_outline</mat-icon>
+                      <p>No such country found</p>
+                    </span>
+                    <span
+                      class="country_with_code"
+                      *ngFor="let country of filteredStates"
+                      (click)="selectCountryCode(country)"
+                    >
+                      <p>{{ country.country_name | ellipsis: 24 }}</p>
+                      <p>{{ country.mobile_country_code }}</p>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-md-4 col-sm-4"
+              style="padding-right:0px;"
+              *ngIf="tags !== 'chess'"
+            ></div>
+            <div class="form-group col-md-4 col-sm-4" *ngIf="tags === 'chess'">
+              <label for="age">AICF ID*</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter your AICF ID, 0 if not available "
+                formControlName="aicf_id"
+              />
+              <div
+                *ngIf="form.controls['aicf_id'].touched || showAllValidation"
+              >
+                <div
+                  class="alert alert-danger h-50"
+                  *ngIf="form.controls['aicf_id'].errors"
+                >
+                  {{ getErrorMessage("aicf_id") }}
+                </div>
+              </div>
+            </div>
+            <div class="form-group col-md-4 col-sm-4" *ngIf="productId == 136">
+              <label for="age">MPCA ID</label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="mpca_id"
+              />
+              <div
+                *ngIf="form.controls['mpca_id'].touched || showAllValidation"
+              >
+                <div
+                  class="alert alert-danger h-50"
+                  *ngIf="form.controls['mpca_id'].errors"
+                >
+                  {{ getErrorMessage("mpca_id") }}
+                </div>
+              </div>
+            </div>
+            <div
+              class="form-group col-md-4 col-sm-4 country"
+              style="height:70px;"
+              *ngIf="productId == 136"
+            ></div>
+            <div
+              class="form-group col-md-4 col-sm-4 country"
+              style="height:70px;"
+              *ngIf="productId == 136"
+            ></div>
+
+            <!-- <div class="form-group col-md-4 col-sm-4">
+
+    </div> -->
+
+            <div class="form-group col-md-12 col-sm-12">
+              <!-- <div for="pincode" style="clear:both">Address*</div> -->
+              <div class="form-group col-md-4 col-sm-4 flat">
+                <input
+                  type="text"
+                  name="addressLine1"
+                  placeholder="Flat / House No. / Building / Street / Landmark*"
+                  formControlName="landmark"
+                  id="addressLine1"
+                  class="form-control"
+                />
+                <div
+                  *ngIf="form.controls['landmark'].touched || showAllValidation"
+                >
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['landmark'].errors"
+                  >
+                    {{ getErrorMessage("landmark") }}
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-4 state">
+                <input
+                  type="text"
+                  name="addressLine1"
+                  placeholder="State*"
+                  id="addressLine1"
+                  formControlName="state"
+                  class="form-control"
+                />
+                <div
+                  *ngIf="form.controls['state'].touched || showAllValidation"
+                >
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['state'].errors"
+                  >
+                    {{ getErrorMessage("state") }}
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-4 city">
+                <input
+                  type="text"
+                  name="addressLine1"
+                  placeholder="City*"
+                  id="addressLine1"
+                  formControlName="city"
+                  class="form-control"
+                />
+                <div *ngIf="form.controls['city'].touched || showAllValidation">
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['city'].errors"
+                  >
+                    {{ getErrorMessage("city") }}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group col-md-12 col-sm-12">
+              <div class="form-group col-md-4 col-sm-4 zipcode">
+                <input
+                  type="number"
+                  name="addressLine1"
+                  placeholder="Pincode*"
+                  maxlength="12"
+                  formControlName="zipcode"
+                  class="form-control"
+                />
+                <div
+                  *ngIf="form.controls['zipcode'].touched || showAllValidation"
+                >
+                  <div
+                    class="alert alert-danger h-50"
+                    *ngIf="form.controls['zipcode'].errors"
+                  >
+                    {{ getErrorMessage("zipcode") }}
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-4 col-sm-4 country">
+                <div class="country_selector">
+                  <input
+                    type="text"
+                    placeholder="Country*"
+                    formControlName="country"
+                    (keyup)="
+                      searchCountryForDropDown(
+                        search_country_for_dropdown.value
+                      )
+                    "
+                    class="form-control"
+                    #search_country_for_dropdown
+                  />
+
+                  <div
+                    class="selection_container"
+                    [ngClass]="{
+                      show_country_selection_container: showCountryBox
+                    }"
+                  >
+                    <div class="country_suggestion_container">
+                      <span
+                        *ngIf="filteredCountry.length === 0"
+                        class="no_country_found"
+                      >
+                        <mat-icon>error_outline</mat-icon>
+                        <p>No such country found</p>
+                      </span>
+                      <span
+                        class="country_with_code"
+                        *ngFor="let country of filteredCountry"
+                        (click)="selectCountry(country)"
+                      >
+                        <p>{{ country.country_name }}</p>
+                        <!-- <p>{{country.country_code}}</p> -->
+                      </span>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="
+                      form.controls['country'].touched || showAllValidation
+                    "
+                  >
+                    <div
+                      class="alert alert-danger h-50"
+                      *ngIf="form.controls['country'].errors"
+                    >
+                      {{ getErrorMessage("country") }}
+                    </div>
+                  </div>
+                </div>
+                <!-- <input type="text" name="addressLine1" required="" placeholder="Country" formControlName="country" id="addressLine1" class="form-control"> -->
+                <!-- <div *ngIf="form.controls['country'].enabled">
+        <div class="alert alert-danger h-50" *ngIf="form.controls['country'].errors">
+          {{getErrorMessage('country')}}
+        </div>
+      </div> -->
+              </div>
+              <!-- <div class="form-group col-md-4 col-sm-4 country" style="height:70px;" *ngIf="productId==136"></div> -->
+            </div>
+            <div class="col-md-12 row" style="margin-left:0px;">
+              <!-- <a href="https://nurtr.typeform.com/to/al8Yrh" class="birth" target="_blank"
+                style="text-decoration: underline;">Click here to upload your aadhar card or birth certificate</a>
+             -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </form> -->
+  </div>
+
+  <div class="price_detail">
+    <table style="width:100%">
+      <tr style="background: #f7f7f7;color:black;">
+        <th class="selectButton"></th>
+        <th class="th">Category</th>
+        <th class="th">Registration Fee</th>
+      </tr>
+      <tr *ngFor="let price of pricing; let i = index">
+        <td class="td">
+          <input
+            type="radio"
+            name="price"
+            [checked]="i === 0"
+            value="{{ price?.id }}"
+            (click)="selectedPrices(price)"
+          />
+        </td>
+        <td class="td">{{ price?.detail }}</td>
+        <td class="td" style="font-weight:bold;">
+          <i class="fa {{ getCurrencySign(price) }}"></i>
+          {{ price?.final_price }}
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div [formGroup]="form" style="width:94%;margin-left:3%;" class="chkbx">
+    <mat-checkbox (click)="clickCheckbox(true)" formControlName="accommodations"
+      ><span style="margin-left:10px;width:94%;"
+        >I hereby declare that the information furnished above is accurate as on
+        date. Any false, misleading, or inaccurate information supplied by you
+        will be your responsibility and nurtr.com cannot be held liable for it.
+      </span>
+    </mat-checkbox>
+    <!-- <br><br>
+    <mat-checkbox (click)="clickCheckboxes(true)" formControlName="accommodation" *ngIf="!parent_product_id && productId!==252"><span
+        style="margin-left:10px;width:94%;">Click here if you would like us to help you with accommodation bookings
+        for the tournament if provided by the organiser (Our executive will call you shortly for the accommodation
+        assistance)</span>
+    </mat-checkbox> -->
+  </div>
+  <p
+    *ngIf="productId == 136"
+    style="margin-left: 3%;margin-top: 2%;  color: #666;"
+  >
+    AICF/MPCA Registration is mandatory for all the participating players.
+  </p>
+  <div class="item3 spacing" *ngIf="productType === '11'">
+    <table class="pay_values">
+      <tr></tr>
+
+      <tr class="final">
+        <td class="final_price">Final Price</td>
+        <td class="final_value">
+          <i class="fa fa-{{ getCurrency }}"></i
+          >{{ final_price ? final_price : selectedPrice }}
+        </td>
+      </tr>
+    </table>
+
+    <button class="pay_now-button" (click)="makePayment()">PAY NOW</button>
+  </div>
+</div>
+
+<app-nurtr-usp *ngIf="showData"></app-nurtr-usp>
+
+<app-pre-loader *ngIf="!showData"></app-pre-loader>

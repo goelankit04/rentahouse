@@ -1,0 +1,69 @@
+<div class="wallet_container">
+
+  <div class="wallet_highlight_section">
+    <!-- <div class="wallet_value">
+      <img src="assets/wallet/wallet.svg">
+      <span>
+        <p class="balance_value">{{walletBalance | number : '.0'}}</p>
+        <p class="balance_sub_text">Your Wallet balance</p>
+      </span>
+    </div> -->
+    <div class="wallet_value">
+      <img src="assets/wallet/redeem.svg">
+      <span>
+        <p class="balance_value">{{walletRedeem | number : '.0'}}</p>
+        <p class="balance_sub_text">Your Scholarship Points</p>
+      </span>
+    </div>
+  </div>
+
+  <div class="transaction_table_section" (window:resize)="onResize($event)">
+    <table *ngIf="walletLog && !mobileView">
+      <tr>
+          <th>Product Name</th>
+          <th>Description</th>
+          <th>Points</th>
+        <th>Date</th>
+        <th>Expiry</th>
+      </tr>
+      <tr *ngFor="let log of walletLog">
+          <td style="width:30%;"><span>{{log.product_name}}</span></td>
+          <td style="width:30%;">{{log.purpose}}</td>
+          <td style="padding-bottom:0px;"><p [ngClass]="{'positive' : log?.tran_wallet_points>0 , 'negative' : log?.tran_wallet_points<0}"><span *ngIf="log?.tran_wallet_points>0">+</span>{{log?.tran_wallet_points}}</p></td>
+
+        <td>{{log.tran_date | date}}</td>
+        <!--  -->
+        <td><span *ngIf="log?.expiry_date">{{log.expiry_date | date}}</span></td>
+      </tr>
+    </table>
+
+    <table *ngIf="walletLog && mobileView" [ngClass]="{'wallet_mobile': mobileView}">
+      <tr *ngFor="let log of walletLog">
+        <div class="multi_data_row">
+          <span>
+            <p class="row_heading">Date</p>
+            <p class="row_heading">Points</p>
+          </span>
+          <span>
+            <p class="row_data">{{log.tran_date | date}} </p>
+            <td ><span *ngIf="log?.tran_wallet_points>0">+</span>{{log?.tran_wallet_points}}</td>
+          </span>
+        </div>
+        <th>Expiry</th>
+        <td><span *ngIf="log?.expiry_date">{{log.expiry_date | date }}</span></td>
+        <th>Description</th>
+        <td>{{log.purpose}}</td>
+      </tr>
+    </table>
+
+    <div class="no_wallet_record" *ngIf="!walletLog">
+      <p>No records found</p>
+    </div>
+
+    <div class="pagination" *ngIf="this.walletCount>10">
+      <button type="button" [disabled]="this.offset==0"  [ngClass]="{'disabled_button' : this.offset==0}" (click)="previous()">Previous</button>
+      <button type="button"  [disabled]="walletLog.length<10" [ngClass]="{'disabled_button' : walletLog.length<10}" (click)="next()">Next</button>
+    </div>
+  </div>
+
+</div>

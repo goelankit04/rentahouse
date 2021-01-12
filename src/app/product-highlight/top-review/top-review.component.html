@@ -1,0 +1,33 @@
+<div
+  class="top-review"
+  *ngIf="
+    product_id == 35 ||
+    product_id == 574 ||
+    product_id == 573 ||
+    product_id == 746 ||
+    product_id == 807
+  "
+>
+  <h2>
+    Top Reviews&nbsp;
+    <i class="fa fa-chevron-left" (click)="slideRight()"></i>&nbsp;<i
+      class="fa fa-chevron-right"
+      (click)="slideLeft()"
+    ></i>
+  </h2>
+  <!-- <bar-rating readonly [rate]="4" [max]="5"></bar-rating> -->
+  <div class="review" id="scroll">
+    <div class="col-md-6 left-card" *ngFor="let data of review">
+      <div class="col-md-8 nopadding review-header">
+        <img [src]="data.img_src" />
+        <h4>
+          {{ data.name }}
+          <br />
+          <span *ngIf="data.days">{{ data.days }}</span>
+        </h4>
+      </div>
+      <p>{{ data.review }}</p>
+      <div class="col-md-4"></div>
+    </div>
+  </div>
+</div>

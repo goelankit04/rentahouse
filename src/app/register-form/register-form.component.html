@@ -1,0 +1,74 @@
+<div class="modal_header_container">
+  <h2 mat-dialog-title>Redeem Coupon</h2>
+  <i class="material-icons modal_close" (click)="closeDialog()">close</i>
+</div>
+
+<div class="register-form" [formGroup]="form">
+
+  <mat-form-field>
+    <input matInput placeholder="First Name" formControlName="first_name" required maxlength="50">
+    <mat-error *ngIf="form.controls.first_name.invalid">{{getErrorString('firstName')}}</mat-error>
+    <i class="input_hints" *ngIf="!form.controls.first_name.invalid">Characters remaining {{50 -
+      this.form.value.first_name.length}}</i>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last Name" formControlName="last_name" required>
+    <mat-error *ngIf="form.controls.last_name.invalid">{{getErrorString('lastName')}}</mat-error>
+    <i class="input_hints" *ngIf="!form.controls.last_name.invalid">Characters remaining {{50 -
+      this.form.value.last_name.length}}</i>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" formControlName="email" required>
+    <mat-error *ngIf="form.controls.email.invalid">{{getErrorString('email')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Mobile" formControlName="mobile" required>
+    <mat-error *ngIf="form.controls.mobile.invalid">{{getErrorString('mobile')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="School Name" formControlName="school" required maxlength="50">
+    <mat-error *ngIf="form.controls.school.invalid">{{getErrorString('school')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Standard" formControlName="standard" required maxlength="50">
+    <mat-error *ngIf="form.controls.standard.invalid">{{getErrorString('standard')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="City" formControlName="city" required maxlength="50">
+    <mat-error *ngIf="form.controls.city.invalid">{{getErrorString('city')}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Select Country" aria-label="State" [matAutocomplete]="auto"
+           formControlName="country_code" required>
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let c of filteredStates" [value]="c.country_name">
+        <span>{{c.country_name}}</span>
+      </mat-option>
+    </mat-autocomplete>
+    <i *ngIf="(form.value.country_code !== '' && isInvalidCountry)" class="input_select_error">* Select valid
+      country</i>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Coupon Code" (keyup)="isValidCoupon()" formControlName="coupon_code" required>
+    <span style="color: red;
+    font-size: 0.8em;
+    position: absolute;
+    margin-top: 0.8em;
+    text-transform: uppercase;" *ngIf="isInvalidCode">Invalid Coupon</span>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" [disabled]="form.invalid" (click)="registerData()">Submit</button>
+</div>
+
+<div class="spinner-background" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div>
+

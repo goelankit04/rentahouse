@@ -1,0 +1,32 @@
+.app-product-episode-list {
+
+    .product_episode_list_container {
+        width: 100%;
+        height: fit-content;
+
+        .no_product_found {
+            justify-content: center;
+            text-align: center;
+            margin: 4em 0;
+            font-size: 1em;
+
+            mat-icon {
+                font-size: 4em;
+                width: fit-content;
+                height: fit-content;
+            }
+
+            p {
+                font-size: 2em;
+            }
+        }
+
+        .product_container {
+            width: 100%;
+            height: fit-content;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+    }
+}

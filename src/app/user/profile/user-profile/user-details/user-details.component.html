@@ -1,0 +1,264 @@
+<div class="card_div">
+  <div class="image_section">
+    <img src="{{ profileImage ? profileImage : placeholder }}" />
+    <app-pre-loader class="imageLoad" *ngIf="imageLoader"></app-pre-loader>
+    <p class="file_upload">
+      <label for="file-input" class="profile_text" *ngIf="profileImage">
+        Update Profile Picture
+      </label>
+      <label for="file-input" class="profile_text" *ngIf="!profileImage">
+        Upload Profile Picture
+      </label>
+
+      <input
+        type="file"
+        id="file-input"
+        accept="image/png, image/jpeg, image/svg, image/jpg, image/tiff"
+        (change)="fileChange($event)"
+      />
+    </p>
+  </div>
+  <div [formGroup]="form" class="form_field">
+    <div class="section">
+      <label>First Name *</label>
+      <input
+        type="text"
+        value="{{ userData?.first_name }}"
+        formControlName="first_name"
+      />
+      <div *ngIf="form.controls['first_name'].enabled">
+        <div
+          class="alert alert-danger h-50"
+          *ngIf="form.controls['first_name'].errors"
+        >
+          {{ getErrorMessage('first_name') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>Last Name *</label>
+      <input
+        type="text"
+        value="{{ userData?.last_name }}"
+        formControlName="last_name"
+      />
+      <div *ngIf="form.controls['last_name'].enabled">
+        <div
+          class="alert alert-danger h-50"
+          *ngIf="form.controls['last_name'].errors"
+        >
+          {{ getErrorMessage('last_name') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>Email Address *</label>
+      <input
+        type="text"
+        value="{{ userData?.email }}"
+        readonly
+        formControlName="email"
+      />
+      <div *ngIf="form.controls['email'].enabled">
+        <div
+          class="alert alert-danger h-50"
+          *ngIf="form.controls['email'].errors"
+        >
+          {{ getErrorMessage('email') }}
+        </div>
+      </div>
+    </div>
+    <div class="section gender">
+      <label>Gender </label>
+      <br />
+      <span>
+        <input
+          type="radio"
+          name="gender"
+          value="male"
+          (change)="onSelectionChange('male')"
+          class="radio_btn"
+          [checked]="userData.gender == 'male'"
+        />
+        <label class="name">Male</label>
+      </span>
+      <span>
+        <input
+          type="radio"
+          name="gender"
+          value="female"
+          (change)="onSelectionChange('female')"
+          class="radio_btn"
+          [checked]="userData.gender == 'female'"
+        />
+        <label class="name">Female</label>
+      </span>
+    </div>
+
+    <div class="section dob">
+      <label>Date of Birth</label>
+      <div class="input_field material_angular_component">
+        <mat-form-field class="drop-down">
+          <input
+            matInput
+            [matDatepicker]="picker1"
+            readonly
+            formControlName="dob"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker1"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+        <div *ngIf="form.controls['dob'].enabled">
+          <div
+            class="alert alert-danger h-50"
+            *ngIf="form.controls['dob'].errors"
+          >
+            {{ getErrorMessage('dob') }}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section mobile">
+      <label>Mobile Number *</label>
+      <span class="mobile_number_entry">
+        <span class="country_code">
+          <p>+{{ mobile_code }}</p>
+        </span>
+        <p></p>
+        <input
+          type="text"
+          readonly
+          placeholder="Mobile"
+          value="{{ mobile_number }}"
+          formControlName="mobile"
+        />
+      </span>
+
+      <div
+        class="selection_container"
+        [ngClass]="{ show_selection_container: showCountrySelector }"
+      >
+        <div class="search_bar_container"></div>
+        <div class="country_suggestion_container">
+          <span *ngIf="filteredStates.length === 0" class="no_country_found">
+            <mat-icon>error_outline</mat-icon>
+            <p>No such country found</p>
+          </span>
+          <span
+            class="country_with_code"
+            *ngFor="let country of filteredStates"
+            (click)="selectCountryCode(country)"
+          >
+            <p>{{ country.country_name | ellipsis: 24 }}</p>
+            <p>{{ country.mobile_country_code }}</p>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>Fide rating</label>
+      <input
+        type="number"
+        value="{{ userData?.fide_rating }}"
+        formControlName="fide_rating"
+      />
+      <div *ngIf="form.controls['fide_rating'].enabled">
+        <div
+          class="alert alert-danger h-50"
+          *ngIf="form.controls['fide_rating'].errors"
+        >
+          {{ getErrorMessage('fide_rating') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>Fide ID</label>
+      <input
+        type="number"
+        value="{{ userData?.fide_id }}"
+        formControlName="fide_id"
+      />
+      <div *ngIf="form.controls['fide_id'].enabled">
+        <div
+          class="alert alert-danger h-50"
+          *ngIf="form.controls['fide_id'].errors"
+        >
+          {{ getErrorMessage('fide_id') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <label>AICF ID</label>
+      <input
+        type="text"
+        value="{{ userData?.aicf_id }}"
+        formControlName="aicf_id"
+      />
+      <div *ngIf="form.controls['aicf_id'].enabled">
+        <div
+          class="alert alert-danger h-50"
+          *ngIf="form.controls['aicf_id'].errors"
+        >
+          {{ getErrorMessage('aicf_id') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="section address">
+      <label>Personal Address</label>
+      <input
+        type="text"
+        value="{{ userData?.permanent_address?.landmark }}"
+        formControlName="landmark"
+        placeholder="Flat / House No. / Building / Street / Landmark"
+      />
+      <input
+        type="text"
+        value="{{ userData?.permanent_address?.city }}"
+        formControlName="city"
+        placeholder="City "
+      />
+      <input
+        type="text"
+        value="{{ userData?.permanent_address?.state }}"
+        formControlName="state"
+        placeholder="State"
+      />
+      <input
+        type="number"
+        value="{{ userData?.permanent_address?.zip_code }}"
+        formControlName="zip_code"
+        placeholder="Zipcode"
+      />
+      <input
+        type="text"
+        value="{{ userData?.permanent_address?.country }}"
+        formControlName="country"
+        placeholder="Country *"
+        readonly
+      />
+      <div *ngIf="form.controls['country'].enabled">
+        <div
+          class="alert alert-danger h-50"
+          *ngIf="form.controls['country'].errors"
+        >
+          {{ getErrorMessage('country') }}
+        </div>
+      </div>
+    </div>
+
+    <div class="section submit_btn text-center">
+      <button type="button" (click)="updateUserProfile()">Save Changes</button>
+    </div>
+  </div>
+</div>
+<app-pre-loader *ngIf="isLoading"></app-pre-loader>

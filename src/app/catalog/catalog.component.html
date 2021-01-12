@@ -1,0 +1,190 @@
+<h1>All Products</h1>
+<span class="drr" style="color:grey;font-weight:400;font-size: 12px;margin: 0;">
+  <small style="font-size:14px;">* DRR - Dream Room Resident </small>(who has
+  already enrolled for nurtr's Chess Dream Room)</span>
+<div class="filter_by">
+  <mat-radio-group class="example-radio-group" *ngIf="filterMenu.length">
+    <mat-radio-button *ngFor="let menu of filterMenu" (change)="showProductType(menu.productType)"
+      [checked]="selectedFilter.productType === menu.productType" [value]="menu.productType">
+      <ng-container *ngIf="!menu.image">
+        {{ menu.name }}
+      </ng-container>
+      <ng-container *ngIf="menu.image">
+        <img src="{{ menu.image }}" style="width: 160px;height: 39px;border-radius: 5px;" />
+      </ng-container>
+    </mat-radio-button>
+  </mat-radio-group>
+  <p class="drr1" style="color:grey;font-weight:400;font-size: 12px;margin: 2% 2%;">
+    <small style="font-size:14px;">* DRR - Dream Room Resident </small>
+    <br />(who has already enrolled for nurtr's Chess Dream Room)
+  </p>
+</div>
+
+<div class="product_container" id="grid">
+  <div class="card-container" *ngIf="
+      selectedFilter.productType === 2 ||
+      selectedFilter.productType === 3 ||
+      selectedFilter.productType === 4 ||
+      selectedFilter.productType === 6 ||
+      selectedFilter.productType === 13 ||
+      selectedFilter.productType === 15
+    ">
+    <app-card *ngFor="let card of productData; let i = index" [cardData]="card" [mobileView]="mobileVersion()"
+      [index]="i" [hover]="getHoverStatus(selectedFilter.productType)"></app-card>
+  </div>
+
+  <div class="combo_offers " *ngIf="selectedFilter.productType === 7">
+    <div class="rows " *ngFor="let combo of productData">
+      <div class="combo_image ">
+        <img src="{{ combo?.image_url }}" style="object-fit: unset " class="images " alt="combo " />
+      </div>
+      <div class="combo_data ">
+        <p class="combo_para">{{ combo?.name }}</p>
+        <div class="pricing " *ngIf="combo?.special_price > 0">
+          <div class="price_container">
+            <p class="price_type">For DRR*</p>
+            <div class="price_box">
+              <p class="price_base" *ngIf="combo?.base_price != combo?.special_price">
+                <i class="fa {{
+                    combo.currency === 'inr' ? 'fa-inr' : 'fa-usd'
+                  }}"></i>{{ combo?.base_price | number: ".0" }}
+              </p>
+              <p class="price_new">
+                <i class="fa {{
+                    combo.currency === 'inr' ? 'fa-inr' : 'fa-usd'
+                  }}"></i>{{ combo?.special_price | number: ".0" }}
+              </p>
+            </div>
+          </div>
+          <div class="price_container marginal_space">
+            <p class="price_type">For Non DRR*</p>
+            <div class="price_box">
+              <p class="price_base" *ngIf="combo?.base_price != combo?.sale_price">
+                <i class="fa {{
+                    combo.currency === 'inr' ? 'fa-inr' : 'fa-usd'
+                  }}"></i>{{ combo?.base_price | number: ".0" }}
+              </p>
+              <p class="price_new">
+                <i class="fa {{
+                    combo.currency === 'inr' ? 'fa-inr' : 'fa-usd'
+                  }} "></i>{{ combo?.sale_price | number: ".0" }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="pricing" *ngIf="
+            combo?.special_price == null ||
+            combo?.special_price == 0 ||
+            combo?.special_price == undefined
+          ">
+          <div class=" price_container ">
+            <div class="price_box">
+              <small *ngIf="combo?.base_price != combo?.sale_price"
+                style="display: flex;align-items: center;margin-top:-18%;margin-right: 4%;color: #a0ce4e;font-size: 16px;font-weight: 500;padding-top: 4%;"></small>
+              <small *ngIf="combo?.base_price == combo?.sale_price"
+                style="display: flex;align-items: center;margin-top:-25%;margin-right: 4%;color: #a0ce4e;font-size: 16px;font-weight: 500;padding-top: 4%;"></small>
+
+              <br />
+              <p class="price_base " *ngIf="combo?.base_price != combo?.sale_price">
+                <i class="fa {{
+                    combo.currency === 'inr' ? 'fa-inr' : 'fa-usd'
+                  }} font_awesome" *ngIf="combo.sale_price > 0"></i>{{ combo?.base_price | number: ".0" }}
+              </p>
+              <p class="price_new ">
+                <i class="fa {{
+                    combo.currency === 'inr' ? 'fa-inr' : 'fa-usd'
+                  }} font_awesome" *ngIf="combo.sale_price > 0"></i>{{ combo?.sale_price | number: ".0" }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="only_indian" *ngIf="combo?.sale_price == null">
+          <p style="font-size: 13px;
+          font-style: italic;
+          padding-top: 2%;">
+            * Offer valid only for subscribers within India
+          </p>
+        </div>
+      </div>
+      <div class="rupees">
+        <button class="by" (click)="enrollNow(combo.product_id, combo.product_type)" [ngClass]="{
+            disabled:
+              combo.sale_price == null ||
+              combo.sale_price == 0 ||
+              combo.sale_price == undefined
+          }">
+          Buy Now
+        </button>
+        <br />
+      </div>
+      <div class="rupee">
+        <button class="buy_btn" (click)="enrollNow(combo.product_id, combo.product_type)"
+          [ngClass]="{ disabled: !combo?.sale_price }">
+          Buy Now
+        </button>
+        <!-- <p style="cursor:pointer;color:grey;padding-top:1%;text-decoration: underline;font-weight:bolder;margin-left: 8%;font-size: 14px;"
+          (click)="showDetails(combo)">View Details</p> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="events" *ngIf="selectedFilter.productType === 11">
+    <mat-card class="card_container" *ngFor="let event of productData">
+      <img mat-card-image class="image_container_mentor" [src]="event?.image_url" />
+
+      <!-- Mentor card-content -->
+
+      <mat-card-content (click)="showDetails(event)">
+        <div class="ribbon" *ngIf="event.background_color !== null" [ngStyle]="{
+            'background-color': event.background_color,
+            color: event.text_color
+          }">
+          <p>{{ event.text_content }}</p>
+        </div>
+
+        <div class="detail_container">
+          <!--  -->
+          <mat-card-header class="card_header mat-card-header">
+            <div class="mat-card-header-text"></div>
+            <div style="width:50px;height:50px;padding-top:5px;" *ngIf="event?.author_avatar">
+              <img alt="" class="author_avatar mat-card-image" draggable="false" mat-card-image=""
+                [src]="event?.author_avatar" />
+            </div>
+            <div class="header_box">
+              <div class="header-info">
+                <!---->
+                <!---->
+                <mat-card-title class="title mat-card-title ng-star-inserted">{{
+                  event?.name
+                }}</mat-card-title>
+              </div>
+            </div>
+          </mat-card-header>
+          <!-- <mat-card-title>{{event.name}}</mat-card-title> -->
+          <mat-card-subtitle>{{ event?.venue?.location }}, {{ event?.venue?.city }},
+            {{ event?.venue?.state }},
+            {{ event?.venue?.country }}</mat-card-subtitle>
+
+          <div class="detail">
+            <p class="value">
+              <img src="assets/date.svg" />{{ event.duration }}
+            </p>
+          </div>
+
+          <div class="detail" *ngIf="event?.event_prize_money">
+            <p class="value">
+              <span style="font-size: 15px;color:#666766;font-weight:bold;">FIDE RATED-</span>
+              {{ event?.event_prize_money }} Prize Money
+            </p>
+          </div>
+        </div>
+        <div class="main-button">
+          <button type="button" class="register_btn">Register Now</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<app-pre-loader *ngIf="loader"></app-pre-loader>

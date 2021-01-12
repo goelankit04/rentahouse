@@ -1,0 +1,106 @@
+.app-beginner-example {
+
+  .puzzle_detail_container{
+    display: flex;
+    flex-direction: column;
+
+    .heading{
+      color: #a0ce4e;
+      font-weight: bold;
+      font-size: 1.8em;
+
+      span{
+        color: black;
+      }
+    }
+
+    .puzzle-col{
+      display: flex;
+      flex-direction: column;
+      // margin: auto;
+
+      app-base-example{
+        width: fit-content;
+        margin: auto;
+      }
+
+      .white-1e1d7 {
+        background-color: #edeed1;
+        color: #769455;
+      }
+
+      .black-3c85d {
+        background-color: #769455;
+        color: #edeed1;
+      }
+
+      .puzzle_detail{
+        width: 100%;
+        margin-top: 1em;
+        margin-left: 0;
+        .display_board{
+          .btn_container {
+            display: flex;
+            justify-content: center;
+            button{
+              background-color: #A0CC50;
+              padding: 10px 30px;
+              border: 0;
+              margin: 1em;
+              border-radius: 6px;
+              margin-bottom: 8px;
+              color: white;
+              cursor: pointer;
+              filter: drop-shadow(2px 2px 4px #cccccc);
+              &:hover {
+                background-color: #34c2d6;
+              }
+            }
+          }
+          .about_puzzle{
+            font-size: 24px;
+            text-align: center;
+            font-weight: bold;
+          }
+          .about_detail{
+            text-align: center;
+            font-weight: 400;
+          }
+          .puzzle_status{
+            color: #a0ce4e;
+            font-size: 2em;
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+          }
+          .well_done{
+            color: black;
+            font-size: 2em;
+            text-align: center;
+            font-weight: bold;
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1260px) {
+    .puzzle_detail_container {
+      .puzzle-col{
+        display: flex;
+        flex-direction: row;
+
+        app-base-puzzle{
+          margin-left: 0;
+        }
+
+        .puzzle_detail{
+          margin-top: 0;
+          margin-left: 1em;
+        }
+      }
+    }
+  }
+
+}

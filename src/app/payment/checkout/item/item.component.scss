@@ -1,0 +1,131 @@
+.app-item{
+  .grid-container {
+      background: #CCCCCC;
+      height: fit-content;
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-template-rows: 150px 1fr 64px;
+      grid-gap: 0px;
+
+      .spacing{
+        padding: 20px;
+      }
+
+      .item1 {
+        background: white;
+        padding-bottom:0px;
+        text-align: center;
+        // grid-area: "image";
+
+        .product_image{
+          // display: block;
+          // margin: auto;
+          width: 120px;
+          height: 100px;
+          text-align: center;
+        }
+      }
+
+      .item2 {
+        padding-top: 0px;
+        background: white;
+        text-align:center;
+        // grid-area: "content";
+
+        .title{
+          font-weight: bold;
+        }
+
+        .content{
+          font-size: 14px;
+        }
+      }
+
+      .price_and_quantity-div {
+        background: white;
+        font-weight: bold;
+        margin: 0px;
+        // grid-area: "price";
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        border-top: 1px solid;
+        border-color: #cccccc;
+
+        p{
+          margin: 0em;
+        }
+
+        .item_quantity{
+          // background: yellow;
+          // padding: 20px;
+          border-right: 1px solid;
+          border-color: #CCCCCC;
+        }
+      }
+
+      // .item4 {
+      //   background: white;
+      //   font-weight: bold;
+      //   margin: 0px;
+      //   // grid-area: "quantity";
+      // }
+  }
+
+  @media screen and (min-width: 800px){
+    .grid-container {
+      background: #CCCCCC;
+      height: fit-content;
+      display: grid;
+      grid-template-columns: 150px 1fr 300px;
+      grid-template-rows: 1fr;
+      grid-gap: 1px;
+
+      .item1 {
+        background: white;
+        padding-bottom: 20px;
+
+        .svg_icon{
+          display: block;
+          margin: auto;
+          width: 80px;
+          height: 80px;
+          text-align: center;
+        }
+      }
+
+      .item2{
+        padding-top: 20px;
+        text-align:left;
+      }
+
+      .item3 {
+        background: white;
+        font-weight: bold;
+      }
+
+      // .item4 {
+      //   background: white;
+      //   font-weight: bold;
+      // }
+
+      .price_and_quantity-div {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        border-top: 0px;
+
+        
+      }
+    }
+  }
+}
+
+@media screen and (min-width:320px) and (max-width:400px){
+  .app-item .grid-container .item2 .title {
+    font-size: 15px;
+}
+app-checkout .content_container .bottom-container .item3 .pay_values .final {
+  font-size: 12px;
+}
+}

@@ -1,0 +1,36 @@
+<div class="product_highlight_container">
+  <ng-container
+    *ngIf="
+      (product_id === 35 && product_type === 7) ||
+      (product_id === 680 && product_type === 16) ||
+      (product_id === 574 && product_type === 7) ||
+      (product_id === 573 && product_type === 7) ||
+      (product_id === 697 && product_type === 13) ||
+      (product_id === 746 && product_type === 13) ||
+      (product_id === 778 && product_type === 13) ||
+      (product_id === 672 && product_type === 13) ||
+      (product_id === 787 && product_type === 7) ||
+      (product_id === 776 && product_type === 13) ||
+      (product_id === 807 && product_type === 7) ||
+      (product_id === 810 && product_type === 7)
+    "
+  >
+    <!-- <ng-container *ngIf="product_id==35 && product_type==7"> -->
+    <app-product-banner [data]="productList"></app-product-banner>
+    <app-course-detail></app-course-detail>
+    <app-course-episode></app-course-episode>
+    <app-student-feedback></app-student-feedback>
+    <app-top-review></app-top-review>
+    <app-product-faqs></app-product-faqs>
+  </ng-container>
+</div>
+
+<!-- <ng-template #unload>
+  <h2 matDialogTitle>Dialog!</h2>
+  <mat-dialog-content>
+    <p>The content of this dialog came from an <code>ng-template</code>! Amazing, right?</p>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button matDialogClose color="primary">Dismiss</button>
+  </mat-dialog-actions>
+</ng-template> -->

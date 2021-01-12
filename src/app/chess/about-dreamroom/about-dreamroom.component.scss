@@ -1,0 +1,129 @@
+.app-about-dreamroom{
+  .dreamroom_container{
+
+
+      padding: 1em 3em 1em 3em;
+      color: #676767;
+      margin-top: 4em;
+      background-color: white;
+      filter: drop-shadow(0px 0px 10px #cccccc);
+      border-radius: 6px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: fit-content;
+
+      // // for center-column format
+      // max-width: 1200px;
+      // margin: auto;
+      // margin-top: 4.8em;
+      // margin-bottom: 10px;
+
+      .div1{
+          width: auto;
+          height: 100%;
+          background-size: auto;
+          background-position: center;
+          background-repeat: no-repeat;
+
+          .img_laptop{
+              cursor: pointer;
+              margin-bottom: -20px;
+              height: auto;
+          }
+      }
+
+      .div2{
+          // background: yellow;
+          display: flex;
+          flex-direction: column;
+          vertical-align: middle;
+          margin: auto;
+          width: 85%;
+
+          .dr_heading{
+              // text-transform: uppercase;
+              color: #676767;
+              text-align: left;
+              margin: 0.2em 0em 0.3em 0em;
+              font-size: 1.5em;
+              // margin-top: 0px;
+              font-weight: 500;
+              line-height: 1.2em;
+          }
+          .dr_content{
+              padding: 0;
+              margin: 0;
+              font-size: 1em;
+              line-height: 1.4em;
+              text-align: left;
+          }
+          .add_margin{
+              margin-top: 15px;
+          }
+      }
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 1000px){
+      .dreamroom_container{
+          display: flex;
+          flex-direction: column;
+          padding: 1em 0em;
+
+          .div1{
+              background-size: auto;
+              .img_laptop{
+                width: 80%;
+                margin: auto;
+                display: block;
+                margin-bottom: -20px;
+              }
+          }
+
+          .div2{
+              margin-top: 30px;
+
+              .dr_heading{
+                text-align: center;
+              }
+              .dr_content{
+                  font-size: 0.9em;
+                  text-align: center;
+              }
+          }
+      }
+  }
+
+  @media screen and (min-width: 1001px) and (max-width: 1100px){
+    .dreamroom_container{
+        .div1{
+          .img_laptop{
+            margin-bottom: -20px;
+            margin-top: 110px;
+          }
+        }
+    }
+}
+
+@media screen and (min-width: 1101px) and (max-width: 1200px){
+  .dreamroom_container{
+      .div1{
+        .img_laptop{
+          margin-bottom: -20px;
+          margin-top: 72px;
+        }
+      }
+  }
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1300px){
+  .dreamroom_container{
+      .div1{
+        .img_laptop{
+          margin-bottom: -20px;
+          margin-top: 20px;
+        }
+      }
+  }
+}
+}

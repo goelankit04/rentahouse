@@ -1,0 +1,52 @@
+.app-testimonial {
+  .testimonial_container {
+
+    .header_text {
+      width: 90%;
+      margin: auto;
+      margin-top: 4em;
+
+      // // for center-column format
+      // max-width: 1200px;
+      // margin: auto;
+
+      h1{
+        font-weight: 400;
+        color: gray;
+        display: block;
+        text-align: left;
+        font-size: 1.75em;
+      }
+    }
+
+    .content{
+      color: gray;
+      width: 75%;
+    }
+
+    .background_container {
+      background: url("/assets/chess/wave_blue.svg") center/100% no-repeat;
+      background-size: cover;
+      height: 700px;
+      margin-top: -1em;
+      // margin-bottom: 8em;
+    }
+
+    @media screen and (max-width: 999px) {
+      .header_text{
+        // text-align: center;
+        h1{
+          text-align: center;
+        }
+        p{
+          text-align: center;
+          margin: auto;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@import "./testimonial-mobile/testimonial-mobile.component";
+@import "./testimonial-desktop/testimonial-desktop.component";

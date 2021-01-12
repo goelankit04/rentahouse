@@ -1,0 +1,69 @@
+.app-payment-verification {
+  margin-top: 5em;
+
+  .payment__verification__process {
+    width: 100%;
+    height: 40em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .status_box {
+      padding: 2em 4em;
+      border-radius: 6px;
+      background-color: #f3f3f3;
+      filter: drop-shadow(0 2px 4px #cccccc);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 1em;
+
+      .st90 {
+        fill: #a0ce4e;
+      }
+
+      .nurtr_logo {
+        width: 8em;
+        margin-top: 4em;
+      }
+
+      mat-spinner {
+        width: 60px !important;
+        height: 60px !important;
+        margin: 3em;
+
+        svg {
+          width: 60px !important;
+          height: 60px !important;
+
+          circle {
+            stroke: #a0ce4e !important;
+          }
+        }
+      }
+
+      h4 {
+        font-weight: bold;
+        text-align: center;
+        line-height: 32px;
+        font-size: 18px;
+        color: #464646;
+      }
+
+      button {
+        border: 0;
+        padding: 8px 14px;
+        border-radius: 6px;
+        background-color: #a0ce4e;
+        color: white;
+        margin-top: 16px;
+
+        &:hover {
+          background-color: #35c2d6;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+<div class="contain">
+  <div class="faculty faculty_management" *ngFor="let prod of product">
+    <img [src]='prod?.img' *ngIf="prod?.img">
+    <div class="column">
+      <p class="heading"><strong>{{prod?.name}}</strong></p>
+      <div [innerHTML]="prod?.desc"></div>
+    </div>
+  </div>
+</div>

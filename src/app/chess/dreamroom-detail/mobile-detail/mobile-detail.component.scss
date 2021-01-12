@@ -1,0 +1,79 @@
+@import "../content-feature/content-feature.component";
+
+.app-mobile-detail {
+  .mobile_dreamroom_detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .mobile_topics_to_be_covered, .mobile_suitable_for {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 1em;
+
+      .mat-chip-center{
+        text-align: center;
+      }
+
+      @media screen and (min-width:320px) and (max-width:360px){
+        .chips{
+          margin: 10px 2px !important;
+
+        }
+      }
+
+      .collapsed_data {
+        flex-direction: column;
+        justify-content: baseline;
+        text-align: center;
+        margin-top: 1em;
+
+        p {
+          margin: 0;
+        }
+      }
+    }
+
+    .mobile_special_attention {
+      background: url("/assets/chess/green-bg-box.svg") center/100% no-repeat;
+      background-size: cover;
+      width: 315px;
+      p {
+        // max-width: 300px;
+        padding: 2em;
+        text-align: center;
+        color: white;
+        margin-left: 1em;
+      }
+    }
+
+    .mobile_spacer {
+      height: 200px;
+    }
+
+    .mat-chip-list-wrapper {
+      .mat-chip {
+        background-color: white;
+        color: rgba(0, 0, 0, .87);
+        // box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+        font-weight: 600;
+        font-size: 1.1em;
+        padding: 0.7em 1em;
+        cursor: pointer;
+        text-transform: uppercase;
+
+        box-shadow: 0px 3px 20px 0 rgba(46, 61, 73, 0.15);
+        margin: 0em 1em;
+      }
+    }
+
+    .mobile_special_attention {
+      .svg_container {
+        // max-width: 300px;
+        max-height: 300px;
+      }
+    }
+  }
+}

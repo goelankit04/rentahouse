@@ -1,0 +1,33 @@
+<div class="user_profile_container" [@.disabled]="true">
+  <mat-card>
+    <mat-card-content>
+      <mat-tab-group class="tab-group" [(selectedIndex)]="selectedTab">
+
+        <mat-tab label="User Details">
+          <div class="tab-content">
+            <app-user-details></app-user-details>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Password">
+          <div class="tab-content">
+            <app-change-current-password></app-change-current-password>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Wallet">
+          <div class="tab-content">
+            <app-wallet></app-wallet>
+          </div>
+        </mat-tab>
+
+        <mat-tab label="Orders">
+          <div class="tab-content">
+            <app-order></app-order>
+          </div>
+        </mat-tab>
+
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>

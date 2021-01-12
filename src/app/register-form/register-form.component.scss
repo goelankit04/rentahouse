@@ -1,0 +1,72 @@
+.app-register-form {
+  .register-form {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  .input_hints {
+    position: absolute;
+    font-size: 0.7em;
+    margin-top: 9px;
+    right: 0;
+  }
+
+  .modal_header_container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #444444;
+    color: white;
+    padding: 0.5em 0.5em;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
+
+    h2 {
+      opacity: 0.9;
+      margin-bottom: 0;
+      text-transform: uppercase;
+    }
+
+    .modal_close {
+      align-self: center;
+      transition: all 1s;
+
+      &:hover {
+        background-color: white;
+        border-radius: 50%;
+        color: black;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .modal_close {
+    align-self: center;
+    transition: all 1s;
+
+    &:hover {
+      background-color: white;
+      border-radius: 50%;
+      color: black;
+      cursor: pointer;
+    }
+  }
+
+  .spinner-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

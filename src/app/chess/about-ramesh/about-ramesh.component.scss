@@ -1,0 +1,114 @@
+.app-about-ramesh {
+  .about-container {
+    display: flex;
+    padding-top: 4em;
+    align-items: center;
+    flex-direction: column;
+    max-width: 1000px;
+    margin: auto;
+    width: 90%;
+    color: grey;
+
+    // // for center-column format
+    // max-width: 1200px;
+    // margin: auto;
+
+    .rotate180{
+      transform: rotate(180deg);
+    }
+
+    .author_image_container {
+      display: flex;
+      width: 100%;
+      border-bottom: 1px solid #CDCDCD;
+      justify-content: center;
+
+      .image-container {
+        max-width: 400px;
+        padding: 0 1em;
+
+        img {
+          width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    .about-text {
+      padding: 1em 3em;
+      text-align: center;
+
+      h1{
+        font-size: 1.75em;
+        font-weight: 400;
+      }
+
+      .description, .gm-note-heading, .gm-note {
+        text-align: center;
+      }
+
+      .mat-chip-list-wrapper {
+        justify-content: center;
+
+        .mat-chip {
+          background-color: white;
+          color: rgba(0, 0, 0, .87);
+          // box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+          font-weight: 600;
+          cursor: pointer;
+          width: 90%;
+          justify-content: space-between;
+          box-shadow: 0px 3px 20px 0 rgba(46, 61, 73, 0.15);
+        }
+      }
+
+      .gm-note-heading {
+        margin: 0;
+        font-weight: 500;
+      }
+    }
+
+  }
+
+  @media screen and (min-width: 400px) and (max-width: 500px) {
+    .about-container {
+      .about-text {
+        .mat-chip-list-wrapper {
+          .mat-chip {
+            width: 60%;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 1000px) {
+    .about-container {
+      flex-direction: row;
+      align-items: flex-end;
+
+      .author_image_container {
+        border-bottom: none;
+
+        .image-container {
+          min-width: 400px;
+        }
+      }
+
+      .about-text {
+        h1 {
+          text-align: left;
+        }
+
+        .description, .gm-note-heading, .gm-note{
+          text-align: left;
+        }
+
+        .gm-note-heading {
+          display: flex;
+          align-items: baseline;
+        }
+      }
+    }
+  }
+}

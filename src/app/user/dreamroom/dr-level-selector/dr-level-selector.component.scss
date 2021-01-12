@@ -1,0 +1,528 @@
+.app-dr-level-selector {
+  .dreamroom_container2 {
+    width: 100%;
+    height: 100%;
+    background: white;
+    padding: 1em;
+
+    .content_container {
+      width: fit-content;
+      margin: 2em auto;
+
+      .heading {
+        font-weight: 500;
+        color: grey;
+        font-size: 32px;
+      }
+
+      .content {
+        display: flex;
+        flex-direction: column;
+
+        .video_box {
+          position: relative;
+          background: #f4f4f4;
+
+          .wistia_embed {
+            position: absolute !important;
+            top: 36%;
+            left: 42%;
+            transition: all 0.9s ease-in-out;
+          }
+
+          .wistia_responsive_wrapper {
+            cursor: pointer;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: absolute;
+          }
+
+          .wistia_click_to_play:hover {
+            transform: scale(1.2);
+          }
+
+          img {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+          }
+
+          iframe {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        // .image_container:hover .hvr_img{
+        //   content: url('/assets/chess/Dreamroom/level_selector/DR_hover_bg.png')
+        // }
+
+        .level_selector {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          margin-left: 0;
+          margin-top: 1em;
+          text-align: center;
+
+          .image_container:hover .hover_image {
+            animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+          }
+
+          @keyframes shake {
+
+            10%,
+            90% {
+              transform: translate3d(-1px, 0, 0);
+            }
+
+            20%,
+            80% {
+              transform: translate3d(2px, 0, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+              transform: translate3d(-4px, 0, 0);
+            }
+
+            40%,
+            60% {
+              transform: translate3d(4px, 0, 0);
+            }
+          }
+
+          div {
+            cursor: pointer;
+            width: fit-content;
+
+            // margin: 1em auto;
+            p {
+              user-select: none;
+              margin: 0;
+              position: absolute;
+              color: white;
+            }
+
+            .name {
+              margin-left: 145px;
+              margin-top: -90px;
+              font-weight: bold;
+              font-size: 20px;
+            }
+
+            .fide {
+              margin-left: 145px;
+              margin-top: -60px;
+              font-weight: normal;
+              font-size: 12px;
+            }
+
+            .price {
+              margin-left: 236px;
+              margin-top: -32px;
+              font-size: 20px;
+              font-weight: 400;
+            }
+
+            .buy_now {
+              border: 0;
+              background-color: #a0ce4e;
+              color: white;
+              font-weight: bold;
+              padding: 10px 16px;
+              border-radius: 6px;
+            }
+          }
+        }
+      }
+    }
+
+    .dr_combo {
+      display: flex;
+      flex-direction: column;
+      background-color: #FAF5E6;
+      padding: 1em;
+      border-radius: 6px;
+      max-width: 62em;
+      margin: 3em auto;
+
+
+      span {
+        text-transform: uppercase;
+        color: #666666;
+        font-size: 2.6em;
+        font-weight: 700;
+        text-align: center;
+        border-radius: 6px;
+      }
+
+      .combo_card_container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        @media screen and (min-width: 1170px) {
+          flex-direction: row;
+        }
+
+        .combo_card {
+          background-color: white;
+          padding: 0;
+          margin: 1em;
+          max-width: 18em;
+          border-radius: 6px;
+          overflow: hidden;
+
+          span {
+            .header {
+              background-color: #333333;
+              color: yellow;
+              font-weight: 600;
+              // padding: 1em;
+              font-size: 20px;
+              display: flex;
+              flex-direction: row;
+
+              p {
+                margin: 0;
+              }
+
+              .long_title {
+                font-size: 18px;
+              }
+
+            }
+
+            .price_container {
+              font-size: 24px;
+              padding: 1em;
+              font-weight: 700;
+              color: #898989;
+              text-align: center;
+
+              .fa {
+                color: #898989;
+                font-size: 20px;
+              }
+              .line-through{
+                text-decoration: line-through;
+                font-size:24px;
+              }
+
+            }
+
+            .footer {
+              width: 100%;
+              text-align: center;
+              margin-bottom: 1em;
+
+              button {
+                background-color: #a0ce4e;
+                color: white;
+                border-radius: 6px;
+                border: 0;
+                margin: auto;
+                padding: 6px 20px;
+                cursor: pointer;
+                font-size: 20px;
+
+                &:hover {
+                  background-color: #35c2d6;
+                }
+              }
+            }
+          }
+
+        }
+      }
+    }
+
+    .dreamroom_combo {
+      width: 100%;
+      background: #f3fbe5;
+      display: flex;
+      flex-direction: column-reverse;
+      border-radius: 12px;
+      padding: 1em;
+      margin: auto;
+      max-width: 62em;
+
+      .combo_image {
+        flex: 1;
+
+        img {
+          width: 100%;
+          max-height: 16em;
+          margin: auto;
+        }
+      }
+
+      .combo_content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .heading {
+          margin: 0;
+          text-align: center;
+          font-size: 2.8em;
+          font-weight: 500;
+          color: #f55269;
+        }
+
+        .sub-heading {
+          margin: 0;
+          font-weight: 400;
+          text-align: center;
+          font-size: 34px;
+          color: #a0ce4e;
+        }
+
+        .pricing {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          margin-top: 1em;
+
+          img {
+            width: 20em;
+            height: auto;
+            margin: auto;
+          }
+
+          .price {
+            font-weight: bold;
+            font-size: 1.8em;
+            position: absolute;
+            text-align: center;
+            margin: auto;
+            width: 45%;
+            color: white;
+            margin-top: 20px;
+          }
+        }
+      }
+
+      @media screen and (min-width: 1000px) {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1170px) {
+    .dreamroom_container2 {
+      .content_container {
+        .content {
+          display: flex;
+          flex-direction: row;
+
+          .video_box {
+            width: 40em;
+            height: 28em; // height: 100%;
+            background: #f4f4f4;
+
+            img {
+              width: 100%;
+              height: 100%;
+              cursor: pointer;
+            }
+
+            iframe {
+              width: 100%;
+              height: 100%;
+            }
+          }
+
+          .level_selector {
+            display: flex;
+            flex-direction: column;
+            margin-left: 1em;
+            margin-top: 1%;
+          }
+        }
+      }
+    }
+  }
+
+  .dreamroom_container {
+    background: white;
+    border-radius: 6px;
+    padding: 1em 0 2em 0;
+
+    .loader {
+      mat-spinner {
+        margin: auto;
+        margin-top: 4em;
+        margin-bottom: 4em;
+      }
+    }
+
+    .dreamroom {
+      .nothing_to_display {
+        background: white;
+        border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin: 1em;
+        padding: 5.6em 0;
+
+        mat-icon {
+          height: auto;
+          width: auto;
+          font-size: 4em;
+        }
+
+        .statement {
+          margin: 0;
+          margin-top: 8px;
+          font-size: 2em;
+        }
+
+        .offer_to_enroll {
+          font-size: 12px;
+          text-transform: uppercase;
+          font-weight: 500;
+          margin: 0;
+          margin-top: 2em;
+        }
+
+        .offer_link {
+          margin: 0; // margin-top: 12px;
+          color: #a0ce4e;
+          padding: 5px 12px;
+          margin-left: 1em;
+          margin-right: 1em;
+          margin-top: 6px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #a0ce4e;
+            color: white;
+            border-radius: 6px;
+            padding: 5px 12px;
+          }
+        }
+      }
+
+      .heading {
+        margin-left: 16px;
+        margin-bottom: 10px;
+        font-size: 1.75em;
+        font-weight: 400;
+        color: grey;
+        text-transform: none;
+        text-align: center;
+        cursor: default;
+      }
+
+      .card_container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center; // margin: auto;
+        width: fit-content;
+        margin: 5em auto;
+
+        .card {
+          overflow: hidden;
+          background-color: white;
+          color: grey;
+          margin: 1em;
+          cursor: default; // box-shadow: 0 0 0 0 rgb(0, 0, 0, 0);
+          box-shadow: 0 0 0 0 rgba(0, 0, 0, 0), 0 0 0 0 rgba(0, 0, 0, 0);
+
+          .fide_rating {
+            margin: 0;
+            font-weight: normal;
+            font-size: 12px;
+          }
+
+          img {
+            width: 300px;
+            height: 97px;
+            object-fit: contain;
+          }
+
+          p {
+            font-size: 1em;
+            font-weight: bold;
+            text-align: center;
+            margin: 10px;
+          }
+
+          &:hover {
+            color: white;
+            background-color: #a0ce4e;
+            cursor: pointer;
+
+            img {
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 600px) and (min-width: 320px) {
+    .heading {
+      font-size: 22px !important;
+    }
+  }
+
+  @media screen and (max-width: 1170px) and (min-width: 320px) {
+    .image_container {
+      margin-bottom: 4% !important;
+    }
+
+    .level_selector {
+      text-align: -webkit-center !important;
+    }
+
+    .content_container {
+      margin-top: 0px !important;
+    }
+  }
+
+
+  @media screen and (min-width: 320px) and (max-width: 420px) {
+    .level_selector {
+      text-align: -webkit-right !important;
+    }
+  }
+
+
+  @media screen and (max-width: 375px) and (min-width: 320px) {
+    .hover_image {
+      height: 90px;
+      width: 66px;
+    }
+
+    .hvr_img {
+      width: 180px;
+    }
+
+    .name {
+      margin-left: 100px !important;
+      margin-top: -77px !important;
+    }
+
+    .fide {
+      margin-left: 78px !important;
+      margin-top: -46px !important;
+      font-size: 11px !important;
+    }
+  }
+}

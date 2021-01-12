@@ -1,0 +1,140 @@
+.app-example-study {
+  .puzzle_item_container {
+    display: flex;
+    .loader {
+      width: 100%;
+      height: 100%;
+      z-index: 20;
+      mat-spinner{
+        margin: auto;
+      }
+    }
+  }
+
+  .heading {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+
+  .sub_heading {
+    font-size: 1.4em;
+    margin-bottom: 3em;
+    font-weight: 400;
+  }
+
+  .board {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: baseline;
+  }
+
+  .hint_option {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+    span {
+      font-weight: 400;
+    }
+    button {
+      width: fit-content;
+      background-color: #A0CC50;
+      padding: 10px 30px;
+      border: 0;
+      margin: 1em auto;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      color: white;
+      cursor: pointer;
+      filter: drop-shadow(2px 2px 4px #cccccc);
+      &:hover {
+        background-color: #34c2d6;
+      }
+    }
+  }
+
+  #boardButton {
+    text-align: center;
+
+    i {
+      color: #769455;
+      padding: 10px 18px;
+      margin-top: 1em;
+    }
+    display: none;
+  }
+
+  .white-1e1d7 {
+    background-color: #edeed1;
+    color: #769455;
+  }
+
+  .black-3c85d {
+    background-color: #769455;
+    color: #edeed1;
+  }
+
+  #boardMoves {
+    text-align: left;
+    margin-left: 10px;
+    min-width: 250px;
+
+    padding: 1em;
+    border: 1px solid #cccccc;
+    background: white;
+    border-radius: 6px;
+
+    max-height: 500px;
+    overflow-y: scroll;
+    display: none;
+
+    // .moveComment {
+    //   display: block;
+    //   margin-bottom: 2em;
+    //   padding: 1em;
+    //   text-align: center;
+    //   font-size: 1.2em;
+    //   color: #a0ce4e;
+    // }
+  }
+
+  @media screen and (min-width: 1260px) {
+    .board {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      // justify-content: center;
+    }
+
+    #boardMoves {
+      margin-left: 1em;
+      height: 560px;
+    }
+  }
+
+  @media screen and (max-width: 1259px) {
+    .puzzle_item_container{
+      display: flex;
+      flex-direction: column;
+
+      .heading{
+        margin-top: 1em;
+      }
+    }
+    .hint_option {
+      position: relative;
+      top: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      text-align: center;
+      width: 90%;
+      align-items: center;
+      margin: auto;
+    }
+  }
+}

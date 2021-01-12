@@ -1,0 +1,90 @@
+<ng-container *ngIf="type === 'product' ? products.length !==0 : mentors.length !== 0 ; else cardContainerShimmer">
+  <div class="card_container" *ngIf="type === 'product'">
+    <div class="type_head">
+      <h3>{{heading}}</h3>
+      <!-- <h4 (click)="openCatalog()">Explore All <mat-icon>keyboard_arrow_right</mat-icon></h4> -->
+    </div>
+
+    <!-- <app-card-detail id="card-detail-{{id}}" [data]="productDetail" (close)="getCloseEvent($event)"
+      *ngIf="showDetailSection"></app-card-detail> -->
+
+    <span class="slider-handle" *ngIf="leftSlideIcon" (click)="slideRight()">
+      <img class="arrow arrow-left" src="assets/images/arrow.png">
+    </span>
+
+    <div class="card_box">
+
+        <div class="slider-row">
+            <div class="slider-row-inner" id="card_box-{{id}}">
+              <div class="slider-card" *ngFor="let product of products">
+                <div class="slider-card-media">
+
+                  <app-card-v2 [type]="'product'" [small]="false" [data]="product" [show]="show" [active]="product.active"
+                    (click)="gatherDetail(product,show)" (cardResponse)="responseCard($event)"></app-card-v2>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+    <span *ngIf="RightSlideIcon" class="slider-handle right" (click)="slideLeft()">
+      <img class="arrow" appLazyLoad [src]="'assets/images/arrow.png'">
+    </span>
+
+  </div>
+
+  <div class="card_container" *ngIf="type === 'mentor'">
+    <div class="type_head">
+      <h3>{{heading}}</h3>
+      <!-- <h4 (click)="openMentor()">Explore All <mat-icon>keyboard_arrow_right</mat-icon></h4> -->
+    </div>
+
+    <span class="slider-handle" *ngIf="leftSlideIcon" (click)="slideRight()">
+      <img class="arrow arrow-left" appLazyLoad [src]="'assets/images/arrow.png'">
+    </span>
+
+    <div class="card_box">
+
+        <div class="slider-row">
+            <div class="slider-row-inner" id="card_box-{{id}}">
+              <div class="slider-card" *ngFor="let mentor of mentors">
+                <div class="slider-card-media">
+                    <app-card-v2 [type]="'mentor'" [small]="false" [data]="mentor"></app-card-v2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+    <span *ngIf="RightSlideIcon" class="slider-handle right" (click)="slideLeft()">
+      <img class="arrow" appLazyLoad [src]="'assets/images/arrow.png'">
+    </span>
+
+  </div>
+</ng-container>
+
+<ng-template #cardContainerShimmer>
+  <ng-container *ngIf="!noData else noCardContainerData">
+    <div class="shimmer" *ngIf="products.length === 0">
+      <div class="card1 br" *ngFor="let i of [0, 1, 2, 3]">
+        <div class="wrapper">
+          <div class="profilePic animate"></div>
+          <div class="comment br animate w80"></div>
+          <div class="comment br animate"></div>
+          <div class="comment br animate"></div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</ng-template>
+
+<ng-template #noCardContainerData>
+  <!-- <div class="no-card-data">
+      <img src="assets/images/no-card-data.png">
+      <h1>Sorry, we couldn’t find any courses right now.</h1>
+      <p>Please come back later.</p>
+  </div> -->
+</ng-template>

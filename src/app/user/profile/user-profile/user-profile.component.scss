@@ -1,0 +1,23 @@
+@import "academic-details/academic-details.component";
+@import "user-details/user-details.component";
+@import '../../user-wallet/user-wallet';
+@import '../../user-order/user-order';
+
+.app-user-profile {
+  .user_profile_container {
+    // margin-left: 3em;
+    // filter: drop-shadow(8px 8px 10px #cccccc);
+
+    .mat-card {
+      width: 100%;
+      margin: auto;
+      box-shadow: 0 0;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .user_profile_container {
+      margin-left: 0em;
+    }
+  }
+}

@@ -1,0 +1,117 @@
+<div
+  class="episode-list-container"
+  [ngClass]="{
+    full_width_when_no_side_data: !(
+      UpComingClassRoom.length > 0 || UpComingLiveRoom.length > 0
+    )
+  }"
+>
+  <div class="data_loading" *ngIf="!episodeReceived">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <div class="episode-group row" *ngIf="episodeReceived">
+    <!-- <p class="heading">{{ user_level[level_difficulty - 1] }}</p> -->
+    <div
+      class="col-md-8 col-sm-12"
+      style="margin: 0px;
+    padding: 1px 1px 5px 11px;"
+    >
+      <div class="episode-card" *ngFor="let episode of episodeList">
+        <div
+          class="card-container"
+          [ngClass]="{
+            card_not_active: !(
+              episode.is_available > 0 &&
+              episode.hls &&
+              episode.dash
+            )
+          }"
+        >
+          <div class="header">
+            <div class="play-icon">
+              <img
+                draggable="false"
+                src="{{ episode.thumbnail_url }}"
+                (click)="gotoVideoDetail(episode.episode_id, episode.id)"
+              />
+            </div>
+            <div class="header_text">
+              <p
+                class="number"
+                (click)="gotoVideoDetail(episode.episode_id, episode.id)"
+              >
+                Episode {{ episode.episode_id }}
+                <img
+                  draggable="false"
+                  src="assets/chess/Dreamroom/episode-list/card/stats/video.svg"
+                  *ngIf="episode.duration !== null"
+                />
+                <span *ngIf="episode.duration !== null"
+                  >{{ episode.duration }} min</span
+                >
+              </p>
+              <p class="name">{{ episode.name }}</p>
+            </div>
+          </div>
+          <div class="icons">
+            <img
+              draggable="false"
+              src="{{ getButtonLink(episode.is_example_ready, 3) }}"
+              matTooltip="Examples"
+              (click)="
+                openExample(episode.level, episode.episode_id, episode.id)
+              "
+              [ngClass]="{ not_active_icon: episode.is_example_ready === 0 }"
+            />
+            <img
+              draggable="false"
+              src="{{ getButtonLink(episode.is_puzzle_ready, 1) }}"
+              matTooltip="Puzzle"
+              (click)="
+                openPuzzle(episode.level, episode.episode_id, episode.id)
+              "
+              [ngClass]="{ not_active_icon: episode.is_puzzle_ready === 0 }"
+            />
+            <img
+              draggable="false"
+              src="{{ getButtonLink(episode.flipbook_url, 4) }}"
+              matTooltip="Flip Book"
+              (click)="
+                openFlipBook(
+                  episode.flipbook_url,
+                  episode.episode_id,
+                  episode.id
+                )
+              "
+              [ngClass]="{ not_active_icon: episode.flipbook_url === '' }"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- ankit   -->
+      <div class="pagination">
+        <!-- <div *ngFor='let page of pageList'>
+        <span id="{{page.number}}" (click)="gotoPage(page)"
+          [ngClass]="{'active_page': page == currentPage}">{{page}}</span>
+      </div> </div>
+    <ul>
+      <li *ngFor="let page of pageList | paginate:{itemsPerPage: 5, currentPage:p}"></li>
+    </ul>
+    -->
+        <div
+          *ngFor="
+            let page of pageList
+              | paginate: { itemsPerPage: 10, currentPage: p }
+          "
+        ></div>
+
+        <pagination-controls (pageChange)="p = $event; gotoPage($event)">
+        </pagination-controls>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <app-upcoming-events-section></app-upcoming-events-section>
+    </div>
+  </div>
+</div>

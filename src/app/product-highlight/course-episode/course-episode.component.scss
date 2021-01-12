@@ -1,0 +1,197 @@
+.app-course-episode {
+  font-family: "Gilroy";
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+  }
+
+  mat-accordion {
+    width: 100%;
+    mat-expansion-panel {
+      mat-expansion-panel-header {
+        min-height: 64px !important;
+        height: fit-content !important;
+      }
+    }
+  }
+
+  small {
+    font-size: 1em;
+    margin-right: 12px;
+  }
+
+  .course-episode {
+    h3 {
+      font-size: 27px;
+      font-family: "Gilroy-SemiBold";
+      margin: 36px 0px;
+    }
+
+    h2 {
+      font-size: 26px;
+      font-family: "Gilroy-ExtraBold";
+      margin: 10px 0px 45px;
+    }
+
+    .left-episode {
+      color: #626262;
+
+      .active {
+        color: white;
+      }
+
+      h3 {
+        font-size: 24px;
+        font-family: "Gilroy-SemiBold";
+        margin-bottom: 1.8em;
+        cursor: pointer;
+
+        span {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .right-episodes {
+      // min-height: 885px;
+      // overflow-y: scroll;
+      .show_hide {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .more {
+          color: #a4a4a4;
+          font-size: 18px;
+          font-family: "Gilroy-ExtraBold";
+          text-align: center;
+          padding-top: 10px;
+          cursor: pointer;
+        }
+      }
+      .right-epi-list {
+        background: white;
+        border-radius: 5px;
+        padding: 20px;
+        margin-bottom: 10px;
+
+        p {
+          font-size: 22px;
+          color: #a4a4a4;
+          font-family: "Gilroy-SemiBold";
+
+          span {
+            color: black;
+            font-family: "Gilroy";
+            padding-left: 10px;
+          }
+        }
+
+        .time {
+          text-align: right;
+          padding-top: 6px;
+
+          p {
+            color: #131313;
+            font-family: "Gilroy-SemiBold";
+            font-size: 18px;
+
+            img {
+              width: 24px;
+              height: 18px;
+              padding-right: 4px;
+              margin-top: -4px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 768px) and (max-width: 850px) {
+    .course-episode {
+      .left-episode {
+        display: block !important;
+        // overflow-x: scroll;
+      }
+    }
+  }
+  @media screen and (min-width: 320px) and (max-width: 850px) {
+    .course-episode {
+      h3 {
+        font-size: 21px;
+        font-family: "Gilroy-SemiBold";
+        margin: 10px 0px;
+        margin-left: -15px;
+      }
+
+      .left-episode {
+        display: flex;
+        overflow-x: scroll;
+        padding-left: 22px;
+
+        span {
+          display: none;
+        }
+
+        h3 {
+          font-size: 20px;
+          margin-right: 45px;
+        }
+      }
+
+      .right-episodes {
+        // height: 700px !important;
+
+        .right-epi-list {
+          padding: 15px 3px;
+
+          p {
+            font-size: 15px;
+          }
+
+          .time {
+            padding: 0px;
+
+            p {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+
+      .new {
+        height: auto !important;
+
+        p {
+          padding-left: 7px;
+          padding-right: 16px;
+
+          span {
+            padding-left: 0px !important;
+          }
+        }
+      }
+    }
+  }
+  @media (min-width: 1200px) {
+    .container {
+      max-width: 1250px !important;
+    }
+  }
+}
+
+// ::-webkit-scrollbar {
+//   width: 12px !important;
+//   border-radius: 15px !important;
+// }
+
+// ::-webkit-scrollbar-track {
+//   background: transparent !important;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//   background-color: #626262 !important;
+//   border-radius: 15px !important;
+// }

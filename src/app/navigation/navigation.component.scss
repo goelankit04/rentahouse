@@ -1,0 +1,509 @@
+.app-navigation {
+
+  .menu-button {
+    width: 24px;
+    outline: none;
+  }
+
+  .top-navbar {
+    height: 35px;
+    background: black;
+    // border-bottom: 1px solid grey;
+
+    .menu-container {
+      color: #a0ce4e;
+      width: 100%;
+      font-size: 12px;
+      font-weight: 400;
+      display: flex;
+      justify-content: space-between;
+
+      // // for center-column format
+      // max-width: 1200px;
+      // margin: auto;
+
+      a {
+        margin: 0 6px;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      .left-menu {
+        text-transform: uppercase;
+        padding-left: 16px;
+      }
+
+      .right-menu {
+        font-size: 14px;
+        padding-right: 16px;
+        text-transform: uppercase;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .special_offer {
+        padding: 0 8px;
+        text-transform: capitalize;
+        color: white;
+        border-radius: 6px;
+        background: #F55269;
+        height: 29px;
+        font-size: 14px;
+      }
+
+      .wallet_value {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+
+
+
+        img {
+          width: 24px;
+          margin-right: 6px;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+
+
+    }
+
+  }
+
+  .notification_values {
+    padding: 0px 15px;
+
+    &:hover {
+      color: white !important;
+    }
+  }
+
+  .notification_count {
+    position: absolute;
+    top: -8px;
+    left: 30px;
+    background: #a0ce4e;
+    border-radius: 50%;
+    height: 2px !important;
+    width: 30px;
+    padding: 0px 8px 30px 8px;
+  }
+
+  .notification {
+    position: absolute;
+    top: 42px;
+    box-shadow: 1px 2px 4px 3px #cecece;
+    right: 17px;
+    min-width: 28%;
+    margin: auto;
+    background: white;
+    border-radius: 5px;
+
+    .heading {
+      color: black;
+      padding: 10px 15px;
+
+      .notify {
+        color: black;
+        font-size: 18px;
+      }
+
+      .markAll {
+        font-size: 21px;
+        font-weight: bold;
+        color: #353434 !important;
+      }
+
+
+      .viewAll {
+        padding-left: 232px;
+        padding-right: 9px;
+        cursor: pointer;
+        float: right;
+
+        &:hover {
+          color: black;
+          text-decoration: underline;
+        }
+      }
+
+
+      span:last-child {
+        cursor: pointer;
+
+        &:hover {
+          color: black;
+          text-decoration: underline;
+        }
+      }
+
+
+      // span {
+      //   color:#415e0d;
+      // }
+    }
+
+    .unread {
+      background: #f2f2f2;
+    }
+
+    .notification_value {
+      padding: 12px 15px 5px 15px;
+      color: black;
+      display: flex;
+      cursor: pointer;
+      border-top: 1px solid #cecece;
+
+      &:hover {
+        background: #f9f9f9;
+      }
+
+      img {
+        width: 40px;
+        height: 40px;
+      }
+
+      .text {
+        padding-left: 12px;
+        margin-bottom: 0px;
+        width: 404px;
+        color: #595959 !important;
+        line-height: 1.2;
+        font-size: 17px;
+        white-space: initial !important;
+
+        span {
+          font-size: 13px;
+          color: #a0ce4e;
+          font-weight: 500;
+        }
+      }
+
+      p {
+        color: #353434;
+        font-size: 12px;
+        line-height: 1.3;
+      }
+    }
+  }
+
+  .toolbar {
+    top: 0;
+  }
+
+  .mat-toolbar {
+    position: fixed;
+    justify-content: space-between;
+    z-index: 16;
+    flex: 0 0 auto;
+    opacity: 1;
+    top:0px;
+    padding: 0;
+
+    .blur_background_div {
+      height: 48px;
+      width: 100%;
+      background: black;
+      position: absolute;
+      left: 0px;
+      z-index: -1;
+      margin: 1px 0;
+      opacity: .5;
+    }
+
+    .nav_bar_content {
+      height: 48px;
+      z-index: 1;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .logo_container {
+      width: 140px;
+      padding-left: 0;
+    }
+
+    .nav_button {
+      font-weight: 600;
+      font-size: 14px;
+      color: #a0ce4e;
+      background-color: transparent;
+      text-transform: uppercase;
+      padding: 0 16px;
+
+      &:hover {
+        color: white;
+      }
+    }
+
+    .mat-menu-content {
+      span {
+        font-size: 14px;
+      }
+
+      mat-icon {
+        height: 16px;
+        width: 16px;
+      }
+    }
+
+    .ham-menu {
+      .school_button {
+        font-weight: 600;
+        color: #a0ce4e;
+        background-color: rgba(0, 0, 0, 0.0);
+        text-transform: uppercase;
+        margin-left: 1em;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+
+      .nurtr_menu {
+        color: white;
+      }
+    }
+
+    .abc {
+      background-color: red !important;
+    }
+
+    .product-links {
+      margin-top: auto;
+      margin-bottom: auto;
+      color: white;
+      font-weight: 400;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      padding-right: 16px;
+
+      .wallet_value {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        img {
+          width: 24px;
+          margin-right: 6px;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+
+      span {
+        a {
+          color: white;
+          text-decoration: none;
+
+          &:hover {
+            color: #A0CC50;
+          }
+        }
+      }
+
+      .student_items {
+        a {
+          color: white;
+
+          &:hover {
+            color: #A0CC50;
+          }
+        }
+      }
+    }
+
+    .navigation-links {
+      display: none;
+      text-transform: uppercase;
+
+      .live_chess {
+        font-weight: 600;
+        color: #a0ce4e;
+        background-color: rgba(0, 0, 0, 0.0);
+        text-transform: uppercase;
+        text-decoration: none;
+        font-size: 0.7em;
+      }
+
+      button {
+        font-weight: 600;
+        color: #a0ce4e;
+        background-color: rgba(0, 0, 0, 0.0);
+        text-transform: uppercase;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      .isActive {
+        border-bottom: 2px solid red;
+        background-color: #2F2F2F;
+      }
+    }
+
+    &:hover {
+      opacity: 1 !important;
+    }
+  }
+
+
+
+  // @media screen and (min-width:320px) and (max-width:500px){
+  // .notification{
+  //   min-width:14% !important;
+  // }
+  // }
+
+
+  @media screen and (max-width:830px) {
+    .ham-menu {
+      align-items: center;
+      display: flex;
+      margin-left: 1em;
+    }
+
+    .notification {
+      position: absolute;
+      top: 52px;
+      box-shadow: 1px 2px 4px 3px #cecece;
+      right: 17px;
+      min-width: 28%;
+      margin: auto;
+      background: white;
+      border-radius: 5px;
+    }
+  }
+
+
+  @media screen and (min-width: 831px) {
+    .toolbar {
+      background-color: transparent;
+      height: 48px;
+      top: 34px;
+
+      .ham-menu {
+        align-items: center;
+        display: flex;
+        margin-left: 1em;
+
+        .school_button {
+          font-weight: 600;
+          color: #a0ce4e;
+          background-color: rgba(0, 0, 0, 0.0);
+          text-transform: uppercase;
+        }
+      }
+
+      .navigation-links {
+        display: block;
+        margin-top: auto;
+        margin-bottom: auto;
+      }
+    }
+
+    .mat-toolbar {
+
+      .nav_bar_content {
+        height: 48px;
+      }
+
+      .logo_container {
+        width: 160px;
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.cookiesModal {
+  position: fixed;
+  background: rgba(86, 86, 86, 0.95);
+  font-size: 11px;
+  font-weight: 500;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+  z-index: 99999;
+  text-align: center;
+  color: #fff;
+  bottom: 30px;
+  left: 37px;
+  padding: 16px 30px;
+  width: 20%;
+  border-radius: 2px;
+  // line-height: 2;
+}
+
+.tar:hover {
+  color: #a0ce4e;
+}
+
+.tar {
+  color: white;
+  text-decoration: underline;
+}
+
+.privacy {
+  background: #a0ce4e;
+  border: 1px solid #a0ce4e;
+  color: white;
+  padding: 6px 16px;
+  border-radius: 2px;
+  margin-left: 5px;
+}
+
+.wallet_in_menu {
+  color: white !important;
+  background-color: #a0ce4e !important;
+
+  img {
+    // filter: brightness(50%);
+    width: 30px;
+    margin-right: 10px;
+  }
+
+  &:hover {
+    color: white !important;
+    background-color: #a0ce4e !important;
+  }
+}
+
+@media screen and (min-width: 660px) and (max-width: 1000px) {
+  .cookiesModal {
+    width: 28%
+  }
+}
+
+@media screen and (min-width: 500px) and (max-width: 660px) {
+  .cookiesModal {
+    width: 40%
+  }
+}
+
+@media screen and (min-width: 300px) and (max-width: 500px) {
+  .cookiesModal {
+    width: 60%;
+    position: fixed;
+    left: 11px;
+    bottom: 11px;
+    padding: 14px;
+  }
+}
+
+@media screen and (min-width:1000px) and (max-width:2500px) {
+  .mobile_view {
+    display: none !important;
+  }
+}
+
+@import "../register-form/register-form.component";

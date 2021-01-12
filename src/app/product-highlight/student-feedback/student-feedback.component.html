@@ -1,0 +1,56 @@
+<div
+  class="student-feedback"
+  *ngIf="
+    product_id != 697 &&
+    product_id != 746 &&
+    product_id != 778 &&
+    product_id != 672 &&
+    product_id != 787 &&
+    product_id != 776 &&
+    product_id != 807 &&
+    product_id != 810
+  "
+>
+  <h2>Learner’s Feedback</h2>
+  <div class="row nomargin">
+    <div class="col-md-6 nopadding left-side">
+      <p>{{ review }}</p>
+      <p class="star">
+        <span *ngFor="let data of numbers">
+          <img
+            src="../../../assets/product-highlight/full_star.svg"
+            style="width:30px;height:30px;"
+          />
+        </span>
+        <img
+          src="../../../assets/product-highlight/half_star.svg"
+          style="width:30px;height:30px;padding-top:2px;"
+        />
+      </p>
+      <p>Course Rating</p>
+    </div>
+    <div class="col-md-6 right-side">
+      <div
+        style="padding-top: 2%;
+      padding-left: 10%;"
+      >
+        <div
+          class="progressBar"
+          *ngFor="let progress of productList; let i = index"
+        >
+          <p>{{ progress.star }} Star</p>
+          <div class="progress">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              [style.width.%]="progress?.value"
+            ></div>
+          </div>
+          <p>{{ progress?.value }}%</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

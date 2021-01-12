@@ -1,0 +1,56 @@
+<div class="small_view filter_design" [ngStyle]="{'background-image': 'url(' + data.image + ')'}"
+  [ngClass]="{'filter_design': filter}">
+  <!-- &#x25B2; -->
+
+
+
+
+  <img class="gradient_card" src="assets/images/bg.png">
+
+  <div class="detail_area">
+
+    <div class="type" *ngIf="data?.type">
+      <img class="ptr" appLazyLoad [src]="getTypeImageLink()">
+      <p class="head">{{data.type}}</p>
+    </div>
+
+    <div class="product_detail">
+      <h1>{{data.name}}</h1>
+      <!-- | ellipsis: 35 -->
+      <h2>{{data.price}}</h2>
+      <button *ngIf="show" (click)="joinNow()">Join Now</button>
+    </div>
+  </div>
+
+  <div class="mentor" *ngIf="data.mentor">
+    <h5>Course Mentor</h5>
+    <p>{{data.mentor !== null ? (data.mentor) : data.mentor}}</p>
+    <!-- | ellipsis: 20 -->
+  </div>
+  <button *ngIf="filter">Buy Now</button>
+
+</div>
+
+<div *ngIf="previewOnHover" class="hover_view" id="video-{{videoUrl}}" (mouseenter)="play()" (mouseleave)="pause()">
+
+  <h1>{{data.name}}</h1>
+  <!-- | ellipsis: 35 -->
+  <p>{{data.mentor !== null ? (data.mentor) : data.mentor}}</p>
+  <!-- | ellipsis: 20 -->
+
+  <img class="gradient_card gradient_vertical" src="assets/images/bg.png">
+
+  <div class="wistia_embed wistia_view {{videoUrl}}">
+    <div class="wistia_swatch"
+      style="height:100%;left:0;opacity:0;overflow:hidden;position:absolute;top:0;transition:opacity 200ms;width:100%;">
+    </div>
+  </div>
+
+</div>
+
+<!-- <p style="top: 0;
+  color: white;
+  font-weight: bold;
+  font-size: 30px;
+  position: absolute;
+  z-index: 99;">▲</p> -->

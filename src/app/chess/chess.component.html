@@ -1,0 +1,20 @@
+<div class="chess-container" *ngIf="url">
+  <app-banner [url]="url"></app-banner>
+  <app-benefits-highlight></app-benefits-highlight>
+  <app-about-dreamroom></app-about-dreamroom>
+  <app-about-ramesh></app-about-ramesh>
+  <mat-divider></mat-divider>
+  <app-dreamroom-detail id="dream_room"></app-dreamroom-detail>
+
+  <!-- <app-product-type
+    *ngFor="let stack of catalogProducts; let i = index"
+    [stackData]="stack"
+    [productIndex]="i + 1"
+    id="{{ stack.scrollId }}"
+  > -->
+  <!-- </app-product-type> -->
+  <app-chess-features></app-chess-features>
+  <app-testimonial></app-testimonial>
+  <app-platform-feature></app-platform-feature>
+  <app-footer></app-footer>
+</div>

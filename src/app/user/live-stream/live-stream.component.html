@@ -1,0 +1,12 @@
+<h4><span>LIVE : </span> {{heading}}</h4>
+<img *ngIf="videoId === null" draggable="false" src="https://s3.ap-south-1.amazonaws.com/nurtr.com/um_vdr_sry.jpg"
+  class="error_img">
+
+<div *ngIf="videoId" id="dplayer_flash_{{videoId}}" style="width:720px;height:800px;position:relative;"
+[ngClass]="{'player_styles' : !chat}"
+></div>
+
+<!-- <div *ngIf="videoId" id="dplayer_flash_{{videoId}}" class="player_styles"
+  style="width:100%;height:810px;position:relative;"></div> -->
+
+<app-pre-loader *ngIf="videoId === ''"></app-pre-loader>

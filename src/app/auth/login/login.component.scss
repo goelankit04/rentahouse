@@ -1,0 +1,200 @@
+.app-login {
+
+  .alert {
+    margin: 0 !important;
+    margin-top: -7px !important;
+    position: unset !important
+  }
+
+  .alert-error {
+    margin-top: 6px !important;
+    background-color: #be4b49 !important;
+    color: white !important;
+    padding: 12px 6px !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+  }
+
+  .login_parent_container {
+    display: flex;
+    flex-direction: column;
+
+    .heading_container {
+      display: flex;
+      flex-direction: column;
+      background-color: #f3f3f3;
+      padding: 24px 0;
+
+      .heading {
+        text-align: center;
+        font-size: 2em;
+        margin: 0 0 4px;
+        font-weight: bold;
+      }
+
+      .option_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+
+        .radio_button {
+          display: flex;
+          align-items: center;
+          text-transform: uppercase;
+          margin: 12px;
+
+          input {
+            margin: 6px;
+          }
+        }
+      }
+    }
+
+    .login_items_container {
+      display: flex;
+      flex-direction: column;
+      padding: 1em 2em;
+
+      // temporary CSS
+      width: 100%;
+      //max-width: 28em;
+      margin: 2em auto;
+
+      .login_box {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        .heading {
+          margin: 0;
+          font-weight: 400;
+        }
+
+        input {
+          border: 1px solid #cccccc;
+          border-radius: 2px;
+          margin: 6px 0;
+          padding: 4px 10px;
+          width: 95%;
+        }
+
+        .reset_password {
+          text-align: right;
+          font-size: 12px;
+          color: blue;
+          margin: 0;
+          cursor: pointer;
+        }
+
+        .login_btn {
+          margin-top: 12px;
+          background-color: #a0ce4e;
+          border: 0;
+          padding: 10px;
+          border-radius: 6px;
+          color: white;
+          text-transform: uppercase;
+          cursor: pointer;
+          font-weight: 500;
+
+          &:hover {
+            background-color: #35c2d6;
+          }
+        }
+      }
+
+      .divider_column {
+        display: flex;
+        flex-direction: column;
+        padding: 0 2em;
+        align-items: center;
+
+        .bar {
+          border-left: 2px solid #cccccc;
+          height: 100%;
+        }
+
+        p {
+          margin: 8px 0;
+        }
+      }
+
+      .social_login_box {
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+
+        .social_head {
+          margin-bottom: 4px;
+          font-weight: 400;
+        }
+
+        .social_item {
+          display: flex;
+          border: 1px solid #cccccc;
+          margin: 4px 0;
+          padding: 12px;
+          border-radius: 6px;
+          cursor: pointer;
+
+          img {
+            width: 24px;
+            height: 24px;
+            margin-right: 1em;
+          }
+
+          p {
+            margin: 0;
+            font-weight: 500;
+          }
+        }
+
+        .facebook {
+          background-color: #4b5797;
+          border: 1px solid #4b5797;
+          color: white;
+        }
+
+        .google_plus {
+          background-color: #be5542;
+          border: 1px solid #be5542;
+          color: white;
+        }
+
+        .linked_in {
+          background-color: #4872b3;
+          border: 1px solid #4872b3;
+          color: white;
+        }
+
+        .twitter {
+          background-color: #2daae1;
+          border: 1px solid #2daae1;
+          color: white;
+        }
+      }
+
+
+      @media screen and (min-width: 630px) {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+
+    .sign_up_container {
+      display: flex;
+      justify-content: center;
+      padding: 1em;
+
+      p {
+        margin: 0;
+      }
+
+      .register_form {
+        color: blue;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,392 @@
+@import 'navigation/navigation.component';
+@import 'chess/chess.component';
+@import 'faq/faq.component';
+@import 'current-passwords/current-passwords.component';
+@import 'footer/footer.component';
+@import 'auth/auth';
+@import 'user/user.module';
+@import 'payment/payment.module';
+@import 'auth/reset-password/reset-password.component';
+@import 'catalog/catalog.component';
+@import 'video-demo/video-demo.component';
+@import 'promotional-popup/popup';
+@import 'app-common/app-common';
+@import './video-player/video-player';
+@import './product-highlight/product-highlight.scss';
+// @import './pages/cricket/cricket.component.scss';
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 62.8vh);
+}
+
+.live-card-container {
+  position: fixed;
+  bottom: 19%;
+  z-index: 1900;
+  left: 3%;
+  width: 300px;
+  height: 220px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  border-radius: 6px;
+  overflow: hidden;
+  background-color: #000000;
+  color: white;
+  z-index: 0;
+  background-image: url('https://www.testourwebsite.com/assets/images/bg.png');
+
+  img {
+    height: 168px;
+    width: 100%;
+  }
+
+  .close_video {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    cursor: pointer;
+    transition: all 0.5s;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .product-name {
+    position: absolute;
+    top: 24%;
+    left: 4%;
+    width: 220px;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .join-now {
+    position: absolute;
+    top: 57%;
+    left: 5%;
+    color: white;
+    cursor: pointer;
+    background-size: 400% 100%;
+    background-position: 100% 0;
+    transition: all 0.6s ease-in-out;
+    background-image: linear-gradient(to right, #64ac3d, #a0ce4e, #64ac3d);
+    padding: 4px 12px;
+    text-transform: uppercase;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px;
+
+    &:hover {
+      background-size: 200% 100%;
+      background-position: 0 0;
+      transition: all 0.6s ease-in-out;
+    }
+  }
+
+  .live-text {
+    padding: 3px;
+    position: absolute;
+    top: 4%;
+    left: 4%;
+    width: 100px;
+    background: white;
+    border-radius: 12px;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .ripple-live {
+      position: relative;
+    }
+
+    .dot:before {
+      content: ' ';
+      position: absolute;
+      z-index: 2;
+      left: 0;
+      top: -5px;
+      width: 10px;
+      height: 10px;
+      background-color: #ff4200;
+      border-radius: 50%;
+    }
+
+    .dot:after {
+      content: ' ';
+      position: absolute;
+      z-index: 1;
+      width: 10px;
+      height: 10px;
+      background-color: #ff4200;
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3) inset;
+      -webkit-animation-name: 'ripple';
+      -webkit-animation-duration: 1s;
+      -webkit-animation-timing-function: ease;
+      -webkit-animation-delay: 0s;
+      -webkit-animation-iteration-count: infinite;
+      -webkit-animation-direction: normal;
+    }
+
+    @keyframes ripple {
+      0% {
+        left: 5px;
+        top: -4px;
+        opcity: 75;
+        width: 0;
+        height: 0;
+      }
+
+      100% {
+        left: -20px;
+        top: -20px;
+        opacity: 0;
+        width: 50px;
+        height: 50px;
+      }
+    }
+
+    p {
+      margin: 0;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+  }
+
+  .card-mentor-detail {
+    text-transform: uppercase;
+    text-align: left;
+    padding: 10px 20px;
+    background: #0d0f0d;
+
+    p:first-child {
+      margin-bottom: 0;
+      font-size: 10px;
+      font-weight: 600;
+      color: white;
+      letter-spacing: 1.2px;
+    }
+
+    p:last-child {
+      font-weight: 600;
+      word-spacing: 3px;
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+  }
+}
+
+// live room video responsive
+
+@media screen and (min-width: 320px) and (max-width: 760px) {
+  .live-card-container {
+    width: 220px !important;
+    height: 160px !important;
+
+    .join-now {
+      position: absolute !important;
+      top: 50% !important;
+      left: 5% !important;
+      font-size: 11px !important;
+    }
+
+    .card-mentor-detail {
+      padding: 5px 12px !important;
+
+      p:first-child {
+        font-size: 9px !important;
+      }
+
+      p:last-child {
+        font-size: 11px !important;
+      }
+    }
+
+    .live-text {
+      width: 74px !important;
+      padding: 0px !important;
+
+      p {
+        font-size: 11px !important;
+      }
+    }
+
+    img {
+      height: 100px !important;
+    }
+  }
+}
+
+.alert-danger {
+  font-size: 14px !important;
+  color: red !important;
+  margin-top: -12px !important;
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  border: 0 transparent !important;
+  padding: 0 !important;
+  margin-bottom: 1em !important;
+}
+
+mdb-carousel {
+  .carousel {
+    touch-action: manipulation !important;
+  }
+}
+
+.user_test_login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  align-self: center;
+
+  .mat-card {
+    align-self: center;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    width: 300px;
+
+    .mat-form-field-flex {
+      margin-bottom: -1em;
+    }
+
+    .mat-input-element {
+      caret-color: #a0cd4e;
+    }
+
+    .mat-form-field-underline {
+      background-color: #a0cc50;
+    }
+  }
+}
+
+#toast-container > div {
+  width: fit-content;
+  max-width: 450px;
+}
+
+.bottom__sheet__for__puzzle__of__the__day {
+  position: absolute;
+  bottom: 0;
+  right: 4%;
+  min-height: 450px;
+  overflow-x: hidden !important;
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+  padding: 0 !important;
+  background-image: url(/assets/puzzle/bg_gme.png) !important;
+  background-repeat: no-repeat !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-color: white !important;
+  min-width: 384px !important;
+  max-width: 384px !important;
+  overflow: visible !important;
+  margin-top: 3em;
+
+  @media screen and (max-width: 480px) {
+    min-width: 100vw !important;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    min-height: 100vh;
+    max-height: 100vh;
+  }
+}
+
+.recommendation__container {
+  background-color: white;
+  position: relative;
+  overflow: visible !important;
+  width: 100%;
+  min-width: 80vw !important;
+  height: 36vh;
+
+  @media screen and (max-width: '768px') {
+    min-width: 100vw !important;
+  }
+}
+
+.cdk-overlay-container {
+  z-index: 0 !important;
+
+  .cdk-global-overlay-wrapper {
+    z-index: 0 !important;
+
+    .cdk-overlay-pane {
+      z-index: 0 !important;
+
+      mat-bottom-sheet-container {
+        z-index: 0 !important;
+      }
+    }
+  }
+
+  .cdk-overlay-backdrop {
+    z-index: 0 !important;
+    // position: relative !important;
+  }
+}
+
+// .cdk-global-scrollblock {
+//   position: relative !important;
+// }
+
+#stream__nurtr {
+  display: none;
+
+  #overlay {
+    display: none;
+  }
+}
+
+.recommendation_box {
+  width: fit-content;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  border-radius: 10px 0 0 10px;
+  padding: 6px 8px;
+  color: white;
+  position: fixed;
+  top: 50%;
+  right: 0px;
+  z-index: 100;
+  background-color: red;
+  user-select: none;
+  cursor: pointer;
+  transition: 0.4s linear;
+
+  @media screen and (max-width: '768px') {
+    top: 10%;
+
+    p {
+      display: none;
+    }
+  }
+
+  &:hover {
+    padding: 6px 10px;
+  }
+
+  p {
+    margin: 10px 0;
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+  }
+}

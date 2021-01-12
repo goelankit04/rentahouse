@@ -1,0 +1,62 @@
+<div class="base_container" [ngClass]="{'hide_otp_verification': exitMobileVerification}">
+  <div class="mobile-otp-verification-container">
+
+    <!-- SCREEN 1 : Asking for Mobile Number -->
+    <div class="ask_for_mobile_number" *ngIf="askForMobileNumber">
+
+      <p class="new_mobile_notice_text">Enter your mobile number to continue.<br>You'll receive a <strong>One Time
+        Password (OTP)</strong> on this number
+      </p>
+
+      <app-mobile-number (newMobileNumber)="getNewMobile($event)" [mobileCountryCode]="mobileCountryCode"
+        [mobileNumber]="mobileNumber" [disableMobileInput]="false">
+      </app-mobile-number>
+
+      <button class="update_mobile_number" (click)="changeMobileNumber()">Update</button>
+
+      </div>
+
+
+
+    <!-- SCREEN 2: Verifying Mobile Number -->
+    <div class="verify_mobile" *ngIf="!askForMobileNumber">
+
+      <p class="otp_sent_to_user_confirmation">
+        We have sent you a <strong>one time password (OTP)</strong> on <strong>{{mobileNumber}}</strong>,<br>
+        enter the code to verify your mobile number
+      </p>
+
+      <a (click)="showChangeMobile()">change number</a>
+
+      <span class="otp_span">
+        <input id="otp" class="otp_textbox" maxlength="6" value="" #otp_verification_input>
+        <div class="dash">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </span>
+
+      <p class="otp_verification">
+        <a (click)="requestOtpAgain('sms')" [ngClass]="{'disabled_text' : timer !== '00:00'}">Resend OTP</a>
+        &nbsp;&nbsp;
+        <a (click)="requestOtpAgain('call')" [ngClass]="{'disabled_text' : timer !== '00:00'}">OTP via call</a>
+        <br>
+        <span *ngIf="showOTPTimer">OTP is valid for {{timer}}</span>
+      </p>
+
+      <button class="otp_submit" (click)="verifyMobileOTP(otp_verification_input.value)">Submit</button>
+
+      <p class="error_msg" *ngIf="errorMessage">{{errorMessage}}</p>
+
+    </div>
+
+    <p class="otp_message" *ngIf="otpRequestMessage !== null">{{otpRequestMessage}}</p>
+
+  </div>
+
+  <app-pre-loader *ngIf="isLoading"></app-pre-loader>
+</div>

@@ -1,0 +1,22 @@
+<div class="user_webinar_container">
+
+  <app-pre-loader *ngIf="isLoading"></app-pre-loader>
+
+  <div class="nothing_to_display" *ngIf="nothingToDisplay && !isLoading">
+    <mat-icon>error</mat-icon>
+    <p class="statement">No {{productRoomName}} found</p>
+    <p class="offer_to_enroll">Why don't you try one?</p>
+    <p class="offer_to_enroll offer_link" (click)="openPaymentGateway()">Click here to buy our {{productRoomName}}</p>
+  </div>
+
+  <div class="user_banner_video" *ngIf="!nothingToDisplay && !isLoading">
+
+    <div class="loader" *ngIf="!dataReceived">
+      <mat-spinner></mat-spinner>
+    </div>
+
+    <div class="webinar_cards" *ngIf="dataReceived">
+      <app-card *ngFor="let product of productData; let i=index;" [cardData]="product" [mobileView]="mobileVersion()" [index]="i" [hover]="true"></app-card>
+    </div>
+  </div>
+</div>

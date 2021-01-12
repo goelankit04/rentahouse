@@ -1,0 +1,42 @@
+<form class="mobile" [formGroup]="mobileForm">
+  <span class="mobile_number_entry">
+    <span class="country_code" (click)="toggleCountrySelector()">
+      <p>{{selectedCountry.code}}</p> &nbsp; <span class="drop_down_icon">▼</span>
+    </span>
+    <p>{{selectedCountry.mobile_code}}</p>
+
+    <input matInput
+      #mobile
+      type="text"
+      placeholder="Mobile"
+      value="{{currentMobile}}"
+      (focusout)="updateMobileNumber(mobile.value)"
+      maxlength="12"
+      formControlName="mobile"
+    >
+
+    </span>
+
+    <div *ngIf="mobileForm.controls.mobile.touched" class="alert alert-danger h-50">
+      <!-- Name can be max 10 characters long. -->
+      {{!showErrorAlert ? getErrorMessageToEmit('mobile') : getErrorMessage('mobile')}}
+    </div>
+
+  <div class="selection_container" [ngClass]="{'show_selection_container' : showCountrySelector}">
+    <div class="search_bar_container">
+      <input type="text" placeholder="Search" (keyup)="getCountrySuggestion(input_country_mobile.value)"
+        #input_country_mobile>
+    </div>
+    <div class="country_suggestion_container">
+      <span *ngIf="filteredStates.length === 0" class="no_country_found">
+        <mat-icon>error_outline</mat-icon>
+        <p>No such country found</p>
+      </span>
+      <span class="country_with_code" *ngFor="let country of filteredStates" (click)="selectCountryCode(country)">
+        <!-- | ellipsis: 24 -->
+        <p>{{country.country_name}}</p>
+        <p>{{country.mobile_country_code}}</p>
+      </span>
+    </div>
+  </div>
+</form>

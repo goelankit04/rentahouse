@@ -1,0 +1,51 @@
+<div class="dreamroom_container">
+  <div class="card_container">
+    <div class="about_ramesh add_padding">
+      <img [src]="product?.image_url" *ngIf="product?.image_url" />
+      <div class="about_text">
+        <div *ngIf="mobileVersion()">
+          <span>{{ product?.name }} </span>
+          <p>{{ product?.short_description }}</p>
+        </div>
+
+        <div *ngIf="!mobileVersion()">
+          <span>{{ product?.name }} </span>
+          <p>{{ product?.short_description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="course_container">
+      <div class="tab_menu" *ngIf="!mobileVersion()">
+        <div class="tab" *ngFor="let tab of tabMenu; let i = index" (click)="gotoTab(tab.id)" [ngClass]="{ is_tab_active: i === activeState }">
+          <span *ngIf="level_id !== 255 && level_id !== 256">{{
+            tab.text
+            }}</span>
+          <span *ngIf="level_id === 255 || level_id === 256">{{
+            tab.text1
+            }}</span>
+          <mat-icon>{{ tab.sideIcon }}</mat-icon>
+        </div>
+      </div>
+
+      <div class="tab_menu" *ngIf="mobileVersion()">
+        <mat-form-field>
+          <mat-select placeholder="Select a page to visit" [(value)]="activePage" *ngIf="level_id !== 255 && level_id !== 256">
+            <mat-option *ngFor="let tab of tabMenu; let i = index" (click)="gotoTab(tab.id)" value="{{ tab.text }}">
+              {{ tab.text }}
+            </mat-option>
+          </mat-select>
+
+          <mat-select placeholder="Select a page to visit" [(value)]="activePage" *ngIf="level_id === 255 || level_id === 256">
+            <mat-option *ngFor="let tab of tabMenu; let i = index" (click)="gotoTab(tab.id)" value="{{ tab.text1 }}">
+              {{ tab.text }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="tab_content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

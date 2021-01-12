@@ -1,0 +1,30 @@
+<div class="grid-container">
+  <div class="item1 spacing">
+    <img draggable="false" *ngIf="!product?.image_url" src="/assets/chess/checkout/product.png" class="product_image">
+    <img draggable="false" *ngIf="product?.image_url" src={{product?.image_url}} class="product_image">
+
+  </div>
+
+
+  <div class="item2 spacing">
+
+    <p class="title" *ngIf="product.name !== null">{{product.name}}</p>
+    <p class="content" *ngIf="product.description !== null" [innerHTML]="product.description"></p>
+
+  </div>
+
+  <div class="price_and_quantity-div">
+    <div class="item_quantity spacing">
+      <p>
+        <span *ngIf="mobileView()">Product Price:</span><br>
+        <i class="fa {{getCurrencySign()}}"></i>{{product.base_price | number: '.0'}}</p>
+    </div>
+    <div class="item_price spacing">
+      <p>
+        <span *ngIf="mobileView()">Offer Price: </span><br>
+        <i class="fa {{getCurrencySign()}}"></i>{{product.final_price | number: '.0'}}</p>
+    </div>
+  </div>
+
+  <div></div>
+</div>

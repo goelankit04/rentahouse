@@ -1,0 +1,36 @@
+<div>
+  <div class="product_type_container">
+    <div class="header_text">
+      <h1>{{stackData.title}}</h1>
+      <p>{{stackData.description}}</p>
+    </div>
+
+    <div class="cards_container">
+      <button class="slider_nav_btn" (click)="getIdToScroll(stackData.productIndex, -1)" *ngIf="sliderStatus ? showSliderArrow(stackData) && !mobileVersion() : null">
+        <p>
+          <mat-icon>keyboard_arrow_left</mat-icon>
+        </p>
+      </button>
+
+      <div class="slider" [ngClass]="{'mobile_card_view': mobileVersion() && showMore}">
+        <div class="card_holder" *ngFor="let cardData of stackData.products; let i = index" id="stack-{{stackData.productIndex}}-{{cardData.slideIndex}}">
+          
+          <app-card *ngFor="let card of cardData; let i=index;" [cardData]="card" [mobileView]="mobileVersion()" [index]="i" [hover]="true"></app-card>
+          
+
+        </div>
+      </div>
+
+      <button class="slider_nav_btn" (click)="getIdToScroll(stackData.productIndex, 1)" *ngIf="sliderStatus ? showSliderArrow(stackData) && !mobileVersion() : null">
+        <p>
+          <mat-icon>keyboard_arrow_right</mat-icon>
+        </p>
+      </button>
+    </div>
+    <button class="show_more_button" *ngIf="sliderStatus ? mobileVersion() && (stackData.products.length > 1) && !showMore : null" (click)="showMore = true">Show more</button>
+  </div>
+</div>
+
+<p class="drr_content">
+  <span>* DRR - Dream Room Resident (who has already enrolled for nurtr's Chess Dream Room)</span>
+</p>

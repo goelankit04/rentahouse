@@ -1,0 +1,179 @@
+.app-video-page {
+
+  // basics
+  margin-top: 6em;
+
+  p {
+    margin: 0;
+  }
+
+  $screen-switch-width: 1000px;
+
+  .video_page_container {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    margin: 1em;
+    border-radius: 6px;
+
+    // padding: 1em;
+    // filter: drop-shadow(0 2px 4px #cccccc);
+
+    .player_container {
+      flex: 3;
+      display: flex;
+      flex-direction: column;
+
+      .heading_holder {
+        display: flex;
+        flex-direction: column;
+        font-weight: 500;
+        font-size: 1.4em;
+        margin-bottom: 12px;
+
+        .heading {
+          color: #a0ce4e;
+        }
+
+        @media screen and (min-width: $screen-switch-width) {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+
+      app-player {}
+
+      .no_video_found_container {
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        // min-height: 18em;
+        height: fit-content;
+
+        img {
+          height: 100%;
+          width: 100%;
+        }
+
+        mat-icon {
+          font-size: 4em;
+          width: fit-content;
+          height: fit-content;
+        }
+
+        p {
+          font-size: 18px;
+          margin-top: 1em;
+          text-transform: uppercase;
+          font-weight: bold;
+        }
+
+        // img {
+        //   width: 100%;
+        //   height: 420px;
+        //   object-fit: contain;
+        // }
+      }
+
+      .icons_holder {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin: 2em 0 0 0;
+
+        img {
+          width: 4em;
+          height: 2.6em;
+          cursor: pointer;
+        }
+      }
+
+      .description {
+        margin: 2em 0;
+      }
+
+      .episode_controls {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        button {
+          float: right;
+          border: 0;
+          background-color: #a0ce4e;
+          color: #fff;
+          padding: 6px 16px;
+          border-radius: 6px;
+          margin: 6px;
+          filter: drop-shadow(4px 4px 4px #ccc);
+          text-transform: uppercase;
+          font-size: 14px;
+          cursor: pointer;
+          transition: .4s;
+
+          &:hover {
+            background-color: #34c2d6 !important;
+            filter: drop-shadow(2px 2px 2px #ccc);
+          }
+        }
+
+        .disabled {
+          background-color: grey;
+          cursor: default;
+          filter: drop-shadow(0 0 0 #ccc);
+        }
+
+      }
+
+      @media screen and (min-width: $screen-switch-width) {
+        margin-right: 2em;
+      }
+    }
+
+    .no_video_found_container_standalone {
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: fit-content;
+      flex: 3;
+
+      img {
+        height: initial;
+        width: 100%;
+      }
+
+      mat-icon {
+        font-size: 4em;
+        width: fit-content;
+        height: fit-content;
+      }
+
+      p {
+        font-size: 18px;
+        margin-top: 1em;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+    }
+
+    .upcoming_container {
+      flex: 1;
+      margin-top: 3em;
+
+      app-upcoming-events-section {}
+    }
+
+    @media screen and (min-width: $screen-switch-width) {
+      display: flex;
+      flex-direction: row;
+
+      .upcoming_container {
+        margin-top: 0em;
+      }
+    }
+
+  }
+
+}

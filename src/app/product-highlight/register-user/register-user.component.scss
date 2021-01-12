@@ -1,0 +1,22 @@
+.app-register-user {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .user_form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        max-width: 88%;
+        margin: auto;
+        width: 100%;
+
+        mat-form-field {
+            width: 100%;
+        }
+
+        button {
+            padding: 0.6em;
+        }
+    }
+}

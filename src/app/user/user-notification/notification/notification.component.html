@@ -1,0 +1,36 @@
+<div class="app-notification">
+  <div class="notification_row">
+    <p class="recent">Recent Notifications</p>
+
+    <p (click)="updateNotification()" class="markAll" *ngIf="unseenCount!=0">Mark all as read</p>
+  </div>
+  <div class="notification_section" *ngIf="userNotification?.length!=0">
+    <div class="notification_value row" *ngFor="let notification of userNotification"
+      [ngClass]="{'unread': notification?.is_seen==false}">
+      <div class="img">
+        <img src={{notification?.img_url}} class="image">
+      </div>
+      <div class="notification">
+        <p>{{notification?.message}}<br><span>{{notification?.author}}</span></p>
+      </div>
+      <div class="time">
+        <p><i class="material-icons" style="font-size: 12px;line-height: 1;font-weight: bold;padding-right: 4px">
+            schedule
+          </i><small class="date">{{notification?.created_at | date}}</small><br><small
+            style="font-size: 12px;padding-left: 20px;font-weight: 600;letter-spacing: 1px;color:#595959;">{{notification?.created_at | date: 'h:mm aa'}}</small>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification_section" *ngIf="userNotification?.length==0">
+    <p style="font-size: 20px;padding: 15px;text-align: center;">You have no notifications!</p>
+  </div>
+
+  <div class="pagination" *ngIf="userNotification?.length!=0">
+    <div *ngFor='let page of pageList'>
+      <span id="{{page.number}}" (click)="gotoPage(page)"
+        [ngClass]="{'active_page': page == currentPage}">{{page}}</span>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,322 @@
+<mat-card
+  id="product-card-{{ cardData.product_id }}"
+  class="card_mobile"
+  [ngClass]="{ card: !mobileView, show_shadow: hoverStatus }"
+  (mouseenter)="displayDetailStatus(cardData.product_id, true)"
+  (mouseleave)="displayDetailStatus(cardData.product_id, false)"
+>
+  <mat-card-content class="detail-section">
+    <div class="image-date">
+      <div class="date" *ngIf="cardData.scheduled_date !== null">
+        <div class="date-number">
+          {{ cardData?.scheduled_date | date: "d" }}
+        </div>
+        <div class="date-month">
+          {{ cardData?.scheduled_date | date: "MMMM" }}
+        </div>
+      </div>
+      <img
+        class="product-image"
+        draggable="false"
+        src="{{
+          cardData.image_url !== ''
+            ? cardData.image_url !== null
+              ? cardData.image_url
+              : 'assets/chess/default.png'
+            : 'assets/chess/default.png'
+        }}"
+        alt=""
+        (click)="openDetail(cardData.product_id)"
+      />
+    </div>
+
+    <div class="card-data-section" (click)="openDetail(cardData.product_id)">
+      <div
+        id="ribbon-{{ cardData.product_id }}"
+        class="ribbon"
+        *ngIf="
+          cardData?.background_color
+            ? cardData.background_color !== null
+            : false
+        "
+        (click)="openDetail(cardData.product_id)"
+        [ngStyle]="{
+          'background-color': cardData.background_color,
+          color: cardData.text_color
+        }"
+      >
+        <p>{{ cardData.text_content }}</p>
+      </div>
+      <div class="card-main-detail">
+        <mat-card-header class="card_header">
+          <div style="width:40px;height:40px;">
+            <img
+              mat-card-image
+              draggable="false"
+              class="author_avatar"
+              src="{{
+                cardData.author_avatar !== undefined
+                  ? cardData.author_avatar !== null
+                    ? cardData.author_avatar
+                    : cardData.image_url
+                  : cardData.image_url
+              }}"
+              alt=""
+            />
+          </div>
+          <div class="header_box">
+            <div class="header-info">
+              <mat-card-title
+                class="title"
+                *ngIf="cardData?.product_type === 13"
+              >{{ cardData?.name | ellipsis: 85 }}
+              </mat-card-title>
+              <mat-card-title class="title" *ngIf="cardData?.product_type != 13"
+              >{{ cardData?.name | ellipsis: 35 }}
+              </mat-card-title>
+            </div>
+            <mat-card-subtitle class="author"
+            >{{ cardData?.author_name | ellipsis: 35 }}
+            </mat-card-subtitle>
+            <p class="date" *ngIf="cardData?.product_type === 13">
+              {{ cardData?.batch_scheduled_date }}
+            </p>
+          </div>
+        </mat-card-header>
+
+        <!-- Dynamic Section -->
+
+        <div
+          class="pricing"
+          *ngIf="
+            priceStatus &&
+            cardData?.product_type != 13 &&
+            cardData?.product_id != 680
+          "
+        >
+          <ng-container *ngIf="cardData?.product_type != 15">
+            <!-- *ngIf="cardData.base_price !== 0 && cardData.special_price !== 0" -->
+            <div
+              class="price-section right_margin"
+              *ngIf="
+                cardData?.base_price &&
+                (cardData?.special_price || cardData?.special_price === 0)
+              "
+            >
+              <p class="buyer-type">For DRR*</p>
+              <div class="price">
+                <p
+                  class="base-price"
+                  *ngIf="
+                    cardData.base_price !== cardData.special_price &&
+                    cardData.base_price !== 0
+                  "
+                >
+                  <i class="fa {{ getCurrency() }}"></i
+                  >{{ cardData?.base_price | number: ".0" }}
+                </p>
+                <p class="new-price" *ngIf="cardData.special_price !== null">
+                  <i class="fa {{ getCurrency() }}"></i
+                  >{{ cardData?.special_price | number: ".0" }}
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="price-section"
+              *ngIf="cardData?.base_price && cardData?.sale_price"
+            >
+              <p class="buyer-type">For Non DRR*</p>
+              <div class="price">
+                <p
+                  class="base-price"
+                  *ngIf="
+                    cardData.base_price !== cardData.sale_price &&
+                    cardData.base_price !== 0
+                  "
+                >
+                  <i class="fa {{ getCurrency() }}"></i
+                  >{{ cardData.base_price | number: ".0" }}
+                </p>
+                <p class="new-price" *ngIf="cardData.sale_price !== null">
+                  <i class="fa {{ getCurrency() }}"></i
+                  >{{ cardData.sale_price | number: ".0" }}
+                </p>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="cardData?.product_type == 15">
+            <div
+              class="price-section"
+              *ngIf="cardData?.special_price === cardData?.sale_price"
+            >
+              <p class="buyer-type">Pricing</p>
+              <div class="price">
+                <p
+                  class="base-price"
+                  *ngIf="cardData?.base_price != cardData?.sale_price"
+                >
+                  <i class="fa {{ getCurrency() }}"></i
+                  >{{ cardData.base_price }}
+                </p>
+                <p class="new-price">
+                  <i class="fa {{ getCurrency() }}"></i
+                  >{{ cardData.sale_price }}
+                </p>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <div *ngIf="!priceStatus">
+          <div class="action_minor">
+            <div
+              class="action_box"
+              (click)="
+                cardData.flipbook_url
+                  ? openExternalLinkFlipBook(cardData.flipbook_url)
+                  : null
+              "
+              [ngClass]="{ disable_feature: !cardData.flipbook_url }"
+            >
+              <img draggable="false" src="assets/card/flipbook.svg"/>
+              <p>Open Flip Book</p>
+            </div>
+            |
+            <div
+              class="action_box"
+              (click)="
+                cardData.submit_question
+                  ? openExternalSubmitQuestion(cardData.submit_question)
+                  : null
+              "
+              [ngClass]="{ disable_feature: !cardData.submit_question }"
+            >
+              <img draggable="false" src="assets/card/question.svg"/>
+              <p>Submit a Question</p>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="!priceStatus && onUserDashboard()"></div>
+      </div>
+    </div>
+  </mat-card-content>
+
+  <mat-card-footer class="schedule-section">
+    <button
+      id="button-{{cardData.product_id}}"
+      (click)="
+        performActionOnButtonClick(cardData.product_id, cardData.product_type)
+      "
+      [ngClass]="{ disabled: buttonDisable }"
+    >
+      {{ buttonTextToShow }}
+    </button>
+
+    <div
+      *ngIf="cardData.scheduled_date !== null && cardData?.product_type != 13"
+    >
+      <img draggable="false" src="assets/card/clock.svg"/>
+      <p>{{ cardData?.scheduled_date | date: "h:mm aa" }}</p>
+    </div>
+
+    <div *ngIf="showDate()">
+      <img draggable="false" src="assets/card/date.svg"/>
+      <p>Coming Soon</p>
+    </div>
+  </mat-card-footer>
+
+  <!-- Hover Section -->
+
+  <div
+    class="hover"
+    [ngClass]="{ left_hover: leftHover }"
+    id="hover_div-{{ cardData.product_id }}"
+    *ngIf="cardData?.product_type != 13"
+  >
+    <div class="tail_left" [ngClass]="{ tail_right: leftHover }"></div>
+    <div class="header">
+      <div class="name_section">
+        <p class="name">{{ cardData?.name }}</p>
+        <p class="author">{{ cardData?.author_name }}</p>
+      </div>
+      <!-- <img draggable="false" src="assets/card/heart.svg"> -->
+    </div>
+    <div class="short_detail">
+      <div class="detail">
+        <img
+          draggable="false"
+          src="assets/chess/Dreamroom/episode-list/card/stats/video.svg"
+          draggable="false"
+        />
+        <p>{{ cardData?.duration }}</p>
+      </div>
+      <!-- <span *ngIf="productAvailability !== ''">|</span> -->
+    </div>
+
+    <p
+      class="description"
+      *ngIf="cardData.short_description"
+      [innerHTML]="cardData?.short_description"
+    ></p>
+
+    <div class="action_minor" *ngIf="postLogin()">
+      <div
+        class="action_box"
+        (click)="
+          cardData.flipbook_url
+            ? openExternalLinkFlipBook(cardData.flipbook_url)
+            : null
+        "
+        [ngClass]="{ disable_feature: !cardData.flipbook_url }"
+      >
+        <img draggable="false" src="assets/card/flipbook.svg"/>
+        <p>Open Flip Book</p>
+      </div>
+      |
+      <div
+        class="action_box"
+        (click)="
+          cardData.submit_question
+            ? openExternalSubmitQuestion(cardData.submit_question)
+            : null
+        "
+        [ngClass]="{ disable_feature: !cardData.submit_question }"
+      >
+        <img draggable="false" src="assets/card/question.svg"/>
+        <p>Submit a Question</p>
+      </div>
+    </div>
+
+    <div class="action_major">
+      <button
+        id="button-{{cardData.product_id}}"
+        (click)="performActionOnButtonClick(cardData.product_id)"
+        [ngClass]="{disabled: buttonDisable}"
+      >
+        {{ buttonTextToShow }}
+      </button>
+    </div>
+
+    <div class="bottom_section">
+      <div *ngIf="showDate()">
+        <img draggable="false" src="assets/card/date.svg"/>
+        <p>
+          {{
+          cardData.scheduled_date !== null
+            ? (cardData?.scheduled_date | date: "d/M/yy")
+            : dateComingSoon
+          }}
+        </p>
+      </div>
+
+      <div *ngIf="cardData.scheduled_date !== null">
+        <img draggable="false" src="assets/card/clock.svg"/>
+        <p>{{ cardData?.scheduled_date | date: "h:mm aa" }}</p>
+      </div>
+    </div>
+  </div>
+</mat-card>
+
+<!-- <app-pre-loader *ngIf="cardSpinner"></app-pre-loader> -->

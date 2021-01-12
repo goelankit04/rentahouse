@@ -1,0 +1,322 @@
+<div class="order-container">
+  <!-- header -->
+  <div class="order_heading row">
+    <div class="col-md-6 left_section">
+      <h3>My Orders</h3>
+      <p>{{ totalOrders }}</p>
+    </div>
+    <div class="col-md-6 search">
+      <p>
+        <input type="text" placeholder="Search your orders" name="search" (keyup)="search($event.target.value)" />
+        <button type="submit" (click)="searchOrder()" style="cursor:pointer; outline:none;">
+          <i class="fa fa-search"></i>
+        </button>
+      </p>
+    </div>
+  </div>
+
+  <!-- dropdown -->
+  <div class="dropdown_select">
+    <p class="back_btn" *ngIf="card2">
+      <span class="span" style="float: left;" (click)="backButton()"><i class="fa fa-arrow-left" aria-hidden="true"
+          style="padding-right:7px;"></i><span
+          style=" font-size: 18px;padding-top: 8px;color: #595959;font-weight: 500;">Back</span></span>
+    </p>
+    <select (change)="
+          select($event.target.value)">
+      <option *ngFor="let type of orderType" (click)="select(type)" [value]="type.id">{{ type?.name }}</option>
+    </select>
+  </div>
+  <div class="web_view">
+    <!-- table heading -->
+    <div class="getData" *ngIf="orderDetail?.length > 0">
+      <table>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>STARTS ON</th>
+          <th>EXPIRES ON</th>
+          <th>COUPON APPLIED</th>
+          <th>POINTS REDEEMED</th>
+          <th>TOTAL AMOUNT</th>
+          <th>PAID AMOUNT</th>
+        </tr>
+      </table>
+
+      <!-- orders -->
+      <div class="order" *ngFor="let order of orderDetail">
+        <table>
+          <tr>
+            <td>
+              <span
+                style="background: rgba(245,245,245,1.0);padding:4px 18px;border-radius: 5px;font-size: 18px;color: rgba(0,0,0,1.0);font-weight: bold;">Order
+                <span style=" color:#a0ce4e;padding-left:6px;"># {{ order?.id }}</span></span>
+            </td>
+            <td style="font-size:12px;color:rgba(89,89,89,1.0)">
+              Placed on <br />
+              <span style="font-weight:bold;color:rgba(53,52,52,1.0)">{{
+                order?.created_at | date: "MMMM dd, yyyy"
+                }}</span>
+            </td>
+            <td style="color:rgba(53,52,52,1.0);font-size:18px;font-weight: bold;" *ngIf="order?.scheduled_date">
+              {{ order?.scheduled_date | date: "MMMM dd, yyyy" }}
+            </td>
+            <td style="color:rgba(53,52,52,1.0);font-size:18px;font-weight: bold;" *ngIf="!order?.scheduled_date">
+              -
+            </td>
+            <td style="color:rgba(53,52,52,1.0);font-size:18px;font-weight: bold;" *ngIf="order?.expiry_date">
+              {{ order?.expiry_date | date: "MMMM dd, yyyy" }}
+            </td>
+            <td style="color:rgba(53,52,52,1.0);font-size:18px;font-weight: bold;" *ngIf="!order?.expiry_date">
+              -
+            </td>
+            <td *ngIf="order?.coupon_discount > 0">
+              <span
+                style="background: #d4e4fc;color: #094193;font-size: 18px;padding: 5px 25px;font-weight: bold;border-radius: 5px;">
+                <img src="assets/coupon-fix.png" style="width: 23px;margin-right: 8px;margin-top: -4px;" />Paid</span>
+              <br>
+              <span
+                style="color: rgba(89,89,89,1.0);font-size: 14px;">{{order?.coupon_discount}}{{order?.currency==='INR'?'₹':'$'}}
+                off</span>
+            </td>
+
+            <td *ngIf="order?.coupon_discount == 0" style="font-weight:bold;">
+              -
+            </td>
+
+            <td style="font-size:18px;font-weight: bold;" *ngIf="order?.redeemed_points > 0">
+              <span>{{ order?.redeemed_points }}</span><br />
+              Points
+            </td>
+            <td style="font-size:18px;font-weight: bold;" *ngIf="order?.redeemed_points == 0">
+              -
+            </td>
+
+            <td style="color:rgba(53,52,52,1.0);font-size:23px;font-weight:bold;">
+              <i class=" fa fa-{{order?.currency==='INR'?'inr':'usd'}}"></i>
+              {{ order?.total_price }}
+            </td>
+
+            <td style="color:rgba(53,52,52,1.0);font-size:23px;font-weight:bold;">
+              <i class=" fa fa-{{order?.currency==='INR'?'inr':'usd'}}"></i>
+              {{ order?.total_payment?order?.total_payment:"0" }}
+            </td>
+          </tr>
+        </table>
+
+        <div class="row inner-section">
+          <div class="image col-md-3"><img [src]="order?.image_url" /></div>
+          <div class="information col-md-6">
+            <p>{{ order?.name }}</p>
+            <p>Duration : <span style="font-weight:normal;">{{ order?.duration }}</span></p>
+            <p>Faculty : <span style="font-weight:normal;">{{ order?.author_name }}</span></p>
+          </div>
+          <div class="col-md-3 invoice_order">
+            <button type="button" *ngIf="order?.payment_status==1">
+              <img src="assets/paid-fix.png" />Payment Successful
+            </button>
+
+
+
+            <button type="button" *ngIf="order?.payment_status==0 && order?.succ_trans>0 && order?.payment_type==2">
+              <img src="assets/paid-fix.png" />Partial Payment
+            </button>
+            <button type="button" *ngIf="order?.payment_status==0 && order?.succ_trans>0 && order?.payment_type==3">
+              <img src="assets/paid-fix.png" />EMI Payment
+            </button>
+
+            <button type="button" style="background: #fac4c4;
+    color: #f21313;
+    border: 1px solid #fac4c4;" *ngIf="order?.payment_status==0 && order?.succ_trans==0 ">
+              <img src="assets/error.png" />Payment Failed
+            </button>
+
+            <a target="_blank"><button type="button" class="pay_button" (click)="orderPayment(order)"
+                *ngIf="order?.payment_status==0 && order?.payment_type==3">
+                Pay Next EMI
+              </button></a>
+
+            <!-- <button type="button" style="background: #fac4c4;
+    color: #f21313;
+    border: 1px solid #fac4c4;;"
+              *ngIf="order?.payment_status==0">
+              <img src="assets/error.png" />Payment Failed
+            </button> -->
+            <div class="absolute">
+              <button type="button" class="help" (click)="needHelp()">
+                <img src="assets/support-fix.png" />Need Help?</button><br />
+              <p (click)="billingFaq()">Billing FAQ</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- footer -->
+        <div class="row footer">
+          <div class="col-md-6"></div>
+          <div class="col-md-6 reward">
+            <p>
+              Points Rewarded<span><img src="assets/points-fix.png" />{{
+                order?.scholarship_from_product
+                }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer_pagination">
+        <div class=" pagination" id="paginate">
+          <div *ngFor="let page of pageList">
+            <span id="{{ page.number }}" (click)="gotoPage(page)" [ngClass]="{ active_page: page == currentPage }">{{
+            page }}</span>
+          </div>
+          <div class="icons" *ngIf="totalOrders>50">
+            <i class="fa fa-chevron-left" (click)="slideRight()"></i>
+            <i class="fa fa-chevron-right" (click)="slideLeft()"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="noData" *ngIf="!orderDetail?.length && !isLoading">
+      <p>No Orders found!</p>
+    </div>
+  </div>
+
+  <!-- Responsive -->
+  <div class="mobile_view">
+    <!-- Card1 Responsive -->
+    <div class="card1" style="padding:0px;" *ngIf="card1">
+      <div class="screen1 row" *ngFor="let order of orderDetail" (click)="cardClick(order)">
+        <div class="image">
+          <img [src]="order?.image_url">
+        </div>
+        <div class="text col-md-7">
+          <p>{{order?.name}}</p>
+          <p *ngIf="order?.created_at">Placed on {{order?.created_at | date:'MMMM dd, yyyy'}}</p>
+        </div>
+        <div class="right_arrow col-md-3">
+          <img src="assets/right_arrow.png">
+        </div>
+      </div>
+    </div>
+
+    <!-- Card2 Responsive -->
+    <div class="card2" style="padding:0px;" *ngIf="card2">
+      <div class="screen2">
+        <div class="row header">
+          <p style="padding:4px 18px;border-radius: 5px;font-size: 18px;color: rgba(0,0,0,1.0);font-weight: bold;">
+            Order <span style=" color:#a0ce4e;padding-left:6px;">#{{cardDetail?.id}}</span>
+          </p>
+          <p style="font-size:12px;color:rgba(89,89,89,1.0)" *ngIf="cardDetail?.created_at">
+            Placed on <br />
+            <span style="font-weight:bold;color:rgba(53,52,52,1.0)">
+              {{cardDetail?.created_at | date: "MMMM dd, yyyy"}}</span>
+          </p>
+        </div>
+        <div class="row details">
+          <p class="col-md-6 detail_heading">STARTS ON</p>
+          <p class="col-md-6 detail_para" *ngIf="cardDetail?.scheduled_date">{{cardDetail?.scheduled_date | date: "MMMM
+            dd, yyyy"}}</p>
+          <p class="col-md-6 detail_para" *ngIf="!cardDetail?.scheduled_date" style="font-weight:bold;">-</p>
+
+        </div>
+        <div class="row details">
+          <p class="col-md-6 detail_heading">EXPIRES ON</p>
+          <p class="col-md-6 detail_para" *ngIf="cardDetail?.expiry_date">{{cardDetail?.expiry_date | date: "MMMM dd,
+            yyyy"}}</p>
+          <p class="col-md-6 detail_para" *ngIf="!cardDetail?.expiry_date">-</p>
+
+        </div>
+        <div class="row details">
+          <p class="col-md-6 detail_heading">COUPONS APPLIED</p>
+          <p class="col-md-6 detail_para" *ngIf="cardDetail?.coupon_discount>0">
+            <span
+              style="background: #d4e4fc;color: #094193;font-size: 18px;padding: 5px 25px;font-weight: bold;border-radius: 5px;">
+              <img src="assets/coupon-fix.png" style="width: 23px;margin-right: 8px;margin-top: -4px;" />Paid</span>
+            {{ cardDetail?.coupon_discount}}{{orderCurrency}} off
+          </p>
+          <p class="col-md-6 detail_para" *ngIf="cardDetail?.coupon_discount==0">-</p>
+
+        </div>
+        <div class="row details">
+          <p class="col-md-6 detail_heading">POINTS REDEEMED</p>
+          <p class="col-md-6 detail_para" style="padding-top:0px;"><strong
+              style="font-size:22px;">{{cardDetail?.redeemed_points}}</strong>
+            Points</p>
+        </div>
+        <div class="row details">
+          <p class="col-md-6 detail_heading">TOTAL</p>
+          <p class="col-md-6 detail_para"
+            style="color:rgba(53,52,52,1.0);padding-top:0px;font-size:23px;font-weight:bold;"><i
+              class="fa fa-{{ orderCurrency }}"></i>
+            Total Price: {{ cardDetail?.total_price }} </p>
+          <p class="col-md-6 detail_para"
+            style="color:rgba(53,52,52,1.0);padding-top:0px;font-size:23px;font-weight:bold;"><i
+              class="fa fa-{{ orderCurrency }}"></i>
+            Paid Amount: {{cardDetail?.total_payment?cardDetail?.total_payment:"0"}}</p>
+        </div>
+
+        <div class="main-section">
+          <div class="row section">
+            <div class="image col-md-6">
+              <img [src]="cardDetail?.image_url" />
+            </div>
+
+            <div class="information col-md-6">
+              <p style="line-height: 1.5">{{cardDetail?.name}}</p>
+              <p>Duration : <span style="font-weight:normal;">{{ cardDetail?.duration }}</span></p>
+              <p>Faculty : <span style="font-weight:normal;">{{ cardDetail?.author_name }}</span></p>
+            </div>
+          </div>
+
+          <div class="row button-section">
+            <button type="button" *ngIf="cardDetail?.payment_status==1">
+              <img src="assets/paid-fix.png" />Payment Successful
+            </button>
+            <button type="button"
+              *ngIf="cardDetail?.payment_status==0 && cardDetail?.succ_trans>0 && cardDetail?.payment_type==2">
+              <img src="assets/paid-fix.png" />Partial Payment
+            </button>
+            <button type="button"
+              *ngIf="cardDetail?.payment_status==0 && cardDetail?.succ_trans>0 && cardDetail?.payment_type==3">
+              <img src="assets/paid-fix.png" />EMI Payment
+            </button>
+            <button type="button" style="background: #fac4c4;color: #f21313;border: 1px solid #fac4c4;"
+              *ngIf="cardDetail?.payment_status==0 && cardDetail?.succ_trans==0">
+              <img src="assets/error.png" />Payment Failed
+            </button>
+
+            <a target="_blank"><button type="button" class="pay_button" (click)="orderPayment(cardDetail)"
+                *ngIf="cardDetail?.payment_status==0 && cardDetail?.payment_type==3" style="cursor:pointer;">
+                Pay Next EMI
+              </button></a>
+
+            <button type="button" class="help" (click)="needHelp()">
+              <img src="assets/support-fix.png" />Need Help?
+            </button>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>
+            Points Rewarded<span><img src="assets/points-fix.png" />
+              {{cardDetail?.scholarship_from_product}}</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="noDataa" *ngIf="!orderDetail?.length">
+      <p style="text-align: center;font-size:16px;">No Orders found!</p>
+    </div>
+  </div>
+
+
+  <div class="paginations" *ngIf="card1">
+    <div *ngFor="let page of pageList">
+      <span id="{{ page.number }}" (click)="gotoPage(page)" [ngClass]="{ active_page: page == currentPage }">{{
+        page }}</span>
+    </div>
+  </div>
+</div>
+<!-- <div class="orderLoader" *ngIf="isLoading">
+  <mat-spinner></mat-spinner>
+</div> -->

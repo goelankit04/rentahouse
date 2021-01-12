@@ -1,0 +1,114 @@
+.app-dr-level-selector {
+  .user_star_room {
+    padding: 1em;
+
+    .nothing_to_display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 1em;
+      padding: 5.6em 0;
+
+      mat-icon {
+        height: auto;
+        width: auto;
+        font-size: 4em;
+      }
+
+      .statement {
+        margin: 0;
+        margin-top: 8px;
+        font-size: 2em;
+      }
+
+      .offer_to_enroll {
+        font-size: 12px;
+        text-transform: uppercase;
+        font-weight: 500;
+        margin: 0;
+        margin-top: 2em;
+      }
+
+      .offer_link {
+        margin: 0;
+        // margin-top: 12px;
+        color: #a0ce4e;
+        padding: 5px 12px;
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-top: 6px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #a0ce4e;
+          color: white;
+          border-radius: 6px;
+          padding: 5px 12px;
+        }
+      }
+    }
+
+    .chip-heading {
+      font-size: 1.75em;
+      font-weight: 400;
+      color: grey;
+      margin-left: 0em;
+      text-transform: none;
+      cursor: default;
+      margin-bottom: 12px;
+      // padding: 10px 20px 0px 20px;
+    }
+
+    mat-card-subtitle {
+      margin: 4px 0 12px 0;
+      font-size: 19px !important;
+      /* color: black; */
+      font-weight: bold;
+    }
+
+    .events {
+      .card_container {
+        padding: 4px;
+        margin: 10px;
+        cursor: default !important;
+
+        .main-button {
+          display: flex;
+          justify-content: center;
+
+          .view_btn {
+            background: #a0ce4e;
+            border: 1px solid #a0ce4e;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 16px;
+            font-size: 18px;
+            font-weight: normal;
+            cursor: pointer;
+            margin-right: 10px;
+          }
+
+          .register_btn {
+            background-color: #ff9f0f;
+            color: white;
+            border-radius: 5px;
+            border: 1px solid #ff9f0f;
+            padding: 5px 16px;
+            font-size: 18px;
+            font-weight: normal;
+            cursor: pointer;
+
+          }
+
+        }
+      }
+
+      .value {
+        span {
+          font-weight: normal !important;
+        }
+      }
+    }
+  }
+}

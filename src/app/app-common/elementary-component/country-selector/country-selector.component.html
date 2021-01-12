@@ -1,0 +1,17 @@
+<div class="country_selector">
+  <input type="text" placeholder="Country" formControlName="country" value="{{currentCountry}}" (keyup)="searchCountryForDropDown(search_country_for_dropdown.value)"
+    #search_country_for_dropdown>
+
+  <div class="selection_container" [ngClass]="{'show_country_selection_container' : showCountryBox}">
+    <div class="country_suggestion_container">
+      <span *ngIf="filteredCountry.length === 0" class="no_country_found">
+        <mat-icon>error_outline</mat-icon>
+        <p>No such country found</p>
+      </span>
+      <span class="country_with_code" *ngFor="let country of filteredCountry" (click)="selectCountry(country)">
+        <p>{{country.country_name}}</p>
+        <p>{{country.country_code}}</p>
+      </span>
+    </div>
+  </div>
+</div>

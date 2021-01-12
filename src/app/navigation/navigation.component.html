@@ -1,0 +1,381 @@
+<mat-toolbar
+  class="top-navbar"
+  [style.background-color]="getTopNavBarColor()"
+  *ngIf="!getMobileScreenWidth()"
+>
+  <div class="menu-container">
+    <div class="left-menu"></div>
+    <!-- <div class="right-menu">
+      <a
+        id="btn__nurtr__live__stream"
+        (click)="openLiveStreamPopup()"
+        class="special_offer"
+        *ngIf="liveStreamStatus"
+        >Live Streaming</a
+      >&nbsp;
+      <a
+        (click)="openImpersonateDialog()"
+        class="special_offer"
+        *ngIf="getRoleId() == 14 && isUserLoggedIn() && !getPreviousToken()"
+        >Impersonate</a
+      >&nbsp;
+      <a (click)="openSpecialOffer()" class="special_offer">All Products</a
+      >&nbsp;
+      <a routerLink="/product-catalog/1/13" style="color: #a0ce4e">Star Room</a>
+      <span *ngIf="!isUserLoggedIn()">&nbsp; | &nbsp;</span>
+      <a (click)="openRegisterDialog()" *ngIf="!isUserLoggedIn()">Register</a>
+      <span *ngIf="!isUserLoggedIn()">&nbsp; | &nbsp;</span>
+      <a (click)="openLoginDialog()" *ngIf="!isUserLoggedIn()">Login</a>
+    </div> -->
+  </div>
+</mat-toolbar>
+
+<mat-toolbar
+  id="navigation-bar"
+  class="toolbar"
+  [style.background-color]="getBackgroundColor()"
+>
+  <div class="blur_background_div" *ngIf="hideNavBarBackground()"></div>
+  <div class="nav_bar_content">
+    <span class="logo_container" style="cursor: pointer">
+      <a routerLink="/"
+        ><img
+          src="/assets/nurtr-christmas.png"
+          style="
+            width: 130px;
+            height: 30px;
+            padding-top: 7px;
+            padding-left: 10px;
+          "
+      /></a>
+    </span>
+    <div class="product-links">
+      <span *ngIf="!getMobileScreenWidth() && !isUserLoggedIn()">
+        <a [ngx-scroll-to]="'#dream_room'" (click)="navigatetoUrl('dream_room')"
+          >Dream Room</a
+        >
+        &nbsp; | &nbsp;
+        <a [ngx-scroll-to]="'#class_room'" (click)="navigatetoUrl('class_room')"
+          >Class Room</a
+        >
+        &nbsp;| &nbsp;
+        <a [ngx-scroll-to]="'#live_room'" (click)="navigatetoUrl('live_room')"
+          >Live Room</a
+        >
+        &nbsp;| &nbsp;
+        <a [ngx-scroll-to]="'#camp_room'" (click)="navigatetoUrl('camp_room')"
+          >Camp Room</a
+        >
+        &nbsp;| &nbsp;
+        <a [ngx-scroll-to]="'#121_room'" (click)="navigatetoUrl('121_room')"
+          >121 Room</a
+        >
+        &nbsp;| &nbsp;
+        <a routerLink="/product-catalog/1/11">Event Room</a> &nbsp;| &nbsp;
+        <a (click)="openBlog()">Blog</a>
+      </span>
+
+      <!-- Desktop -->
+      <span
+        *ngIf="!getMobileNavigationMenu() && isUserLoggedIn()"
+        style="display: flex; flex-direction: row"
+      >
+        <a (click)="postLoginLinks(0)">My Dashboard</a>
+        <span>&nbsp; | &nbsp;</span>
+        <a
+          class="wallet_value notification_values"
+          id="notifications"
+          style="position: relative"
+          (click)="openUserNotification('click')"
+          *ngIf="isUserLoggedIn()"
+        >
+          <img src="{{ notificationImage }}" />
+          <p class="notification_count" *ngIf="unseenCount > 0">
+            {{ unseenCount }}
+          </p>
+        </a>
+        <a
+          class="wallet_value"
+          (click)="openUserWallet()"
+          *ngIf="isUserLoggedIn()"
+          (mouseenter)="hover_wallet(true)"
+          (mouseleave)="hover_wallet(false)"
+        >
+          <img src="{{ walletImage }}" />
+          <p>{{ getWalletPoints() }}</p>
+        </a>
+      </span>
+
+      <div class="notification" *ngIf="openNotification">
+        <div class="heading">
+          <span class="notify">Notifications</span>
+          <!-- <span class="markAll" *ngIf="userSeen>8">Mark all as Read</span> -->
+          <span class="viewAll" (click)="navigateToNotification()"
+            >View All</span
+          >
+        </div>
+
+        <div
+          *ngIf="userNotification?.length != 0"
+          class="overflow"
+          style="height: auto; overflow-y: scroll"
+        >
+          <div
+            class="notification_value"
+            *ngFor="let notification of userNotification"
+            [ngClass]="{ unread: notification?.is_seen == false }"
+            (click)="navigateToNotification()"
+          >
+            <img src="{{ notification?.img_url }}" />
+            <p class="text">
+              {{ notification?.message }}<br /><span>{{
+                notification?.author
+              }}</span>
+            </p>
+            <p>
+              <i
+                class="material-icons"
+                style="font-size: 12px; line-height: 1.3; font-weight: bold"
+              >
+                schedule </i
+              ><small style="padding-left: 4px; font-size: 12px">{{
+                notification?.created_at | date
+              }}</small
+              ><br /><small
+                style="
+                  font-size: 12px;
+                  padding-left: 20px;
+                  font-weight: 600;
+                  letter-spacing: 1px;
+                "
+                >{{ notification?.created_at | date: 'h:mm aa' }}</small
+              >
+            </p>
+          </div>
+        </div>
+
+        <div *ngIf="userNotification?.length == 0" style="background: #f2f2f2">
+          <p
+            style="
+              font-size: 18px;
+              padding-left: 16px;
+              text-align: center;
+              margin-bottom: 0px;
+              padding: 5px;
+              color: #595959;
+            "
+          >
+            No new notifications!
+          </p>
+        </div>
+      </div>
+
+      <!-- menu -->
+      <div class="ham-menu" *ngIf="getMobileScreenWidth() || isUserLoggedIn()">
+        <a
+          class="wallet_value notification_values mobile_view"
+          id="notifications"
+          style="position: relative"
+          (click)="navigateToNotification()"
+          *ngIf="isUserLoggedIn()"
+        >
+          <img src="{{ notificationImage }}" />
+          <p class="notification_count" *ngIf="unseenCount > 0">
+            {{ unseenCount }}
+          </p>
+        </a>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="menu-button">
+          <mat-icon class="nurtr_menu">account_circle</mat-icon>
+        </button>
+
+        <mat-menu #menu="matMenu" class="mat-menu-container">
+          <p
+            *ngIf="isUserLoggedIn()"
+            style="
+              color: grey;
+              font-weight: bold;
+              padding-top: 10px;
+              margin-left: 20px;
+              margin-right: 20px;
+              text-align: left;
+            "
+          >
+            Hello {{ getUserName() }}
+          </p>
+
+          <!-- <button mat-menu-item class="wallet_in_menu" style="background-color: #a0ce4e; color: white;" (click)="openUserWallet()"
+            *ngIf="isUserLoggedIn()">
+            <img src="assets/wallet/wallet_navigation.svg">
+            <span>{{getWalletBalanceFromLocalStorage() | number : '.0'}} Points</span>
+          </button> -->
+
+          <button
+            mat-menu-item
+            (click)="gotoHomePage()"
+            *ngIf="onHomepage() && isUserLoggedIn()"
+          >
+            <mat-icon>home</mat-icon>
+            <span>Home</span>
+          </button>
+          <button mat-menu-item (click)="openBlog()" style="outline: none">
+            <mat-icon>art_track</mat-icon>
+            <span>Blog</span>
+          </button>
+
+          <div *ngFor="let menu of navMenuList" class="abc">
+            <div
+              *ngIf="
+                (menu.id === 7 ||
+                  menu.id === 10 ||
+                  menu.id === 11 ||
+                  menu.id === 13) &&
+                !getMobileNavigationMenu()
+              "
+            >
+              <button
+                mat-menu-item
+                (click)="gotoUrl(menu.id)"
+                *ngIf="isUserLoggedIn()"
+              >
+                <img
+                  draggable="false"
+                  src="{{ menu.svg }}"
+                  style="width: 24px; height: 24px; margin-right: 1em"
+                />
+                <span>{{ menu.name }}</span>
+              </button>
+            </div>
+          </div>
+
+          <div *ngFor="let menu of navMenuList" class="abc">
+            <div
+              *ngIf="
+                menu.id !== 8 && menu.id !== 9 && getMobileNavigationMenu()
+              "
+            >
+              <button
+                mat-menu-item
+                (click)="gotoUrl(menu.id)"
+                *ngIf="isUserLoggedIn()"
+              >
+                <img
+                  draggable="false"
+                  src="{{ menu.svg }}"
+                  style="width: 24px; height: 24px; margin-right: 1em"
+                />
+                <span>{{ menu.name }}</span>
+              </button>
+            </div>
+          </div>
+
+          <mat-divider
+            style="margin: 0 10px 0 10px"
+            *ngIf="isUserLoggedIn() && getMobileNavigationMenu()"
+          >
+          </mat-divider>
+
+          <button
+            mat-menu-item
+            (click)="openLoginDialog()"
+            *ngIf="!isUserLoggedIn()"
+          >
+            <mat-icon>account_circle</mat-icon>
+            <span>Login</span>
+          </button>
+
+          <button
+            mat-menu-item
+            (click)="openRegisterDialog()"
+            *ngIf="!isUserLoggedIn()"
+          >
+            <mat-icon>how_to_reg</mat-icon>
+            <span>Register</span>
+          </button>
+
+          <button
+            mat-menu-item
+            (click)="openSpecialOffer()"
+            *ngIf="getMobileNavigationMenu()"
+          >
+            <mat-icon>card_giftcard</mat-icon>
+            <span>All Products</span>
+          </button>
+
+          <button
+            mat-menu-item
+            id="btn__nurtr__live__stream"
+            (click)="openLiveStreamPopup()"
+            *ngIf="getMobileNavigationMenu() && liveStreamStatus"
+          >
+            <mat-icon>live_tv</mat-icon>
+            <span>Live Streaming</span>
+          </button>
+
+          <button
+            mat-menu-item
+            *ngIf="getMobileNavigationMenu()"
+            angulartics2On="click"
+            angularticsAction="registerAsSchool"
+            [angularticsProperties]="{ 'button-name': 'Star Room' }"
+          >
+            <mat-icon>school</mat-icon>
+            <span>
+              <a
+                routerLink="/product-catalog/1/13"
+                style="color: rgba(0, 0, 0, 0.87)"
+                >Star Room</a
+              ></span
+            >
+          </button>
+
+          <button
+            mat-menu-item
+            routerLink="/product-catalog/1/11"
+            *ngIf="!isUserLoggedIn()"
+          >
+            <mat-icon>event</mat-icon>
+            <span>Event Room</span>
+          </button>
+
+          <!-- <button mat-menu-item (click)="openOrder()" style="outline:none;" *ngIf="isUserLoggedIn()">
+            <mat-icon>add_shopping_cart</mat-icon>
+            <span>Orders</span>
+          </button> -->
+        </mat-menu>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>
+
+<div class="cookiesModal" *ngIf="cookieModal">
+  This website uses cookies to improve your experience. We'll assume you're ok
+  with this
+  <a
+    href="/footer/privacy-policy"
+    class="tar"
+    target="_blank"
+    title="Read about our Privacy Policy"
+    >Privacy Policy</a
+  >.
+  <br />
+  <br />
+  <button
+    color="accent privacy"
+    class="privacy"
+    style="cursor: pointer"
+    (click)="acceptCookies()"
+  >
+    ACCEPT COOKIES
+  </button>
+  <i
+    class="fa fa-close"
+    style="
+      cursor: pointer;
+      position: absolute;
+      right: 5px;
+      font-size: 14px;
+      top: 3px;
+    "
+    (click)="close()"
+  ></i>
+</div>

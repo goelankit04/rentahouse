@@ -1,0 +1,21 @@
+<div class="dreamroom_detail_container">
+  <header>
+    <h3>Dream Room</h3>
+    <p>
+        Chess Dream Room is a unique online chess course containing 40+ hours of cinematized chess wisdom from Grand Master R.B. Ramesh with other celebrated chess players and coaches. All the players, right from beginners to 2500+ rating would find this useful to step ahead in their game.
+    </p>
+  </header>
+
+  <div class="dreamroom_detail_body">
+
+     <app-mobile-detail *ngIf="getMobileWidthInnerWidth()"></app-mobile-detail>
+
+     <app-web-detail *ngIf="!getMobileWidthInnerWidth()"></app-web-detail>
+
+    <div class="spacer"></div>
+
+  </div>
+
+   <!-- <app-rb-book [isWeb]="!getMobileWidthInnerWidth()"></app-rb-book> -->
+
+</div>

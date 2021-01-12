@@ -1,0 +1,214 @@
+.app-wallet {
+  .wallet_container {
+    background-color: white;
+    // padding: 12px;
+    border-radius: 6px;
+
+    .wallet_highlight_section {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+      filter: drop-shadow(0 2px 4px #cccccc);
+      padding: 1em;
+      margin: 10px 5px;
+      border-radius: 6px;
+
+      .wallet_value {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        justify-content: center;
+        padding-bottom: 2em;
+
+        &:last-child {
+          padding-bottom: 0;
+        }
+
+        img {
+          width: 4em;
+          height: 4em;
+          user-select: none;
+          margin-right: 0;
+        }
+
+        span {
+          .balance_value {
+            margin: 0;
+            color: #a0ce4e;
+            font-size: 2em;
+            font-weight: bold;
+            text-align: center;
+          }
+
+          .balance_sub_text {
+            margin: 0;
+            color: #333333;
+            font-weight: 600;
+            font-size: 15px;
+          }
+        }
+      }
+
+      @media screen and (min-width: 800px) {
+        display: flex;
+        flex-direction: row;
+
+        .wallet_value {
+          display: flex;
+          flex-direction: row;
+          padding-bottom: 0;
+
+          img {
+            margin-right: 1em;
+          }
+
+          span {
+            .balance_value {
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+
+    .transaction_table_section {
+      background-color: white;
+      filter: drop-shadow(0 2px 4px #cccccc);
+      padding: 0 1em;
+      margin: 10px 5px;
+      border-radius: 6px;
+      .pagination {
+        margin-right: 2%;
+        margin-top: 2%;
+        float: right;
+        .disabled_button {
+          color: white;
+          background-color: grey;
+          border: 1px;
+        }
+        button {
+          background: #a0ce4e;
+          color: white;
+          border: 1px solid #a0ce4e;
+          padding: 8px;
+          border-radius: 2px;
+          margin-right: 18px;
+          font-size: 20px;
+          cursor: pointer;
+          width: 136px;
+          font-weight: bold;
+        }
+      }
+      table {
+        width: 100%;
+
+        tr {
+          border-bottom: 1px solid #cccccc;
+
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+
+        tr:hover {
+          background-color: #ececec;
+        }
+
+        th {
+          color: #333333;
+          font-weight: 600;
+          font-size: 22px;
+          padding: 14px 12px;
+        }
+
+        td {
+          font-weight: 400;
+          font-size: 16px;
+          padding: 10px 12px;
+          color: #666666;
+        }
+
+        .negative {
+          background: #ef662f;
+          color: white;
+          padding: 4px 16px;
+          border-radius: 3px;
+          width: 82px;
+        }
+        .positive {
+          color: white;
+          padding: 4px 16px;
+          border-radius: 3px;
+          background: #a0ce4e;
+          width: 82px;
+        }
+      }
+
+      .wallet_mobile {
+        .multi_data_row {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+
+          span {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            .row_heading {
+              text-transform: uppercase;
+              letter-spacing: 1.25px;
+              font-size: 16px;
+              margin: 0;
+              // color: #a0ce4e;
+              font-weight: 600;
+            }
+
+            .row_data {
+              padding: 0;
+              margin: 0;
+              font-size: 14px;
+            }
+          }
+        }
+
+        tr {
+          display: flex;
+          flex-direction: column;
+          border-bottom: 1px solid #cccccc;
+          padding: 1em 0;
+          align-items: center;
+
+          &:last-child {
+            border-bottom: 0;
+          }
+        }
+
+        th {
+          border-bottom: 0;
+          padding-bottom: 0;
+          text-transform: uppercase;
+          letter-spacing: 1.25px;
+          font-size: 16px;
+        }
+
+        td {
+          border-bottom: 0;
+          padding: 0 12px;
+          font-size: 14px;
+        }
+      }
+
+      .no_wallet_record {
+        p {
+          text-align: center;
+          font-weight: bold;
+          padding: 1em;
+          margin: 0;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

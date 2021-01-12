@@ -1,0 +1,106 @@
+.app-user-container {
+  .user_container {
+    width: 100%;
+    height: 100%;
+    margin-top: 82px;
+    display: flex;
+    flex-direction: row;
+
+    // // for center-column format
+    // max-width: 1200px;
+    // margin: auto;
+    // margin-top: 82px;
+
+    .menu_container {
+      display: flex;
+      flex-direction: column;
+      filter: drop-shadow(0px 0px 4px #cccccc);
+
+      .menu_item {
+        border-bottom: 1px solid #cccccc;
+        background-color: white;
+        padding: 1.2em 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        font-size: 14px;
+        color: #666666;
+        cursor: pointer;
+        .show {
+          display: block !important;
+        }
+        .hide {
+          // display: none !important;
+        }
+        img {
+          width: 24px;
+          height: 24px;
+          color: white;
+        }
+
+        span {
+          margin-top: 6px;
+          font-size: 10px;
+          // color: #666666;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+
+        &:hover {
+          background-color: #a0ce4e;
+          color: white;
+        }
+
+        &:active {
+          background-color: #a0ce4e;
+          color: white;
+        }
+      }
+
+      .is_list_item_active {
+        fill: white;
+        background-color: #a0ce4e;
+        color: white;
+      }
+    }
+
+    .page_container {
+      display: flex;
+      flex-direction: column;
+      margin: 1em 1em 0 1em;
+      width: 100%;
+
+      .bread_crumb {
+        margin-bottom: 1em;
+        display: flex;
+        flex-direction: row;
+
+        .icon_home {
+          cursor: pointer;
+        }
+      }
+
+      .page {
+        width: 100%;
+        height: 100%;
+        margin-bottom: 3em;
+        filter: drop-shadow(0px 0px 4px #cccccc);
+        background:white;
+      }
+    }
+  }
+
+  @media screen and (max-width: 699px) {
+    .user_container {
+      margin-top: 60px;
+    }
+  }
+
+  @media screen and (min-width: 320px) and (max-width: 400px) {
+    .fonts {
+      font-size: 13px !important;
+      margin-top: 1% !important;
+    }
+  }
+}

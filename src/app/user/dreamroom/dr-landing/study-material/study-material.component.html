@@ -1,0 +1,11 @@
+<div class="study_material_container">
+  <div class="header_text">
+    <h1>Study Material</h1>
+  </div>
+
+  <div class="content">
+    <ul>
+      <li *ngFor="let flipbook of studyFlipBook" (click)="openFlipbookUrl(flipbook.url)"><p>{{flipbook.name}}</p></li>
+    </ul>
+  </div>
+</div>

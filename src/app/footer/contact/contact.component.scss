@@ -1,0 +1,59 @@
+.app-contact {
+  .contact-container {
+    background-color: #363636;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 2em;
+    flex-wrap: wrap;
+    flex-direction: column;
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      background-color: #707070;
+      align-items: center;
+      line-height: 1.5em;
+      flex: 1;
+      padding: 3em 4em;
+      justify-content: center;
+      text-align: center;
+      margin-left: 5px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+
+      .card-body {
+        color: #ffffff;
+        font-size: 1.2em;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .card-footer {
+        color: #ffffff;
+      }
+    }
+  }
+
+  @media screen and (min-width: 501px) and (max-width: 674px){
+    .contact-container {
+      flex-direction: row;
+
+      .card {
+        margin-right: 5px;
+        margin-left: 0;
+      }
+    }
+  }
+
+  @media screen and (min-width: 675px) {
+    .contact-container {
+      flex-direction: row;
+      padding-left: 10px;
+      padding-right: 10px;
+
+      .card {
+        padding: 1em 1em;
+      }
+    }
+  }
+}

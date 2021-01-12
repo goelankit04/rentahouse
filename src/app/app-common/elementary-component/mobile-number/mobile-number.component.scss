@@ -1,0 +1,148 @@
+.app-mobile-number {
+  .alert {
+    position: unset !important
+  }
+
+  .mobile {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    margin: auto;
+
+    .mobile_number_entry {
+      border: 1px solid #cccccc;
+      border-radius: 6px;
+      margin: 12px auto;
+      padding: 2px 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      height: 52px;
+
+
+      p {
+        margin: 0;
+        padding: 10px;
+      }
+
+      .country_code {
+        border-right: 1px solid #cccccc;
+        padding: 0 12px;
+        display: flex;
+        flex-direction: row;
+        width: fit-content;
+        align-items: center;
+        cursor: pointer;
+
+        p {
+          margin: 0;
+        }
+
+        .drop_down_icon {
+          font-size: 10px;
+        }
+      }
+
+      input {
+        border: 0;
+        width: 100%;
+        margin-right: 12px;
+        height: 50px;
+        margin: 0;
+        border-radius: 6px;
+        padding: 0 5px;
+      }
+    }
+
+    .selection_container {
+      display: none;
+      width: 100%;
+      height: 256px;
+      max-width: 350px;
+      max-height: 280px;
+      border-radius: 6px;
+      background-color: white;
+      padding: 0;
+      margin-top: -6px;
+      filter: drop-shadow(0 2px 4px #cccccc);
+
+      .search_bar_container {
+        padding: 12px;
+        background-color: #f9f9f9;
+
+        input {
+          padding: 0 6px;
+          margin: 0;
+          width: 95%;
+          border: 1px solid #eaeaea;
+          border-radius: 6px;
+          background-color: white;
+        }
+      }
+
+      .country_suggestion_container {
+        height: 100%;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+
+        .no_country_found {
+          padding: 24px;
+          font-size: 16px;
+          height: 0;
+          background-color: white;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          p {
+            margin: 0;
+            margin-left: 10px;
+          }
+        }
+
+        .country_with_code {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 24px;
+          font-size: 16px;
+          height: 0;
+          align-items: center;
+          background-color: white;
+
+          p {
+            margin: 0;
+          }
+
+          &:hover {
+            background-color: #A0CD4E;
+            color: white;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    .show_selection_container {
+      display: block;
+      position: absolute;
+      z-index: 1;
+    }
+
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #a0ce4e;
+  }
+}

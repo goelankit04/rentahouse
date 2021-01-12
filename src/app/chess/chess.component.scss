@@ -1,0 +1,21 @@
+@import "about-ramesh/about-ramesh.component";
+@import "chess-features/chess-features.component";
+@import "platform-feature/platform-feature.component";
+@import "contact-form/contact-form.component";
+@import "testimonial/testimonial.component";
+@import "banner/banner.component";
+@import "banner/features/features.component";
+@import "dreamroom-detail/dreamroom-detail.component";
+@import "about-dreamroom/about-dreamroom.component";
+@import "pre-enrollment/pre-enrollment.component";
+@import "benefits-highlight/benefits-highlight.component";
+@import "product-type/product-type.component";
+@import "product-detail/product-detail.component";
+
+.app-chess {
+  .chess-container {
+    position: relative;
+    display: block;
+    margin-top: 2em;
+  }
+}

@@ -1,0 +1,32 @@
+.app-faq {
+  .faq-container {
+    margin: auto;
+    width: 80%;
+    margin-top: 7em;
+    margin-bottom: 2em;
+
+    mat-expansion-panel{
+      height: fit-content;
+    }
+
+    .mat-expansion-panel-header{
+      padding: 1em !important;
+    }
+
+    mat-panel-title{
+      font-weight: 500;
+      font-size: 1em;
+    }
+
+    mat-expansion-panel-header{
+      height: fit-content !important;
+    }
+
+    h2 {
+      font-weight: 500;
+      font-size: 1.4em;
+      margin-top: 2em;
+      margin-bottom: 12px;
+    }
+  }
+}

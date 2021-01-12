@@ -1,0 +1,12 @@
+$desktop-view: 980px;
+$tablet-view: 580px;
+
+@import './product-highlight/product-highlight.component';
+@import './product-banner/product-banner.component';
+@import './course-detail/course-detail.component';
+@import './course-episode/course-episode.component';
+@import './student-feedback/student-feedback.component';
+@import './top-review/top-review.component';
+@import './product-faqs/product-faqs.component';
+@import './verify-email/verify-email.component';
+@import './register-user/register-user.component';

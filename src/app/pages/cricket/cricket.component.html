@@ -1,0 +1,13 @@
+<app-banner></app-banner>
+<app-card-slider [courses]="courses"></app-card-slider>
+<app-pricing-container
+  id="priceContainerId"
+  [courses]="courses"
+></app-pricing-container>
+
+<div class="contact__sales">
+  <h5>Not sure which course to go for ? Talk to our sales expert today.</h5>
+  <button (click)="contactUs()">Contact Us</button>
+</div>
+
+<app-footer-cricket></app-footer-cricket>

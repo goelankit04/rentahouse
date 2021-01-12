@@ -1,0 +1,123 @@
+.app-player-wistia {
+
+  $tablet-switch-point: 800px;
+  $mobile-switch-point: 600px;
+
+  .wistia_player {
+    position: relative;
+
+    #watermark {
+      // background: transparent;
+      // position: absolute;
+      // top: 0;
+      // left: 0;
+      // right: 0;
+      // bottom: 0;
+      // z-index: 1;
+      // height: 94%;
+      // pointer-events: none;
+      // overflow: hidden;
+      // font-size: 1em;
+      // color: white;
+      // opacity: 0.6;
+
+      // @media screen and (min-width: 600px) {
+      //   opacity: 0.9;
+      // }
+    }
+
+    .wistia_embed {
+      min-height: 150px;
+      min-width: 240px;
+      height: 10em !important;
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+
+    .w-chrome {
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    @media screen and (min-width: $mobile-switch-point) {
+      .wistia_embed {
+        // Tablet View
+        height: 24em !important;
+      }
+    }
+
+    @media screen and (min-width: $tablet-switch-point) {
+      .wistia_embed {
+        // Desktop View
+        height: 36em !important;
+      }
+    }
+  }
+
+  .error_state {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+    min-height: 24em;
+    min-width: 260px;
+    background: grey;
+    color: white;
+    justify-content: center;
+    align-items: center;
+
+    .dev_tool {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      mat-icon {
+        width: auto;
+        height: auto;
+        font-size: 4em;
+        margin-bottom: 12px;
+        text-align: center;
+      }
+
+      h5 {
+        font-size: 1.4em;
+        font-weight: bold;
+        text-align: center;
+      }
+
+      h6 {
+        font-size: 1em;
+        font-weight: normal;
+        text-align: center;
+      }
+    }
+
+    .margin_spacing {
+      margin-top: 2em;
+    }
+
+    .verify_browser {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+        img {
+          width: 48px;
+          height: 48px;
+          margin: 10px;
+        }
+      }
+    }
+  }
+}

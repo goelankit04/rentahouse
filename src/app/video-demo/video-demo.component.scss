@@ -1,0 +1,26 @@
+.app-video-demo {
+  .video_demo_container {
+    margin-top: 90px;
+
+    h5 {
+      font-size: 1em;
+    }
+
+    #nurtr_video_player {
+      max-width: 700px;
+      margin: 3em 3em;
+    }
+
+    #player {
+      box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0);
+
+      .bmpui-ui-uicontainer {
+        pointer-events: auto;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    }
+
+  }
+}

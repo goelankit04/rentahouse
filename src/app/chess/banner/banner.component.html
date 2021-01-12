@@ -1,0 +1,37 @@
+<div class="banner-container1" *ngIf="!mobileView()">
+  <div class="banner-video" id="webBannerVideo"></div>
+
+  <div class="play-trailer" *ngIf="url">
+    <div class="author_description">
+      <h2 class="name">Learn Chess</h2>
+      <span class="work"> With best trainers from around the world </span>
+    </div>
+  </div>
+
+  <app-features *ngIf="getWindowWidth()"></app-features>
+</div>
+
+<div id="banner-height" class="banner-container" *ngIf="mobileView()">
+  <div class="banner-video" id="webBannerVideo">
+    <div
+      style="
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+      "
+    >
+      <h3 class="name">Learn Chess</h3>
+      <span class="work"> With best trainers from around the world </span>
+    </div>
+  </div>
+  <app-features *ngIf="getWindowWidth()"></app-features>
+</div>
+
+<app-features *ngIf="!getWindowWidth()"></app-features>

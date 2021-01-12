@@ -1,0 +1,65 @@
+.app-contact-form {
+  .contact-form-container {
+    display: flex;
+    justify-content: space-between;
+
+    .spacer {
+      flex: 1;
+    }
+
+    .spacer_input {
+      flex: 3;
+    }
+
+    .input-form {
+      background: #9BCB41 url("/assets/contact.svg") center no-repeat;
+      .adjust-input {
+        display: flex;
+        flex-direction: column;
+        min-height: 400px;
+        justify-content: space-evenly;
+        padding: 3em;
+
+        .input-container {
+          display: flex;
+          justify-content: space-between;
+        }
+
+        input {
+          border: none;
+          outline: none;
+          font-size: 1em;
+          padding-bottom: 1em;
+          border-bottom: 3px solid #FEFFFF;
+          background-color: inherit;
+          color: white;
+        }
+
+        input::placeholder {
+          color: #FFFFFF;
+          border: none;
+        }
+
+        input:-ms-input-placeholder {
+          color: #FFFFFF;
+          border: none;
+        }
+
+        input:-ms-input-placeholder {
+          color: #FFFFFF;
+          border: none;
+        }
+
+        .submit_button {
+          display: flex;
+          justify-content: center;
+
+          button {
+            color: #FCFCFC;
+            background-color: #555555;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="twitter_callback_url_container">
+  <mat-spinner></mat-spinner>
+  <p class="heading">Please wait ... we are authenticating you with Nurtr.com</p>
+  <p class="sub_text">This page will rediect automatically</p>
+</div>
+
+<!-- <div class="twitter_callback_url_container_abs">
+  <mat-spinner></mat-spinner>
+  <p class="heading">Please wait ... we are authenticating you with Nurtr.com</p>
+  <p class="sub_text">This page will rediect automatically</p>
+</div> -->
+
+<app-mobile-otp-verification 
+    *ngIf="showVerifyMobileDialog"
+    [askForMobileNumber]='true'
+    [canSkipVerification]='false'
+    [userId]='twitterResponse.data.userId'
+    (returnIntentOutput)="getIntentReturn($event)"
+></app-mobile-otp-verification>
+
+<!-- [mobileCountryCode]='mobileCountryCodeForVerifyMobile' -->
+<!-- [mobileNumber]='mobileNumberForVerifyMobile' -->

@@ -1,0 +1,168 @@
+<mat-icon class="close" (click)="closeDialog()">clear</mat-icon>
+
+<form [formGroup]="form">
+  <h1>{{ data.productName | ellipsis: 50 }}</h1>
+  <span class="input_container">
+    <input
+      placeholder="{{ isMobileWidth() ? 'Your email address' : 'email' }}"
+      id="email"
+      formControlName="email"
+      (keyup)="
+        enablePayNow = false;
+        newUser = false;
+        showOwnedMessage = false;
+        askMobile = false
+      "
+      type="text"
+      (focusout)="showEmailError = true"
+    />
+    <button
+      (click)="verifyEmail()"
+      *ngIf="!userLoggedIn && !newUser"
+      [ngStyle]="{
+        'background-color': newUser || askMobile ? 'grey' : '#64ac3d',
+        cursor: newUser ? 'default' : 'pointer'
+      }"
+    >
+      Verify
+    </button>
+    <p
+      class="ownedProduct error_note"
+      *ngIf="
+        form.controls.email.dirty &&
+        showEmailError &&
+        getErrorMessage('email') !== ''
+      "
+    >
+      <mat-icon class="error_icon">error</mat-icon>
+      {{ getErrorMessage("email") }}
+    </p>
+  </span>
+
+  <span
+    class="input_container"
+    *ngIf="askMobile"
+    style="margin-top: 8px; padding: 0 10px;"
+  >
+    <app-mobile-number
+      [showErrorAlert]="false"
+      [disableMobileInput]="false"
+      [mobileNumber]="0"
+      (newMobileNumber)="getUserMobileNumber($event)"
+      (getErrorAlert)="getAlertError($event)"
+    ></app-mobile-number>
+    <button
+      (click)="verifyEmail()"
+      [ngStyle]="{
+        'background-color': newUser ? 'grey' : '#64ac3d',
+        cursor: newUser ? 'default' : 'pointer'
+      }"
+    >
+      Verify
+    </button>
+    <p *ngIf="errorOnMobile" class="ownedProduct error_note error_note_mobile">
+      <mat-icon class="error_icon">error</mat-icon> {{ mobileError }}
+    </p>
+  </span>
+
+  <span class="mobile_input" *ngIf="newUser">
+    <app-mobile-number
+      [showErrorAlert]="false"
+      [disableMobileInput]="false"
+      [mobileNumber]="mobileNumber"
+      [mobileCountryCode]="mobileCountryCode"
+      (newMobileNumber)="getUserMobileNumber($event)"
+      (getErrorAlert)="getAlertError($event)"
+    ></app-mobile-number>
+    <p *ngIf="errorOnMobile" class="ownedProduct error_note">
+      <mat-icon class="error_icon">error</mat-icon>{{ mobileError }}
+    </p>
+  </span>
+
+  <mat-form-field class="country" *ngIf="newUser" [floatLabel]="'never'">
+    <input
+      matInput
+      placeholder="Country"
+      aria-label="State"
+      [matAutocomplete]="auto"
+      formControlName="country"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let c of filterCountries(form.controls['country'].value)"
+        [value]="c.name"
+        (click)="getPricingByCountry(c.name)"
+      >
+        <span>{{ c.name }}</span>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <span class="coupon_link_container">
+    <a
+      [ngStyle]="{ opacity: enablePayNow ? '1' : '0.7' }"
+      class="apply_coupon"
+      *ngIf="!showCouponContainer && !showRemove"
+      (click)="
+        enablePayNow
+          ? (showCouponContainer = true)
+          : (showCouponContainer = false)
+      "
+      >Apply Coupon</a
+    >
+    <p class="apply_coupon applied_text" *ngIf="showRemove && coupon !== ''">
+      <strong>{{ coupon }}</strong> applied!
+    </p>
+    <a class="apply_coupon" *ngIf="showRemove" (click)="removeCoupon()"
+      >REMOVE</a
+    >
+  </span>
+
+  <div *ngIf="showCouponContainer" class="coupon_container">
+    <span class="input_container">
+      <input placeholder="Coupon Code" formControlName="coupon" />
+      <button (click)="applyCoupon()">Apply</button>
+    </span>
+  </div>
+
+  <div class="pricing_container">
+    <p class="price_new">
+      <i class="fa fa-{{ currency }}"></i>{{ data.finalPrice }}
+    </p>
+  </div>
+
+  <span>
+    <button
+      class="pay_now"
+      (click)="payNow()"
+      [ngStyle]="{ opacity: enablePayNow ? '1' : '0.5' }"
+    >
+      Pay Now
+    </button>
+    <span
+      class="redeem_scholarship"
+      [ngStyle]="{ opacity: enablePayNow ? '1' : '0.7' }"
+      *ngIf="enablePayNow"
+    >
+      <input
+        *ngIf="!newUser"
+        type="checkbox"
+        id="scholarship"
+        [disabled]="!enablePayNow"
+        formControlName="redeem"
+        (click)="redeemScholarship()"
+      />
+      <label *ngIf="!newUser" for="scholarship">Redeem Scholarship</label>
+    </span>
+  </span>
+
+  <p class="ownedProduct" *ngIf="showOwnedMessage">
+    You already own this product
+  </p>
+</form>
+
+<div class="loader" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div>
+
+<app-pre-loader *ngIf="loader"></app-pre-loader>

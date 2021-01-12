@@ -1,0 +1,92 @@
+<div class="user_test_login" *ngIf="!is_user_allowed && !is_typeform_res">
+  <mat-card [ngStyle]="{ border: getBorderProperty() }">
+    <mat-form-field>
+      <input matInput placeholder="username" [(ngModel)]="username" />
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        type="password"
+        matInput
+        placeholder="password"
+        [(ngModel)]="password"
+      />
+    </mat-form-field>
+    <button mat-stroked-button color="warn" (click)="loginTestUser()">
+      Login
+    </button>
+  </mat-card>
+</div>
+
+<app-popup
+  [popStatus]="popStatus"
+  (popupOutput)="getPopupOutEvent($event)"
+  (streamStatus)="getStreamStatus($event)"
+>
+</app-popup>
+
+<div class="app-container" *ngIf="is_user_allowed">
+  <!-- <router-outlet name="outlet1"></router-outlet> -->
+
+  <app-navigation
+    (PopUpTrigger)="getNavigationTrigger($event)"
+    [liveStreamStatus]="streamStatus"
+    *ngIf="!is_typeform_res"
+  ></app-navigation>
+  <router-outlet></router-outlet>
+</div>
+<app-footer
+  *ngIf="is_user_allowed && !is_typeform_res && !cricketFooter"
+></app-footer>
+
+<toaster-container [toasterconfig]="config"></toaster-container>
+<div
+  class="live-card-container"
+  *ngIf="liveProduct"
+  id="a"
+  cdkDrag
+  [cdkDragFreeDragPosition]="dragPosition"
+  (cdkDragEnded)="dragStarted($event)"
+>
+  <img [src]="liveProduct.image_url" *ngIf="!liveProduct.trailer_video" />
+  <div
+    class="wistia_responsive_padding"
+    style="padding: 56.25% 0 0 0; position: relative;"
+    *ngIf="liveProduct.trailer_video"
+  >
+    <div
+      class="wistia_responsive_wrapper"
+      style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;"
+    >
+      <div
+        class="wistia_embed {{ liveProduct?.trailer_video }} videoFoam=true"
+        style="height: 100%; position: relative; width: 100%;"
+      >
+        &nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="live-text">
+    <div class="ripple-live">
+      <div class="dot"></div>
+    </div>
+    <p>LIVE</p>
+  </div>
+
+  <i
+    class="material-icons close_video"
+    (click)="closeLiveSession(); liveProduct = false"
+    >cancel</i
+  >
+  <button class="join-now" (click)="join(liveProduct)">Join Now</button>
+  <div class="card-mentor-detail">
+    <!-- <p>Course Mentor</p> -->
+    <p>{{ liveProduct?.name | ellipsis: 35 }}</p>
+    <p>{{ liveProduct?.author_name }}</p>
+  </div>
+</div>
+
+<!-- <div class="recommendation_box" (click)="openRecommendation()">
+  <mat-icon>card_giftcard</mat-icon>
+  <p>Recommendation</p>
+</div> -->

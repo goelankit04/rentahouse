@@ -1,0 +1,76 @@
+<div class="video_page_container">
+  <div class="player_container" *ngIf="videoResponse">
+    <span class="heading_holder">
+      <p class="heading">
+        Episode {{ videoDetail?.episodeId ? videoDetail.episodeId : "" }}:&nbsp;
+      </p>
+      <p class="name">{{ videoResponse.name }}</p>
+    </span>
+
+    <!-- <app-player-video-js [videoURL]="videoResponse" [detailVideo]="videoDetail" [detailUser]="userDetail">
+    </app-player-video-js> -->
+
+    <app-player-wistia *ngIf="videoResponse?.video_url" [detailVideo]="videoDetail" [videoURL]="videoResponse"
+      [detailUser]="userDetail" (videoLinkInvalid)="invalidVideoLink($event)"></app-player-wistia>
+
+    <!-- <app-player-shaka *ngIf="!videoResponse?.video_url || videoResponse?.shaka_url" [detailVideo]="videoDetail"
+      [videoURL]="videoResponse" [detailUser]="userDetail" (videoLinkInvalid)="invalidVideoLink($event)">
+    </app-player-shaka> -->
+    <!-- <app-player-shaka *ngIf="!videoResponse?.video_url" [detailVideo]="videoDetail" [videoURL]="videoResponse"
+      [detailUser]="userDetail" (videoLinkInvalid)="invalidVideoLink($event)"></app-player-shaka> -->
+
+    <app-player-video-js *ngIf="!videoResponse?.video_url && (videoResponse?.dash || videoResponse?.hls)"
+      [detailVideo]="videoDetail" [videoURL]="videoResponse" [detailVideo]="videoDetail" [detailUser]="userDetail">
+    </app-player-video-js>
+
+    <!-- <app-player-bitmovin
+      *ngIf="videoResponse?.hls && !videoResponse?.shaka_url"
+      [detailUser]="userDetail"
+      [detailVideo]="videoDetail"
+      [videoCurrent]="videoResponse"
+      [playerUnload]="unloadPlayer"
+      [playerPause]="pausePlayer"
+    ></app-player-bitmovin> -->
+
+    <div class="no_video_found_container" *ngIf="
+        !(
+          (videoResponse?.dash && videoResponse?.hls) ||
+          videoResponse?.video_url ||
+          videoResponse?.shaka_url
+        )
+      ">
+      <img src="https://s3.ap-south-1.amazonaws.com/nurtr.com/um_vdr_sry.jpg" />
+    </div>
+
+    <span class="icons_holder" *ngIf="videoDetail.productType !== 13">
+      <img draggable="false" src="{{ getButtonLink(videoResponse.is_example_ready, 3) }}" matTooltip="Examples"
+        (click)="openExample()" />
+      <img draggable="false" src="{{ getButtonLink(videoResponse.is_puzzle_ready, 1) }}" matTooltip="Puzzle"
+        (click)="openPuzzle()" />
+      <img draggable="false" src="{{ getButtonLink(videoResponse?.flipbook_url?.length > 0, 4) }}"
+        matTooltip="Flip Book" (click)="openFlipBook()" />
+    </span>
+
+    <p class="description" [innerHTML]="videoResponse.short_description"></p>
+
+    <span class="episode_controls" *ngIf="videoDetail.episodeId">
+      <button (click)="previousVideo()" [disabled]="!previousVideoStatus"
+        [ngClass]="{ disabled: !previousVideoStatus }">
+        Previous Video
+      </button>
+      <button (click)="nextVideo()" [disabled]="!nextVideoStatus" [ngClass]="{ disabled: !nextVideoStatus }">
+        Next Video
+      </button>
+    </span>
+  </div>
+
+  <div class="no_video_found_container_standalone" *ngIf="!videoResponse && !isLoading">
+    <img src="https://s3.ap-south-1.amazonaws.com/nurtr.com/um_vdr_sry.jpg" />
+  </div>
+
+  <div class="upcoming_container">
+    <app-upcoming-events-section></app-upcoming-events-section>
+  </div>
+</div>
+
+<app-pre-loader *ngIf="isLoading"></app-pre-loader>

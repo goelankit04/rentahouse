@@ -1,0 +1,13 @@
+@import "./contact/contact.component";
+@import "./footer-navigation/footer-navigation.component";
+@import "./social/social.component";
+@import "./terms-of-use/terms-of-use.component";
+@import "./privacy-policy/privacy-policy.component";
+@import "contact-us/contact-us.component";
+
+.app-footer {
+  .footer-container {
+    height: 35vh;
+    border-top: 1px solid #CDCDCD;
+  }
+}

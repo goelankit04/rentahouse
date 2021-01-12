@@ -1,0 +1,233 @@
+.app-banner {
+  .banner-container1 {
+    position: relative;
+    overflow: hidden;
+    background: url('https://s3.ap-south-1.amazonaws.com/nurtr.com/banner.jpg')
+      center/100% no-repeat;
+    // padding: 56.25% 0 0 0;
+    background-size: cover;
+    // height: auto;
+    height: 30em;
+
+    .banner-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      .video-container {
+        position: relative;
+        justify-content: center;
+        max-width: 100%;
+        background-color: #000;
+        margin: auto;
+
+        .iframe_video {
+          margin: 0 auto;
+          justify-content: center;
+        }
+      }
+
+      .wistia_responsive_padding {
+        padding: 56.25% 0 0 0;
+        position: relative;
+
+        .wistia_responsive_wrapper {
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          position: absolute;
+        }
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        // z-index: 2;
+        z-index: 0;
+        background: url('https://s3.ap-south-1.amazonaws.com/nurtr.images/bg.png')
+          center/100% 100% no-repeat;
+      }
+    }
+
+    .play-trailer {
+      position: absolute;
+      top: 30%;
+      color: white;
+      width: 100%;
+      height: 25%;
+      // z-index: 3;
+      z-index: 0;
+
+      .author_description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        justify-content: space-evenly;
+
+        .svg_container {
+          max-width: 60px;
+          height: 60px;
+          cursor: pointer;
+          transition: all 1s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        h2 {
+          margin-bottom: 0;
+          font-weight: 400;
+        }
+
+        span {
+          font-size: 1.5em;
+          margin-top: -0.5em;
+        }
+      }
+    }
+  }
+
+  .banner-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+    background-color: #000000;
+
+    .banner-video {
+      background: #f8f8f8
+        url('https://s3.ap-south-1.amazonaws.com/nurtr.com/banner.jpg')
+        no-repeat center center;
+      background-size: cover;
+
+      #bgvid_mobile {
+        height: 300px;
+      }
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: url('https://s3.ap-south-1.amazonaws.com/nurtr.images/bg.png')
+          center/800px 100% no-repeat;
+      }
+
+      .large_screen {
+        display: none;
+      }
+    }
+
+    .play-trailer {
+      position: absolute;
+      top: 30%;
+      color: white;
+      width: 100%;
+      height: 35%;
+      z-index: 1;
+
+      .author_description {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        justify-content: space-evenly;
+
+        .svg_container {
+          max-width: 60px;
+          height: 60px;
+          cursor: pointer;
+          transition: all 1s;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
+
+        h3 {
+          margin-bottom: 0;
+          font-weight: 400;
+        }
+
+        span {
+          font-size: 1.1em;
+          margin-top: -0.5em;
+        }
+      }
+    }
+  }
+
+  #bgvid {
+    height: stretch;
+    width: 100%;
+  }
+
+  .player_wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000d1;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    z-index: 100;
+
+    .player_box {
+      max-width: 80%;
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+
+      app-player-shaka {
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (min-width: 801px) {
+    .banner-container {
+      .banner-video {
+        display: none;
+        .large_screen {
+          display: block;
+        }
+
+        .medium_screen {
+          display: none;
+        }
+      }
+
+      .banner-video1 {
+        display: block;
+      }
+
+      .play-trailer {
+        .ramesh-text {
+          .name {
+            font-size: 2.7em;
+          }
+
+          .work {
+            font-size: 1.4em;
+          }
+        }
+      }
+    }
+  }
+}

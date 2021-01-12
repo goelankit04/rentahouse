@@ -1,0 +1,36 @@
+<div class="benefits_container">
+  <p class="header_text">Benefits of Enrollment</p>
+  <div class="item_container">
+    <div class="item" *ngFor="let item of benefits">
+      <div class="pent_box">
+        <p class="heading">{{item.heading}}</p>
+        <p class="lifetime">{{item.lifetime}}</p>
+        <p class="quantity">{{item.quantity}}</p>
+        <p class="rupees">
+
+          <i class="fa {{showDollar ? 'fa-usd' : 'fa-inr'}}"></i>
+            {{showDollar ? item.dollars : item.rupees}}
+        </p>
+      </div>
+    </div>
+    <div class="total">
+      <p class="total_head">TOTAL</p>
+      <p class="price_rack">Rack Price</p>
+      <p class="price_strike">
+        <span class="strike">
+          &nbsp;
+          <i class="fa {{showDollar ? 'fa-usd' : 'fa-inr'}}"></i>
+          {{showDollar ? final_price.rack.price_usd : final_price.rack.price_inr}}
+          &nbsp;
+        </span>
+      </p>
+      <p class="price_offer">Offer Price</p>
+      <p class="price_new"><i class="fa {{showDollar ? 'fa-usd' : 'fa-inr'}}"></i>{{showDollar ? final_price.offer.price_usd : final_price.offer.price_inr}}</p>
+    </div>
+  </div>
+
+  <div class="item_text">
+  <h3><span>Register</span> and get <span>FREE</span><span style="font-size:20px;font-weight:normal;color:#545454;"> access to demo videos of Dream Room, Live Room and Class Room!</span></h3>
+  
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="no_data_received" *ngIf="!puzzleReceived">
+  <mat-icon>error</mat-icon>
+  <p>No puzzles are available for this episode</p>
+</div>
+
+<div class="puzzle_container" *ngIf="puzzleReceived">
+  <mat-select *ngIf="mobileVersion()" [(value)]="matSelectPuzzle">
+    <mat-option *ngFor="let puzzle of puzzles; let j = index;" value="Puzzle {{puzzle.id}}"
+      (click)="playPuzzle(puzzle)">Puzzle
+      {{j + 1}}</mat-option>
+  </mat-select>
+  <div class="puzzle_menu" *ngIf="!mobileVersion()">
+    <div class="puzzle_card" *ngFor="let puzzle of puzzles; let i = index;" (click)="playPuzzle(puzzle)"
+      [ngClass]="{'activePuzzle': puzzle.id === currentPuzzle}">
+      Puzzle {{i + 1}}
+    </div>
+  </div>
+  <div class="puzzle_play">
+    <!-- Puzzle play #{{currentPuzzle}} -->
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+.app-platform-feature {
+  .row {
+    width: 90%;
+    margin: auto;
+
+    .col-md-4 {
+      margin-bottom: 1em;
+
+      .container-fluid {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 90%;
+        margin: auto;
+
+        .text_data {
+          h4 {
+            margin-bottom: 6px;
+            font-weight: 400;
+            font-size: 16px;
+            text-transform: uppercase;
+            color: #666666;
+          }
+
+          p {
+            font-size: 14px;
+            line-height: 16px;
+            color: #676767;
+          }
+        }
+      }
+    }
+  }
+
+  @media screen and (min-width: 880px) {
+    .row {
+      .col-md-4 {
+        .container-fluid {
+          align-items: baseline;
+
+          .text_data {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+}

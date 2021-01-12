@@ -1,0 +1,69 @@
+.app-dreamroom-detail {
+  .dreamroom_detail_container {
+    color:gray;
+    border-bottom: 1px solid #CDCDCD;
+
+    header {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding-top: 2em;
+      width: 90%;
+      margin: auto;
+
+      h3 {
+        font-weight: 400;
+        font-size: 1.75em;
+        // color: gray;
+      }
+
+      p{
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .dreamroom_detail_body {
+      background: url("/assets/chess/wave_blue.svg") center/100% no-repeat;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 534px;
+      justify-content: center;
+    }
+
+    .spacer {
+      height: 0px;
+    }
+  }
+
+  @media screen and (min-width: 1000px){
+    .dreamroom_detail_container {
+      justify-content: baseline;
+
+      header {
+        text-align: left;
+        width: 90%;
+        margin: auto;
+        margin-top: 2em;
+
+        p{
+          width: 75%;
+          text-align: left;
+        }
+      }
+
+      .dreamroom_detail_body {
+        margin-top: -6em;
+      }
+
+      .spacer{
+        height: 70px;
+      }
+    }
+  }
+}
+
+@import "web-detail/web-detail.component";
+@import "mobile-detail/mobile-detail.component";

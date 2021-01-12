@@ -1,0 +1,309 @@
+.app-chess-features {
+
+  .chess_benefits_container {
+
+    // // for center-column format
+    // max-width: 1200px;
+    // margin: auto;
+
+    .heading{
+      width: 90%;
+      margin: auto;
+      font-weight: 400;
+      font-size: 1.75em;
+      color: gray;
+    }
+  }
+
+  .feature-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 0;
+
+    .svg-container {
+      flex: 1;
+      // min-width: 300px;
+
+      .svg_width {
+        .logo-svg {
+          fill: #A0CD4E;
+        }
+
+        .memory-container {
+          transition: all 2s;
+
+          .container-path {
+            fill: #F1F2F2;
+          }
+
+          .container-text {
+            fill: #666766;
+            // font-family: 'Roboto-Medium', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20.0497px;
+          }
+
+          .container-svg {
+            fill: #A0CD4E;
+          }
+
+          .leaf-path {
+            fill: #A0CD4E
+          }
+
+          .leaf-number {
+            fill: #FFFFFF;
+          }
+        }
+
+        .visual-container {
+          transition: all 2s;
+          .container-path {
+            fill: #F1F2F2;
+          }
+
+          .container-text {
+            fill: #666766;
+            // font-family: 'Roboto-Medium', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20.0497px;
+          }
+
+          .container-svg {
+            fill: #A0CD4E;
+          }
+
+          .leaf-path {
+            fill: #A0CD4E
+          }
+
+          .leaf-number {
+            fill: #FFFFFF;
+          }
+        }
+
+        .patience-container {
+          transition: all 2s;
+          .container-path {
+            fill: #F1F2F2;
+          }
+
+          .container-text {
+            fill: #666766;
+            // font-family: 'Roboto-Medium', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20.0497px;
+          }
+
+          .container-svg {
+            fill: #A0CD4E;
+          }
+
+          .leaf-path {
+            fill: #A0CD4E
+          }
+
+          .leaf-number {
+            fill: #FFFFFF;
+          }
+        }
+
+        .presence-container {
+          transition: all 2s;
+          .container-path {
+            fill: #F1F2F2;
+          }
+
+          .container-text {
+            fill: #666766;
+            // font-family: 'Roboto-Medium', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20.0497px;
+          }
+
+          .container-svg {
+            fill: #A0CD4E;
+          }
+
+          .leaf-path {
+            fill: #A0CD4E
+          }
+
+          .leaf-number {
+            fill: #FFFFFF;
+          }
+        }
+
+        .concentration-container {
+          transition: all 2s;
+          .container-path {
+            fill: #F1F2F2;
+          }
+
+          .container-text {
+            fill: #666766;
+            // font-family: 'Roboto-Medium', sans-serif;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 20.0497px;
+          }
+
+          .container-svg {
+            fill: #A0CD4E;
+          }
+
+          .leaf-path {
+            fill: #A0CD4E
+          }
+
+          .leaf-number {
+            fill: #FFFFFF;
+          }
+        }
+
+        .st40 {
+          fill: #A0CD4E;
+          opacity: 0.2;
+        }
+
+        .st41 {
+          fill: #F1F2F2;
+          enable-background: new;
+          opacity: 0.2;
+        }
+
+        .st42 {
+          fill: #A0CD4E;
+          enable-background: new;
+          opacity: 0.2;
+        }
+
+        .st43 {
+          fill: #FFFFFF;
+        }
+
+        .st44 {
+          fill: #666766;
+          opacity: 0.2;
+        }
+
+        .st45 {
+          // font-family: 'Roboto-Medium';
+          font-family: 'Open Sans', sans-serif;
+        }
+
+        .st46 {
+          font-size: 20.0497px;
+          opacity: 0.2;
+        }
+
+        .st47 {
+          fill: #676767;
+          opacity: 0.2;
+        }
+      }
+    }
+
+    .text-container {
+      display: flex;
+      flex-direction: column;
+      max-width: 485px;
+      flex: 1;
+      padding: 1em;
+
+      .header-text {
+        color: #666666;
+        font-size: 1.1em;
+        border-bottom: 2px solid #696969;
+      }
+
+      .border-para {
+        border-top: 3px solid #696969;
+        margin-top: -0.25em;
+        //width: 20%;
+
+        h3 {
+          margin-bottom: 0.8em;
+        }
+      }
+
+      .description {
+        p {
+          color: #999999;
+          font-size: 0.9em;
+          margin: 0;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 1000px){
+    .chess_benefits_container {
+      .heading{
+        text-align: center;
+      }
+    }
+  }
+
+  @media screen and (min-width: 500px) and (max-width: 699px) {
+    .feature-container {
+      display: flex;
+      align-items: center;
+
+      .svg-container {
+        min-width: 500px;
+      }
+
+      .text-container {
+        font-size: 1em;
+      }
+    }
+  }
+
+  @media screen and (min-width: 700px) and (max-width: 900px) {
+    .feature-container {
+      align-items: center;
+      flex-direction: row;
+      padding: 3em 0;
+
+      .svg-container {
+        min-width: 400px;
+      }
+
+      .text-container {
+        font-size: 1em;
+      }
+    }
+  }
+
+  @media screen and (min-width: 901px) and (max-width: 1200px) {
+    .feature-container {
+      align-items: start;
+      flex-direction: row;
+      padding: 3em 0;
+
+      .svg-container {
+        min-width: 500px;
+      }
+
+      .text-container {
+        font-size: 1em;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1201px) {
+    .feature-container {
+      align-items: start;
+      flex-direction: row;
+      padding: 2em 0;
+
+      .svg-container {
+        max-width: 730px;
+      }
+
+      .text-container {
+        font-size: 1.1em;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+<div class="puzzle_detail_container">
+
+  <p class="heading">Example {{puzzleDetail.id}}</p>
+  <!--(boardClick)="onBoardClick($event)"-->
+  <div class="puzzle-col">
+
+    <app-base-example [boardSize]="boardSize" [position]="chessConfig.position" [orientation]="chessConfig.orientation"
+      (mouseOverOnBoard)="onMouseOverSquare($event)" (mouseOutEvent)="onMouseoutSquare($event)"></app-base-example>
+
+    <div class="puzzle_detail">
+      <div class="display_board">
+        <p class="about_puzzle">{{puzzleDetail.heading}}</p>
+        <p class="about_detail">{{puzzleDetail.detail}}</p>
+
+        <div class="btn_container" *ngIf="puzzleDetail.question_type === 'boolean'">
+          <button (click)="clickedYes()">Yes</button>
+          <button (click)="clickedNo()">No</button>
+        </div>
+
+        <p class="puzzle_status">{{player_status_message}}</p>
+        <p class="well_done">{{sub_text}}</p>
+      </div>
+    </div>
+
+  </div>
+
+</div>

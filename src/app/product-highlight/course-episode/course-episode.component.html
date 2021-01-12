@@ -1,0 +1,237 @@
+<div class="course-episode" #top>
+  <h2
+    *ngIf="
+      product_id == 35 ||
+      product_id == 697 ||
+      product_id === 746 ||
+      product_id == 672 ||
+      product_id == 776 ||
+      product_id == 807
+    "
+  >
+    Course Episodes
+  </h2>
+  <h3 *ngIf="product_id == 787">
+    Chess 635 Combo includes following programs:
+  </h3>
+  <h3 *ngIf="product_id == 797">
+    Super7 Combo includes following programs:
+  </h3>
+
+  <h3 *ngIf="product_id == 680">The 10 Pillars of Super64 Program are :</h3>
+  <h2 *ngIf="product_id == 573 || product_id == 574">Course Mentors</h2>
+  <div class="row episode" *ngIf="product_id === 35">
+    <div class="col-md-3 left-episode">
+      <h3
+        *ngFor="let data of level; let i = index"
+        (click)="listClick(i)"
+        [ngClass]="{ active: selectedIdx === i }"
+      >
+        {{ data.name }} <br /><span>Fide Rating : {{ data.rating }}</span>
+      </h3>
+    </div>
+    <div class="col-md-9 right-episodes">
+      <ng-container *ngFor="let data of productList; let i = index">
+        <mat-accordion *ngIf="data && data.NAME">
+          <mat-expansion-panel
+            class="row right-epi-list"
+            [disabled]="!data?.detail"
+          >
+            <mat-expansion-panel-header>
+              <div class="col-md-9 col-8 epi1">
+                <p class="nomargin">
+                  <small>{{ i + 1 }}</small
+                  ><span>{{ data?.NAME }}</span>
+                </p>
+              </div>
+              <div class="col-md-3 col-4 time">
+                <p class="nomargin">
+                  <img src="../../../assets/product-highlight/videos.png" />{{
+                    data?.duration
+                  }}
+                  min
+                </p>
+              </div>
+            </mat-expansion-panel-header>
+
+            <div class="container" *ngIf="data?.detail">
+              <div class="row" [innerHTML]="data.detail"></div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-container>
+      <p class="show_hide">
+        <span
+          class="more"
+          *ngIf="
+            product_id === 35 &&
+            productList.length > 0 &&
+            currentProductList.length != productList.length
+          "
+          (click)="viewMore(selectedIdx)"
+        >
+          View More</span
+        >&nbsp;&nbsp;&nbsp;&nbsp;
+        <span
+          class="more"
+          *ngIf="product_id === 35 && productList.length > 5"
+          (click)="viewLess(top, selectedIdx)"
+        >
+          View Less</span
+        >
+      </p>
+    </div>
+  </div>
+
+  <div class="row episode" *ngIf="product_id === 807">
+    <div class="col-md-12 right-episodes">
+      <ng-container *ngFor="let data of productList; let i = index">
+        <mat-accordion *ngIf="data && data.NAME">
+          <mat-expansion-panel
+            class="row right-epi-list"
+            [disabled]="!data?.detail"
+          >
+            <mat-expansion-panel-header>
+              <div class="col-md-9 col-8 epi1">
+                <p class="nomargin">
+                  <small>{{ i + 1 }}</small
+                  ><span>{{ data?.NAME }}</span>
+                </p>
+              </div>
+              <div class="col-md-3 col-4 time">
+                <p class="nomargin">
+                  <img src="../../../assets/product-highlight/videos.png" />{{
+                    data?.duration
+                  }}
+                  min
+                </p>
+              </div>
+            </mat-expansion-panel-header>
+
+            <div class="container" *ngIf="data?.detail">
+              <div class="row" [innerHTML]="data.detail"></div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-container>
+      <p class="show_hide">
+        <span
+          class="more"
+          *ngIf="
+            (product_id === 35 &&
+              productList.length > 0 &&
+              currentProductList.length != productList.length) ||
+            (product_id === 807 &&
+              productList.length > 0 &&
+              currentProductList.length != productList.length)
+          "
+          (click)="viewMore(selectedIdx)"
+        >
+          View More</span
+        >&nbsp;&nbsp;&nbsp;&nbsp;
+        <span
+          class="more"
+          *ngIf="
+            (product_id === 35 && productList.length > 5) ||
+            (product_id === 807 && productList.length > 5)
+          "
+          (click)="viewLess(top, selectedIdx)"
+        >
+          View Less</span
+        >
+      </p>
+    </div>
+  </div>
+
+  <div class="row episode" *ngIf="product_id === 746 || product_id == 776">
+    <div class="col-md-12 right-episodes">
+      <ng-container *ngFor="let data of productList; let i = index">
+        <mat-accordion *ngIf="data && data.NAME">
+          <mat-expansion-panel
+            class="row right-epi-list"
+            [disabled]="!data?.detail"
+          >
+            <mat-expansion-panel-header>
+              <div class="col-md-11 col-11 epi1">
+                <p class="nomargin">
+                  <small>{{ i + 1 }}</small
+                  ><span>{{ data?.NAME }}</span>
+                </p>
+              </div>
+              <!-- <div class="col-md-3 col-4 time">
+                <p class="nomargin">
+                  <img src="../../../assets/product-highlight/videos.png" />{{
+                    data?.duration
+                  }}
+                  min
+                </p>
+              </div> -->
+            </mat-expansion-panel-header>
+
+            <div class="container" *ngIf="data?.detail">
+              <div class="row" [innerHTML]="data.detail"></div>
+            </div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </ng-container>
+      <p class="show_hide">
+        <span
+          class="more"
+          *ngIf="
+            (product_id === 746 || product_id == 776) &&
+            productList.length > 0 &&
+            currentProductList.length > productList.length
+          "
+          (click)="viewMore(selectedIdx)"
+        >
+          View More</span
+        >&nbsp;&nbsp;&nbsp;&nbsp;
+        <span
+          class="more"
+          *ngIf="
+            (product_id === 746 || product_id == 776) && productList.length > 5
+          "
+          (click)="viewLess(top, selectedIdx)"
+        >
+          View Less</span
+        >
+      </p>
+    </div>
+  </div>
+
+  <div
+    class="row right-episodes new"
+    style="height:auto"
+    *ngIf="
+      product_id == 680 ||
+      product_id == 573 ||
+      product_id == 574 ||
+      product_id == 697 ||
+      product_id == 672 ||
+      product_id == 787 ||
+      product_id == 797
+    "
+  >
+    <ng-container *ngFor="let data of productList; let i = index">
+      <mat-accordion *ngIf="data && data.NAME">
+        <mat-expansion-panel
+          class="row right-epi-list"
+          [disabled]="!data?.detail"
+        >
+          <mat-expansion-panel-header>
+            <div class="col-md-12 col-12 epi1">
+              <p class="nomargin">
+                <small>{{ i + 1 }}</small
+                ><span>{{ data?.NAME }}</span>
+              </p>
+            </div>
+          </mat-expansion-panel-header>
+
+          <div class="container" *ngIf="data?.detail">
+            <div class="row" [innerHTML]="data.detail"></div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </ng-container>
+  </div>
+</div>

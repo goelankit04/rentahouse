@@ -1,0 +1,24 @@
+<div class="player_wistia_container">
+
+  <div class="error_state" *ngIf="devToolStatus || !verifyUserBrowser()">
+    <div class="dev_tool" *ngIf="devToolStatus">
+      <mat-icon>warning</mat-icon>
+      <h5>We have detected an unusual activity in your system</h5>
+      <h6>Please close your browser and restart again</h6>
+    </div>
+
+    <div class="verify_browser" *ngIf="!verifyUserBrowser()" [ngClass]="{'margin_spacing' : devToolStatus}">
+      <h5>Please upgrade to any of the following browsers</h5>
+      <div>
+        <img *ngFor="let browser of supportedBrowserList" alt="{{browser.name}}" src="{{browser.image_url}}"
+          matTooltip="{{browser.name}}">
+      </div>
+    </div>
+  </div>
+
+  <div class="wistia_player" id="wistiaPlayer" *ngIf="!devToolStatus && verifyUserBrowser()">
+    <div id="watermark"></div>
+    <div [innerHTML]="videoCode"></div>
+  </div>
+
+</div>

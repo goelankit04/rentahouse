@@ -1,0 +1,75 @@
+<div class="dreamroom_container">
+  <div class="card_container">
+    <div class="about_ramesh">
+      <img src="/assets/chess/youtube.png" (click)="openVideo()">
+      <div class="about_text">
+
+        <div *ngIf="mobileVersion()">
+          <mat-chip-list>
+            <mat-chip (click)="chip.toggle()">{{about_heading}}
+              <mat-icon [innerHTML]="chip.isCollapsed ? 'add' : 'remove'"></mat-icon>
+            </mat-chip>
+          </mat-chip-list>
+          <div [mdbCollapse]="true" #chip="bs-collapse" class="toggle_text" id="mat-div" (window:resize)="onWindowResize()">
+            Known as Super Coach of India, Grand Master RB. Ramesh is one of the most successful chess coaches in the
+            world today.
+            He won British Chess Championship in 2002 and the Commonwealth Games in 2007. He also served as the coach
+            of the Indian
+            Olympiad team during 2012, 2014 and 2016. GM Ramesh has trained more than 10 Grand Masters and his Chess
+            Gurukul has
+            produced multiple global champions in different age categories. He has also trained Pragg, the youngest
+            International
+            Master in the history of the game!
+          </div>
+        </div>
+
+        <div *ngIf="!mobileVersion()">
+          <span>{{about_heading}}</span>
+          <p>
+            Known as Super Coach of India, Grand Master RB. Ramesh is one of the most successful chess coaches in the
+            world today.
+            He won British Chess Championship in 2002 and the Commonwealth Games in 2007. He also served as the coach
+            of the Indian
+            Olympiad team during 2012, 2014 and 2016. GM Ramesh has trained more than 10 Grand Masters and his Chess
+            Gurukul has
+            produced multiple global champions in different age categories. He has also trained Pragg, the youngest
+            International
+            Master in the history of the game!
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="course_features">
+      <div class="feature" *ngFor="let feature of courseFeatures">
+        <img src="{{feature.icon}}">
+        <span>{{feature.text}}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="course_container">
+    <div class="tab_menu" *ngIf="!mobileVersion()">
+      <div class="tab" *ngFor="let tab of tabMenu; let i = index" (click)="gotoTab(tab.id)" [ngClass]="{'is_tab_active': i === activeState}">
+        <span>{{tab.text}}</span>
+        <mat-icon>{{tab.sideIcon}}</mat-icon>
+      </div>
+    </div>
+
+    <div class="tab_menu" *ngIf="mobileVersion()">
+      <mat-form-field>
+        <mat-select placeholder="Select a page to visit" [(value)]="activePage">
+          <mat-option *ngFor="let tab of tabMenu; let i = index" (click)="gotoTab(tab.id)" value="{{tab.text}}">
+            {{ tab.text }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="tab_content">
+
+      <router-outlet></router-outlet>
+
+    </div>
+
+  </div>
+</div>

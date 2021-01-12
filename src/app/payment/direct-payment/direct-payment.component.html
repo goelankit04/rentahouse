@@ -1,0 +1,328 @@
+<div class="form_container" *ngIf="paramsReceived && dataReceived">
+  <mat-card>
+    <div class="user_product_section">
+      <!-- product details -->
+      <div class="product_details">
+        <p class="title">Product Details</p>
+        <div class="header">
+          <img src="{{ product.image_url }}" />
+          <div class="name_section">
+            <p class="name">{{ product.name }}</p>
+            <p class="author_name" *ngIf="product.author_name">
+              Mentor: <span>{{ product?.author_name }}</span>
+            </p>
+            <p class="duration" *ngIf="product.duration">
+              Duration: <span>{{ product.duration }}</span>
+            </p>
+          </div>
+        </div>
+        <p class="description" [innerHTML]="product.description"></p>
+
+        <!-- expension start-->
+
+        <div class="expension" *ngIf="extraProductInfo && extraProductInfo?.length > 0">
+          <mat-accordion *ngFor="let panel of extraProductInfo">
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  {{ panel?.Question }}
+                </mat-panel-title>
+              </mat-expansion-panel-header>
+              <div [innerHTML]="panel.Answer"></div>
+            </mat-expansion-panel>
+          </mat-accordion>
+        </div>
+
+        <!-- expension end -->
+
+        <!-- <div class="cost_container" *ngIf="pricing?.length===1 && pricing[0]?.special_price===0 && pricing[0]?.final_price!==null">
+          <div class="price_section">
+            <p class="heading">Pricing</p>
+            <div class="cost">
+              <p class="base" *ngIf="pricing[0]?.base_price!=pricing[0]?.sale_price">
+                <i class="fa {{currency}}"></i>{{pricing[0].base_price}}</p>
+              <p class="selling">
+                <i class="fa {{currency}}"></i>{{pricing[0].sale_price}}</p>
+            </div>
+          </div>
+        </div> -->
+
+        <div class="cost_container" *ngIf="
+            pricing?.length === 1 &&
+            (pricing[0]?.base_price != pricing[0]?.sale_price ||
+              pricing[0]?.base_price === pricing[0]?.sale_price) &&
+            pricing[0]?.final_price !== null
+          ">
+          <div class="price_section" *ngIf="pricing[0]?.special_price !== pricing[0]?.sale_price">
+            <p class="heading">For DRR</p>
+            <div class="cost">
+              <p class="base" *ngIf="pricing[0]?.base_price != pricing[0]?.final_price">
+                <i class="fa {{ currency }}"></i>{{ pricing[0].base_price }}
+              </p>
+              <p class="selling">
+                <i class="fa {{ currency }}"></i>{{ pricing[0].special_price }}
+              </p>
+            </div>
+          </div>
+
+          <div class="price_section" *ngIf="pricing[0]?.special_price !== pricing[0]?.sale_price">
+            <p class="heading">For non DRR</p>
+            <div class="cost">
+              <p class="base" *ngIf="pricing[0]?.base_price != pricing[0]?.sale_price">
+                <i class="fa {{ currency }}"></i>{{ pricing[0].base_price }}
+              </p>
+              <p class="selling">
+                <i class="fa {{ currency }}"></i>{{ pricing[0].sale_price }}
+              </p>
+            </div>
+          </div>
+
+          <div class="price_section" *ngIf="pricing[0]?.special_price === pricing[0]?.sale_price">
+            <p class="heading">Pricing</p>
+            <div class="cost">
+              <p class="base" *ngIf="pricing[0]?.base_price != pricing[0]?.sale_price">
+                <i class="fa {{ currency }}"></i>{{ pricing[0].base_price }}
+              </p>
+              <p class="selling">
+                <i class="fa {{ currency }}"></i>{{ pricing[0].sale_price }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- user form -->
+      <div class="user_form">
+        <!-- <p>Let's get you all the set up so you can verify your email and begin buying your product.</p> -->
+
+        <div class="form_section">
+          <div class="email_verify" [formGroup]="email_form" (keydown)="enterPress($event)">
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email" id="email_to_verify"
+                (change)="emailVerfied = false" />
+              <mat-error *ngIf="email_form.controls['email'].errors">{{
+                getErrorMessage_newUser("email")
+              }}</mat-error>
+            </mat-form-field>
+            <button class="verify_button" *ngIf="!isUserLoggedIn" (click)="verfiyEmailId()"
+              [disabled]="email_form.invalid" [ngClass]="{ disabled: email_form.invalid }">
+              Verify
+            </button>
+          </div>
+
+          <div class="mobile_verify" *ngIf="isMobileRequired">
+            <app-mobile-number [disableMobileInput]="false" [mobileNumber]="0" [mobileCountryCode]="0"
+              (newMobileNumber)="setNewMobileNumber($event)"></app-mobile-number>
+            <p class="alert alert-danger" *ngIf="showError">
+              Enter your regidtered mobile number
+            </p>
+            <button class="verify_with_mobile_button" (click)="verifyMobileNumber()">
+              Verify with mobile number
+            </button>
+          </div>
+
+          <div class="message_for_change_email" *ngIf="showChangeEmailMessage">
+            <p>
+              You are buying this product as
+              <span class="user_name">
+                {{ userFirstNameInResponse }}
+                {{ userLastNameInResponse }}</span>
+              <ng-container *ngIf="!isUserLoggedIn">
+                <a (click)="focusOnEmail()" style="margin-left:5px;">click here</a>
+                buy as a different user
+              </ng-container>
+            </p>
+          </div>
+
+          <p *ngIf="isProductOwnedByTheUser" class="product_owned"
+            style="text-align: center; font-size: 20px;font-weight: bold;">
+            You already own this product
+          </p>
+
+          <div class="new_user_form" [formGroup]="form" *ngIf="formStatus">
+            <mat-form-field>
+              <input matInput placeholder="First Name" formControlName="first_name" />
+              <mat-error *ngIf="form.controls['first_name'].errors">{{ getErrorMessage_newUser("first_name") }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Last Name" formControlName="last_name" />
+              <mat-error *ngIf="form.controls['last_name'].errors">{{
+                getErrorMessage_newUser("last_name")
+              }}</mat-error>
+            </mat-form-field>
+
+            <app-mobile-number [disableMobileInput]="mobileInputStatus" [mobileNumber]="0"
+              (newMobileNumber)="getUserMobileNumber($event)" [ngClass]="{ enable_mobile_input: !mobileInputStatus }">
+            </app-mobile-number>
+
+            <!-- <mat-form-field>
+            <input matInput placeholder="Mobile" formControlName="mobile">
+            <mat-error *ngIf="form.controls['mobile'].errors">{{getErrorMessage_newUser('mobile')}}</mat-error>
+          </mat-form-field> -->
+
+            <mat-form-field class="pwd">
+              <input matInput placeholder="Password" type="password" formControlName="password" />
+              <mat-error *ngIf="form.controls['password'].errors">{{
+                getErrorMessage_newUser("password")
+              }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="City" formControlName="city" />
+              <mat-error *ngIf="form.controls['city'].errors">{{
+                getErrorMessage_newUser("city")
+              }}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Country" aria-label="State" [matAutocomplete]="auto"
+                formControlName="country" (change)="getActiveProduct()" />
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="
+                    let c of filterCountries(form.controls['country'].value)
+                  " [value]="c.name" (click)="getActiveProduct(c.name)">
+                  <span>{{ c.name }}</span>
+                </mat-option>
+              </mat-autocomplete>
+              <mat-error *ngIf="form.controls['country'].touched">{{
+                getErrorMessage_newUser("country")
+              }}</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- && productId !== specialProductId -->
+        <div class="price_detail" *ngIf="pricing.length > 1">
+          <table style="width:100%">
+            <tr style="background: #f7f7f7;color:black;">
+              <th style=" width:8%"></th>
+              <th *ngIf="pricing[0]?.detail">Product</th>
+              <th *ngIf="pricing[0]?.session_duration">Duration</th>
+              <th>For DRR</th>
+              <th>For non DRR</th>
+            </tr>
+            <tr *ngFor="let price of pricing; let i = index">
+              <!-- {{price?}} -->
+              <td>
+                <input type="radio" name="price" [checked]="i === 0" value="{{ price?.id }}"
+                  (click)="selectedPrices(price)" />
+              </td>
+
+              <td [innerHTML]="price?.detail" *ngIf="price?.detail"></td>
+              <td *ngIf="price?.session_duration">
+                {{ price?.session_duration }}
+              </td>
+              <td style="font-weight:bold;">
+                <span style="text-decoration: line-through;color:grey"
+                  *ngIf="price?.base_price != price?.final_price"><i class="fa {{ currency }}"
+                    style="font-size:15px;"></i><span style="margin-left:3px;margin-right:8px;">{{
+                    price?.base_price
+                  }}</span></span><i class="fa {{ currency }}" style="font-size:15px;"></i>{{ price?.special_price }}
+              </td>
+              <td style="font-weight:bold;">
+                <span style="text-decoration: line-through;color:grey" *ngIf="price?.base_price != price?.sale_price"><i
+                    class="fa {{ currency }}" style="font-size:15px;"></i><span
+                    style="margin-left:3px;margin-right:8px;">{{
+                    price?.base_price
+                  }}</span></span><i class="fa {{ currency }}" style="font-size:15px;"></i>{{ price?.sale_price }}
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- *ngIf="productId !== specialProductId" -->
+        <div class="payment_section">
+          <div class="coupon_container">
+            <div class="coupon_setup" *ngIf="couponAllowed || redeemAllowed">
+              <div class="content_coupon" [formGroup]="payment">
+                <span *ngIf="couponAllowed">
+                  <input placeholder="Enter coupon" formControlName="coupon_value" [disabled]="
+                      isProductOwnedByTheUser ? true : !canApplyCoupon()
+                    " />
+                  <button (click)="validateCoupon()" *ngIf="!isUserLoggedIn" [ngClass]="{
+                      disabled: isProductOwnedByTheUser
+                        ? true
+                        : !canApplyCoupon()
+                    }" [disabled]="
+                      isProductOwnedByTheUser ? true : !canApplyCoupon()
+                    ">
+                    APPLY
+                  </button>
+                  <button (click)="validateCoupons()" *ngIf="isUserLoggedIn">
+                    APPLY
+                  </button>
+                </span>
+
+                <mat-checkbox *ngIf="redeemAllowed && isUserLoggedIn" formControlName="isRedeemed" color="primary"
+                  (change)="validateCoupons()">Redeem Scholarship
+                </mat-checkbox>
+
+                <mat-checkbox *ngIf="redeemAllowed && !isUserLoggedIn"
+                  [disabled]="redeemAllowed && !isUserLoggedIn && !userId" formControlName="isRedeemed" color="primary"
+                  (change)="validateCoupon()">Redeem Scholarship
+                </mat-checkbox>
+              </div>
+              <p class="coupon_message">{{ coupon_message }}</p>
+            </div>
+
+            <div class="message" *ngIf="response_message">
+              <p>{{ response_message }}</p>
+            </div>
+          </div>
+
+          <div class="pay_section" *ngIf="pricing[0]?.final_price !== null">
+            <div class="pay_amount" [ngClass]="{
+                pay_amount_with_border_radius: !(couponAllowed || redeemAllowed)
+              }">
+              <p class="amount_head">Amount to Pay:</p>
+              <p class="amount_value">
+                <i class="fa {{ currency }}"></i>
+                {{ pricing.length > 1 ? selectedPrice : final_price }}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form_button" *ngIf="!isProductOwnedByTheUser">
+          <!-- <button mat-raised-button color="primary"
+            *ngIf="pricing[0]?.final_price !== null && productId === specialProductId"
+            (click)="RequestProduct()">Request a Callback</button> -->
+
+          <!-- && productId !== specialProductId -->
+          <button mat-raised-button color="primary" *ngIf="pricing[0]?.final_price !== null" (click)="registerUser()"
+            [disabled]="
+              isUserLoggedIn
+                ? false
+                : email_form.value.email === userEmail
+                ? emailVerfied
+                  ? formStatus
+                    ? form.invalid
+                    : email_form.invalid
+                  : true
+                : true
+            ">
+            PAY NOW
+          </button>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<app-pre-loader *ngIf="isLoading"></app-pre-loader>
+
+<div class="error404" *ngIf="!isLoading ? !paramsReceived || !dataReceived : false">
+  <div class="error_face">
+    <p>(-_-)</p>
+  </div>
+  <div class="error_text">
+    <p>requested page cannot be found</p>
+    <button routerLink="/product-catalog/1/3">
+      Click here to see all our products
+    </button>
+  </div>
+</div>
+
+<app-nurtr-usp *ngIf="paramsReceived && dataReceived"></app-nurtr-usp>

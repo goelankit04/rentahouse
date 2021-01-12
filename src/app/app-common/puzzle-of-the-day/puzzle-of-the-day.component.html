@@ -1,0 +1,26 @@
+<div class="puzzle__of__the__day__container">
+
+  <button mat-mini-fab (click)="closePuzzleOfTheDay()">
+    <mat-icon>close</mat-icon>
+  </button>
+
+  <div class="content__tank">
+
+    <div class="text__container" *ngIf="!puzzleSolved">
+      <h1>{{puzzleHeading | async}}</h1>
+      <p class="content">What is the correct move ? Predict the best one</p>
+      <p class="notify">{{player_status_message | async}}</p>
+    </div>
+
+    <div class="puzzle__container" *ngIf="!puzzleSolved">
+      <div id="board" touch-action="none" #puzzleOftheDayBoard style="width: 100%; min-width: 200px; max-width: 330px;"></div>
+    </div>
+
+      <div class="solved_container" *ngIf="puzzleSolved">
+        <mat-icon>check_circle_outline</mat-icon>
+        <p>You have successfully solved today's puzzle</p>
+      </div>
+
+  </div>
+
+</div>

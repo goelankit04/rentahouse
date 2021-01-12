@@ -1,0 +1,20 @@
+.app-pre-loader {
+  .spinner-background {
+    z-index: 20;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .mat-progress-spinner.mat-progress-spinner-indeterminate-animation[mode=indeterminate] {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+    }
+  }
+}

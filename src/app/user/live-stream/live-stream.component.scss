@@ -1,0 +1,22 @@
+.app-live-stream {
+  .error_img {
+    width: 100%;
+  }
+
+  .player_styles {
+    transform: scale(0.8);
+
+    @media screen and (max-width: 800px) {
+      transform: scale(1);
+    }
+  }
+
+  h4 {
+    padding: 12px;
+    font-weight: bold;
+
+    span {
+      color: #a0ce4e;
+    }
+  }
+}

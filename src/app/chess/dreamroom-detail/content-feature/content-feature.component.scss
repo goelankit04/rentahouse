@@ -1,0 +1,58 @@
+.app-content-feature {
+  .row {
+    position: relative;
+    top: -184px;
+    margin-right: 0;
+    margin-left: 0;
+    // height: 14em;
+
+    .col-md-4 {
+      .container-fluid {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 90%;
+        margin: auto;
+
+        .text_data {
+          h4 {
+            font-weight: 400;
+            font-size: 1.4em;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+
+  .feature_top {
+    top: 0;
+    margin-top: 3em;
+
+    .col-md-4 {
+      padding-left: 0;
+      .container-fluid {
+        width: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+
+        .text_data {
+          h4 {
+            font-weight: 400;
+            font-size: 1.4em;
+            text-transform: uppercase;
+            margin-bottom: 0.1rem;
+          }
+          p{
+            line-height: 22px;
+          }
+        }
+      }
+    }
+  }
+}

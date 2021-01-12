@@ -1,0 +1,100 @@
+<div class="puzzle_detail_container">
+  <!-- <p class="heading">Puzzle {{puzzleDetail.id}}</p> -->
+
+  <div class="puzzle-col">
+    <div class="puzzle_board">
+      <div id="board" touch-action="none" (click)="OnBoardClick($event)"></div>
+      <div class="puzle_butons">
+        <!-- <button (click)='previousMove()'>Previous</button>
+        <button (click)='nextMove()'>Next</button>
+        <button (click)='moveHint()'>Hint</button>
+        <button (click)='ReloadQuiz()'>Reload</button> -->
+        <div id="boardButton" class="default buttons" style="display: block">
+          <i
+            id="boardButtonprev"
+            (click)="previousMove()"
+            class="default button fa fa-step-backward"
+            title="Go to previous move"
+          ></i>
+          <i
+            id="boardButtonnext"
+            (click)="nextMove()"
+            class="default button fa fa-step-forward"
+            title="Go to next move"
+          ></i>
+          <i
+            id="boardButtonplay"
+            (click)="moveHint()"
+            class="default button fa fa-question-circle"
+            title="Hint"
+          ></i>
+          <i
+            id="boardButtonlast"
+            (click)="ReloadQuiz()"
+            class="default button fa fa-refresh"
+            title="Reload"
+          ></i>
+          <button (click)="Show_pgn = true" *ngIf="Show_solutionBtn">
+            View Solution
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="puzzle_detail">
+      <div class="display_board">
+        <p class="about_puzzle">{{ puzzleDetail.heading }}</p>
+        <p class="about_puzzle_detail" style="font-weight: normal">
+          {{ puzzleDetail.Question }}
+        </p>
+        <p class="about_puzzle_detail">{{ puzzleDetail.detail }}</p>
+
+        <div
+          class="btn_container"
+          *ngIf="puzzleDetail.question_type === 'boolean'"
+        >
+          <button (click)="clickedYes()">Yes</button>
+          <button (click)="clickedNo()">No</button>
+        </div>
+
+        <p class="puzzle_status">{{ player_status_message }}</p>
+        <!-- <p class="well_done">{{sub_text}}</p> -->
+        <!-- <p class="puzzle_status" *ngIf="Show_pgn">Well Done</p> -->
+      </div>
+
+      <div class="box" *ngIf="Show_pgn">
+        <!-- <p innerHTML = '{{pgn}}'></p> -->
+        <span *ngFor="let room of display_moves; let i = index">
+          <span
+            [class.active]="i == selectedRow"
+            (click)="moveFrom_pgn(i, 'outer')"
+            ><strong>
+              {{ room.move_number }}<span *ngIf="room.move_number">.</span
+              >{{ room.move }}</strong
+            >
+            <span *ngIf="room.comment != undefined"> {{ room.comment }} </span>
+          </span>
+
+          <span *ngIf="room.ravs && room.ravs.length > 0">
+            <br />(
+            <span *ngFor="let ravs of room.ravs; let j = index">
+              <span
+                *ngFor="let mvi of ravs.moves; let k = index"
+                (click)="moveFrom_pgn(i, 'inner', j, k, ravs.moves)"
+                [class.active]="
+                  k == selectedCol && j == selectedMat && i == selectedCat
+                "
+              >
+                {{ mvi.move_number }} <span *ngIf="mvi.move_number">.</span>
+                {{ mvi.move }}
+                <span *ngIf="mvi.comment != undefined">
+                  {{ mvi.comment }}
+                </span></span
+              > </span
+            >)<br />
+          </span>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

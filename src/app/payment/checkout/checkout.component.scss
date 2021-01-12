@@ -1,0 +1,368 @@
+.app-checkout{
+  .content_container{
+      margin-top:80px;
+      width: 100%;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+     .prod_details{
+       font-size:20px;font-weight: bold;
+       margin:34px;
+     }
+      .price_detail{
+        width: 98%;
+          margin: auto;
+          margin-top: 2%;
+      
+          th{
+            padding: 20px 30px;
+          font-size: 20px;
+          font-weight: bold;
+          }
+        table, th, td {
+          border: 1px solid #cccccc !important;
+          border-collapse: collapse !important;
+      }
+       td{
+         padding:10px 30px;
+         font-size:17px;
+       }
+       b{
+         font-weight: bold !important;
+         color:#f55269 !important;
+
+       }
+       
+       input[type='radio'] {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        /* padding: 0; */
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border: 2px solid #a0ce4e;
+        border-radius: 50%;
+        outline: none;
+        /* box-shadow: 0 0 5px 0px grey inset; */
+      }
+      input[type='radio']:checked {
+        background: #a0ce4e;
+      }
+      }
+      .top_heading{
+        display: grid;
+        grid-template-columns: 150px 1fr 150px 150px;
+        background-color: #f7f7f7;
+        font-weight: 500;
+        // border-top: 1px solid #cccccc;
+
+        span{
+          padding: 16px 20px;
+          border-bottom: 1px solid;
+          border-color: #cccccc;
+          font-weight: bold;
+        }
+
+        .content{
+          border-right: 1px solid #cccccc;
+          border-left: 1px solid #cccccc;
+        }
+
+        .remove_border{
+          border-left: 0px solid #cccccc;
+        }
+
+        // @media screen {
+
+        // }
+      }
+
+      .item_container{
+          // width: 100%;
+          height: fit-content;
+          background-color: white;
+          filter: drop-shadow(2px 2px 6px #cccccc);
+          margin: 1em;
+
+          .cart {
+              padding: 1em;
+              font-weight: bold;
+              font-size: 24px;
+              border-bottom: 1px solid #cccccc;
+          }
+      }
+
+      .bottom-container {
+          border-top: 1px solid;
+          border-color: #cccccc;
+          background: #CCCCCC;
+          height: fit-content;
+          display: grid;
+          // width: fit-content;
+          grid-template-columns:1fr;
+          grid-template-rows: 0px 1fr fit-content;
+          grid-gap: 0px;
+          // filter: drop-shadow(0px 0px 10px #cccccc);
+
+          .coupon_message{
+            margin: 0;
+            font-weight: 400;
+            color: red;
+            text-align: center;
+          }
+
+          .applied_message{
+            margin-left: 1em;
+          }
+
+          .spacing{
+            padding: 20px;
+          }
+
+          .item1 {
+            padding: 0px;
+            background: white;
+          }
+
+          .item2 {
+            background: white;
+
+            .mat-checkbox-layout{
+              font-size: 14px;
+
+              .mat-checkbox-inner-container{
+                width: 15px;
+                height: 15px;
+              }
+            }
+
+            .apply_coupon{
+              font-weight: bold;
+              display: block;
+              text-align: center;
+            }
+
+            .apply_coupon_div{
+              display: flex;
+              align-items: center;
+              margin: auto;
+              width: fit-content;
+            }
+
+            .enter_coupon_input{
+              padding: 10px;
+              border: 1px solid;
+              border-color: #cccccc;
+              border-top-left-radius: 5px;
+              border-bottom-left-radius: 5px;
+              width: initial;
+            }
+
+            .enter_coupon_button{
+              // display: block;
+              padding: 11px;
+              border: 0px;
+              background: #A0CE4E;
+              color: white;
+              border-top-right-radius: 6px;
+              border-bottom-right-radius: 6px;
+            }
+
+            .redeem_scholarship_div{
+              margin: auto;
+              margin-top: 10px;
+              width: fit-content;
+            }
+
+          }
+
+          .item3 {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            .pay_values{
+              margin: auto;
+
+              .head{
+                text-align: right;
+                font-weight: bold;
+              }
+
+              .value{
+                padding-left: 16px;
+                padding-right: 16px;
+                text-align: left;
+                font-weight: bold;
+              }
+
+              .final{
+                // border-top: 1px solid #cccccc;
+                color: #a0ce4e;
+
+                td{
+                  font-size: 1.4em;
+                  font-weight: bold;
+                  // border-top: 1px solid #cccccc;
+                }
+
+                .final_price{
+                  text-align: right;
+                  padding: 0;
+                  padding-left: 16px;
+                }
+
+                .final_value{
+                  padding: 6px 16px;
+                }
+              }
+            }
+
+            .pay_now-button{
+              border: 0px;
+              border-radius: 5px;
+              background: #A0CE4E;
+              color: white;
+              padding: 12px 40px;
+              margin: auto;
+              font-weight: bold;
+
+              &:hover{
+                transition: 0.4s;
+                background: #81b520;
+              }
+            }
+          }
+      }
+
+      @media screen and (max-width: 400px){
+            .bottom-container {
+              .item2{
+                .enter_coupon_input{
+                  width: 120px;
+                }
+              }
+            }
+      }
+
+      @media screen and (min-width: 630px){
+        .bottom-container {
+          height: fit-content;
+          display: grid;
+          // width: fit-content;
+          grid-template-columns: 0px 1fr 1fr;
+          grid-template-rows: 240px;
+          grid-gap: 0px;
+          // filter: drop-shadow(0px 0px 10px #cccccc);
+
+          .coupon_message{
+            text-align: left;
+          }
+
+          .spacing{
+            padding: 20px;
+          }
+
+          .item1 {
+            padding: 20px;
+            background: white;
+          }
+
+          .item2 {
+            background: white;
+
+            .mat-checkbox-layout{
+              // font-size: 15px;
+
+              .mat-checkbox-inner-container{
+                width: 20px;
+                height: 20px;
+              }
+            }
+
+            .apply_coupon{
+              font-weight: bold;
+              display: block;
+              text-align: left;
+            }
+
+            .apply_coupon_div{
+              display: flex;
+              align-items: left;
+              margin-left: 0px;
+            }
+
+            .enter_coupon_input{
+              padding: 10px;
+              border: 1px solid;
+              border-color: #cccccc;
+              border-top-left-radius: 5px;
+              border-bottom-left-radius: 5px;
+            }
+
+            .enter_coupon_button{
+              // display: block;
+              padding: 11px;
+              border: 0px;
+              background: #A0CE4E;
+              color: white;
+              border-top-right-radius: 5px;
+              border-bottom-right-radius: 5px;
+            }
+
+            .redeem_scholarship_div{
+              margin-top: 10px;
+              margin-left: 0px;
+            }
+
+          }
+         
+
+          .item3 {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            .pay_now-button{
+              border: 0px;
+              border-radius: 5px;
+              background: #A0CE4E;
+              color: white;
+              padding: 12px 40px;
+              margin: auto;
+              font-weight: bold;
+
+              &:hover{
+                transition: 0.4s;
+                background: #81b520;
+              }
+            }
+          }
+        }
+      }
+      @media screen and (min-width: 1120px){
+        .bottom-container {
+          height: fit-content;
+          display: grid;
+          grid-template-columns: 150px 2fr 1fr;
+          grid-template-rows: 220px;
+          grid-gap: 0px;
+        }
+      }
+
+      @media screen and (min-width:300px) and (max-width:430px){
+      td {
+        padding: 7px 27px !important;
+        font-size: 12px !important; 
+    }
+     th {
+      padding: 4px 25px !important;
+      font-size: 11px !important; 
+      font-weight: bold !important;
+    }
+  }
+
+  }
+}

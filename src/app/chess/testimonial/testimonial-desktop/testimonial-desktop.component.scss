@@ -1,0 +1,95 @@
+.app-testimonial-desktop {
+  .testimonial-container {
+
+    // // for center-column format
+    // max-width: 1200px;
+    // margin: auto;
+
+    .mat-figure {
+      align-items: flex-end;
+    }
+
+    .image-sliders_web {
+      display: flex;
+      flex-direction: column;
+      width: 90%;
+
+      .content_div {
+        text-align: center;
+        height: 10em;
+
+        .testimony_content {
+          font-size: 1.1em;
+          padding: 0 1em;
+          width: 70%;
+          margin: auto;
+          margin-top: 18px;
+          font-style: oblique;
+          font-weight: 400;
+
+          .rotate180{
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      h3 {
+        font-size: 1.3em;
+        font-weight: 500;
+        margin-bottom: 0;
+        margin-top: 1em;
+      }
+
+      h4 {
+        font-weight: 400;
+        font-size: 1em;
+        margin-top: 0.3em;
+      }
+
+      .image-container-box {
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        position: relative;
+        width: 90%;
+        margin: auto;
+        height: 8em;
+        max-width: 52em;
+
+        .image_with_arrow {
+          display: flex;
+          align-items: center;
+          justify-content: space-evenly;
+          width: 100%;
+
+          img {
+            transition: 0.3s;
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+            opacity: 0.5;
+          }
+        }
+
+        .is_active {
+          img {
+            transition: 0.2s;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+            // box-shadow: 0 0px 0px 0 rgb(153, 153, 153, 0.2), 0 10px 10px 10  rgb(153, 153, 153, 0.5);
+            -webkit-filter: grayscale(0);
+            filter: grayscale(0);
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

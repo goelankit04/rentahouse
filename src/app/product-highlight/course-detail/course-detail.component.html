@@ -1,0 +1,67 @@
+<div class="whyus" *ngIf="product_id == 807">
+  <h2>Why Chess?</h2>
+  <p>
+    There are many studies which suggest that Chess improves math skills,
+    increases IQ, improves decision making, enhances memory & generally makes
+    brain more active. So wait no more, give yourself edge above others.
+    Subscribe to the Dream Room!
+  </p>
+</div>
+<div class="course-detail row">
+  <div class="col-md-6 left-detail nopadding">
+    <h2>Course Details</h2>
+    <p>{{ productList.course_details }}</p>
+  </div>
+  <div class="col-md-6 right-detail nopadding">
+    <h2>
+      Course Highlights <span>Highlights & benefits from the course</span>
+    </h2>
+    <div class="row nomargin">
+      <div
+        class="col-md-6 col-lg-4 col-6 box"
+        *ngFor="let data of productList.course_highlight"
+      >
+        <div [ngStyle]="{ background: data.background }">
+          <p>{{ data.name }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="course-detail"
+  *ngIf="
+    product_id == 746 ||
+    product_id == 778 ||
+    product_id == 672 ||
+    product_id == 776 ||
+    product_id == 810
+  "
+>
+  <h2 style="font-weight: bold;margin-bottom:25px;" *ngIf="product_id == 746">
+    About Grandmaster Farrukh Amonatov
+  </h2>
+  <h2 style="font-weight: bold;margin-bottom:25px;" *ngIf="product_id == 778">
+    About Grandmaster Alexander Morozevich
+  </h2>
+  <h2 style="font-weight: bold;margin-bottom:25px;" *ngIf="product_id == 672">
+    About Grandmaster Marian Petrov
+  </h2>
+  <h2 style="font-weight: bold;margin-bottom:25px;" *ngIf="product_id == 776">
+    About Grandmaster Boris Avrukh
+  </h2>
+  <h2 style="font-weight: bold;margin-bottom:25px;" *ngIf="product_id == 810">
+    About Grandmaster Adhiban Baskaran
+  </h2>
+  <ng-container *ngFor="let data of descr; let i = index">
+    <div class="row">
+      <div class="" style="width:20px;" *ngIf="product_id != 810">➣</div>
+      <div class="col-md-11" style="width:90%;">
+        <li style="font-size:18px;list-style:none;margin-bottom:8px;">
+          {{ data?.desc }}
+        </li>
+      </div>
+    </div>
+  </ng-container>
+</div>

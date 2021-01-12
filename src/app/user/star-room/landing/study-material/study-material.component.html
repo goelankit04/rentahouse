@@ -1,0 +1,18 @@
+<div class="main-container" style="font-size:1em;">
+  <div style="font-size:1em;margin-bottom:3%;" [innerHTML]="product"></div>
+
+  <div *ngIf="extraProductInfo">
+    <div class="expension" *ngFor="let panel of extraProductInfo">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{panel?.Question}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <div [innerHTML]="panel?.Answer"></div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+  </div>
+</div>

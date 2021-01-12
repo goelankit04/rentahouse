@@ -1,0 +1,97 @@
+.app-user-dashboard {
+  .user_dashboard_container {
+    overflow: visible;
+    background: white;
+    border-radius: 6px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+  }
+
+  .user_dashboard_container:empty {
+    display: none;
+    padding: 0;
+  }
+
+  .no_data_recieved_message {
+    background: white;
+    border-radius: 6px;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    align-items: center;
+
+    mat-icon {
+      font-size: 3em;
+      height: fit-content;
+      width: fit-content;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+
+  .chip-heading {
+    font-size: 1.75em;
+    font-weight: 400;
+    color: grey;
+    margin-left: 0em;
+    text-transform: none;
+    cursor: default;
+    margin-bottom: 12px; // margin-left: 16px;
+  }
+
+  .loader {
+    mat-spinner {
+      margin: auto;
+      margin-top: 4em;
+      margin-bottom: 4em;
+    }
+  }
+
+  .webinar_cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .image-box {
+    width: 100%;
+    margin: 2em 0;
+    display: flex;
+    flex-direction: column;
+
+    img {
+      width: 100%;
+      max-width: 60em;
+      margin: auto;
+    }
+  }
+
+  .mat-dialog-container {
+    width: 80% !important;
+    // height: 0% !important;
+  }
+
+  .user_change_password_container .mat-card {
+    width: 75%;
+  }
+
+  .cdk-overlay-0 {
+    width: 40%;
+    // height: auto !important;
+  }
+
+  .recommended_container {
+    padding: 1em;
+    .recommended_card {
+      
+    }
+  }
+}
